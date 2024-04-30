@@ -1,0 +1,115 @@
+<aside class="navbar-aside" id="offcanvas_aside">
+  <div class="aside-top">
+      <a class='brand-wrap' href='index.htm'>
+          <img src="assets/imgs/theme/logo.svg" class="logo" alt="Nest Dashboard">
+      </a>
+      <div>
+          <button class="btn btn-icon btn-aside-minimize">
+            <i class="text-muted material-icons md-menu_open"></i>
+          </button>
+      </div>
+  </div>
+  <nav>
+
+      <ul class="menu-aside">
+          <li class="menu-item" routerLinkActive="active">
+              <a class='menu-link' [routerLink]="['/home']" >
+                  <i class="icon material-icons md-home"></i>
+                  <span class="text">Dashboard</span>
+              </a>
+          </li>
+          <li class="menu-item has-submenu" routerLinkActive="active">
+              <a class='menu-link'>
+                  <i class="icon material-icons md-shopping_bag"></i>
+                  <span class="text">Produits</span>
+              </a>
+              <div class="submenu">
+                  <a [routerLink]="['/vendors/add-product']" routerLinkActive="active">Ajouter un produit</a>
+                  <a [routerLink]="['/vendors/list-of-products']" routerLinkActive="active" >Liste des produits</a>
+                  <a >Liste des catégories</a>
+                  <a >Suggestion de produits</a>
+              </div>
+          </li>
+          <li class="menu-item has-submenu" routerLinkActive="active">
+              <a class='menu-link'>
+                  <i class="icon material-icons md-shopping_cart"></i>
+                  <span class="text">Commandes</span>
+              </a>
+              <div class="submenu">
+                  <a [routerLink]="['/vendors/list-of-orders']" routerLinkActive="active">
+                    Commandes achevées
+                  </a>
+                  <a [routerLink]="['/vendors/list-of-orders-pending']" routerLinkActive="active">Commandes en attentes</a>
+              </div>
+          </li>
+          <li class="menu-item has-submenu">
+              <a class='menu-link' href='page-sellers-cards.html'>
+                  <i class="icon material-icons md-store"></i>
+                  <span class="text">Sellers</span>
+              </a>
+              <div class="submenu">
+                  <a href='page-sellers-cards.html'>Sellers cards</a>
+                  <a href='page-sellers-list.html'>Sellers list</a>
+                  <a href='page-seller-detail.html'>Seller profile</a>
+              </div>
+          </li>
+          <li class="menu-item" routerLinkActive="active">
+              <a class='menu-link'[routerLink]="['/vendors/list-paiements']"  >
+                  <i class="icon material-icons md-monetization_on"></i>
+                  <span class="text">Transactions</span>
+              </a>
+              <!-- <div class="submenu">
+                  <a href='page-transactions-1.html'>Transaction 1</a>
+                  <a class='active' href='page-transactions-2.html'>Transaction 2</a>
+              </div> -->
+          </li>
+          <li class="menu-item" routerLinkActive="active" >
+              <a class='menu-link' [routerLink]="['/vendors/list-reviews']" routerLinkActive="active" >
+                  <i class="icon material-icons md-comment"></i>
+                  <span class="text">Reviews</span>
+              </a>
+          </li>
+          <li class="menu-item">
+              <a class='menu-link' href='page-brands.html'> <i class="icon material-icons md-account_box"></i>
+                <span class="text">Abonnements</span>
+              </a>
+          </li>
+          <li class="menu-item">
+            <a class='menu-link' href='page-brands.html'> <i class="icon material-icons md-notifications"></i>
+              <span class="text">Notifications</span>
+            </a>
+        </li>
+          <li class="menu-item">
+              <a class="menu-link" disabled="" href="#">
+                  <i class="icon material-icons md-pie_chart"></i>
+                  <span class="text">Statistics</span>
+              </a>
+          </li>
+          <li class="menu-item has-submenu"  routerLinkActive="active">
+            <a class="menu-link" href="#">
+                <i class="icon material-icons md-settings"></i>
+                <span class="text">Paramètres</span>
+            </a>
+            <div class="submenu">
+                <a [routerLink]="['/vendors/settings']"  routerLinkActive="active">Boutiques </a>
+                <a href='page-settings-2.html'>Setting sample 2</a>
+            </div>
+        </li>
+      </ul>
+      <!-- <hr>
+      <ul class="menu-aside">
+          <li class="menu-item has-submenu"  routerLinkActive="active">
+              <a class="menu-link" href="#">
+                  <i class="icon material-icons md-settings"></i>
+                  <span class="text">Paramètres</span>
+              </a>
+              <div class="submenu">
+                  <a [routerLink]="['/vendors/settings']"  routerLinkActive="active">Boutiques </a>
+                  <a href='page-settings-2.html'>Setting sample 2</a>
+              </div>
+          </li>
+      </ul>
+      <br>
+      <br> -->
+  </nav>
+</aside>

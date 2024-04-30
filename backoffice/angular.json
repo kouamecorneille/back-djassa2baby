@@ -27,7 +27,13 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/js/vendors/bootstrap.bundle.min.js",
+              "src/assets/js/vendors/select2.min.js",
+              "src/assets/js/vendors/jquery.fullscreen.min.js",
+              "src/assets/js/main.js",
+              "src/assets/js/vendors/color-modes.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -96,5 +102,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "4bc45713-aacf-4a44-92bd-ed5cb32410d2"
   }
 }
