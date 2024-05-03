@@ -49,5 +49,4 @@ export const routes: Routes = [
       component:ReviewsComponent
     }
 
-
 ];
