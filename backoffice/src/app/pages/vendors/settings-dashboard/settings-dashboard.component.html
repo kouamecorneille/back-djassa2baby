@@ -1,0 +1,22 @@
+<div class="content-header">
+  <h2 class="content-title">Profile setting</h2>
+</div>
+<div class="card">
+  <div class="card-body">
+      <div class="row gx-5">
+          <aside class="col-lg-3 border-end">
+              <nav class="nav nav-pills flex-lg-column mb-4">
+                  <a class="nav-link active" aria-current="page" [routerLink]="['/vendors/settings/profile']" routerLinkActive="active" >General</a>
+                  <a class="nav-link" [routerLink]="['/vendors/settings/list-stores']" routerLinkActive="active">Mes boutiques</a>
+                  <a class="nav-link" href="#">Newsletter</a>
+              </nav>
+          </aside>
+          <div class="col-lg-9">
+             <router-outlet></router-outlet>
+          </div>
+          <!-- col.// -->
+      </div>
+      <!-- row.// -->
+  </div>
+  <!-- card body end// -->
+</div>

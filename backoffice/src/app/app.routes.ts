@@ -8,6 +8,11 @@ import { OrdersListComponent } from './pages/vendors/orders-list/orders-list.com
 import { OrdersPendingComponent } from './pages/vendors/orders-pending/orders-pendingcomponent';
 import { TransactionsComponent } from './pages/vendors/transactions/transactions.component';
 import { ReviewsComponent } from './pages/vendors/reviews/reviews.component';
+import { PackagesVendorsComponent } from './pages/vendors/packages-vendors/packages-vendors.component';
+import { NotificationsComponent } from './pages/vendors/notifications/notifications.component';
+import { StatisticsComponent } from './pages/vendors/statistics/statistics.component';
+import { SettingsDashboardComponent } from './pages/vendors/settings-dashboard/settings-dashboard.component';
+import { StoreListVendorComponent } from './pages/vendors/store-list-vendor/store-list-vendor.component';
 
 export const routes: Routes = [
 
@@ -20,9 +25,18 @@ export const routes: Routes = [
       path: 'home',
       component:DashbordComponent
     },
+
     {
-      path: 'vendors/settings',
-      component:SettingsComponent
+      path: 'packages-vendors',
+      component:PackagesVendorsComponent
+    },
+    {
+      path: 'notifications',
+      component:NotificationsComponent
+    },
+    {
+      path: 'statistics-sale',
+      component:StatisticsComponent
     },
     {
       path: 'vendors/add-product',
@@ -47,6 +61,26 @@ export const routes: Routes = [
     {
       path: 'vendors/list-reviews',
       component:ReviewsComponent
-    }
+    },
+    {
+      path: 'vendors/settings',
+      component:SettingsDashboardComponent,
+      children:[
+        {
+          path:'',
+          redirectTo:'profile',
+          pathMatch:'full'
+        },
+        {
+          path:'profile',
+          component:SettingsComponent
+        },
+        {
+          path:'list-stores',
+          component:StoreListVendorComponent
+        }
+
+      ]
+    },
 
 ];

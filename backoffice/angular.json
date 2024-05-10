@@ -32,13 +32,12 @@
               "src/assets/js/vendors/select2.min.js",
               "src/assets/js/vendors/jquery.fullscreen.min.js",
               "src/assets/js/main.js",
-              "src/assets/js/vendors/color-modes.js"
+              "src/assets/js/vendors/color-modes.js",
+              "node_modules/apexcharts/dist/apexcharts.min.js"
             ],
             "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "prerender": false,
+            "ssr": false
           },
           "configurations": {
             "production": {

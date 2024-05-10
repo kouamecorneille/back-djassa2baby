@@ -6,6 +6,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorRequestsService } from './helpers/interceptors/interceptor-requests.service';
 import { InterceptorResponseService } from './helpers/interceptors/interceptor-response.service';
 import {  ToastrModule } from 'ngx-toastr';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +16,9 @@ import {  ToastrModule } from 'ngx-toastr';
     CommonModule,
     RouterOutlet,
     LayoutComponent,
-    ToastrModule
+    ToastrModule,
+    ReactiveFormsModule,
+    NgApexchartsModule,
   ],
   providers:[
     {
