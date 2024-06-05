@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { LayoutComponent } from './pages/layout/layout.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorRequestsService } from './helpers/interceptors/interceptor-requests.service';
 import { InterceptorResponseService } from './helpers/interceptors/interceptor-response.service';
 import {  ToastrModule } from 'ngx-toastr';

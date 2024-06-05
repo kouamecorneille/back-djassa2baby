@@ -18,7 +18,7 @@ export class LoginComponent {
   message!:string
   loader: boolean=false;
 
-  constructor(private fb:FormBuilder,private authService:AuthService,private router:Router){
+  constructor(private fb:FormBuilder,private authService:AuthService){
 
     this.LoginForm = this.fb.group({
       numero:["", [Validators.required, Validators.minLength(10)]],
