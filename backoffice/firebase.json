@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dit/backoffice/browser",
+    "public": "dist/backoffice/browser",
     "ignore": [
       "firebase.json",
       "**/.*",

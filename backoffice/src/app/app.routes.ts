@@ -24,7 +24,6 @@ export const routes: Routes = [
       redirectTo:'auth/login',
       pathMatch:'full'
     },
-
     {
       path: 'auth/login',
       component:LoginComponent
@@ -84,7 +83,6 @@ export const routes: Routes = [
         },
       ]
     },
-
 
 
 ];
