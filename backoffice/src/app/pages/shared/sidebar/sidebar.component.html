@@ -1,0 +1,204 @@
+<aside class="left-sidebar with-vertical">
+  <div>
+    <!-- ---------------------------------- -->
+    <!-- Start Vertical Layout Sidebar -->
+    <!-- ---------------------------------- -->
+    <div class="brand-logo d-flex align-items-center justify-content-between">
+      <a href="../main/index.html" class="text-nowrap logo-img">
+        <img
+          src="../assets/images/logos/dark-logo.svg"
+          class="dark-logo"
+          alt="Logo-Dark"
+        />
+        <img
+          src="../assets/images/logos/light-logo.svg"
+          class="light-logo"
+          alt="Logo-light"
+          style="display: none"
+        />
+      </a>
+      <a
+      #sidebartoggler
+        href="javascript:void(0)"
+        (click)="toggleSidebar()"
+        class="sidebartoggler ms-auto text-decoration-none fs-5 d-block d-xl-none"
+      >
+        <i class="ti ti-x"></i>
+      </a>
+    </div>
+
+    <nav
+      class="sidebar-nav scroll-sidebar simplebar-scrollable-y"
+      data-simplebar="init"
+    >
+      <div class="simplebar-wrapper" style="margin: 0px -24px">
+        <div class="simplebar-height-auto-observer-wrapper">
+          <div class="simplebar-height-auto-observer"></div>
+        </div>
+        <div class="simplebar-mask">
+          <div class="simplebar-offset" style="right: 0px; bottom: 0px">
+            <div
+              class="simplebar-content-wrapper"
+              tabindex="0"
+              role="region"
+              aria-label="scrollable content"
+              style="height: 100%; overflow: hidden scroll"
+            >
+            <div class="simplebar-content" style="padding: 0px 24px">
+              <ul id="sidebarnav">
+                <!-- Dashboard -->
+                <li class="sidebar-item">
+                  <a class="sidebar-link" [routerLink]="['/home']" routerLinkActive="active" id="dashboard-url" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-dashboard"></i>
+                    </span>
+                    <span class="hide-menu">Dashboard</span>
+                  </a>
+                </li>
+
+                <!-- Products -->
+                <li class="sidebar-item">
+                  <a class="sidebar-link" [routerLink]="['/vendors/list-of-products']" routerLinkActive="active"  id="products-url" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-package"></i>
+                    </span>
+                    <span class="hide-menu">Produits</span>
+                  </a>
+                </li>
+
+                <!-- Categories -->
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="./categories" id="categories-url" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-tag"></i>
+                    </span>
+                    <span class="hide-menu">Catégories</span>
+                  </a>
+                </li>
+
+                <!-- Orders -->
+                <li class="sidebar-item">
+                  <a class="sidebar-link" [routerLink]="['/vendors/list-of-orders']" routerLinkActive="active"  id="orders-url" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-shopping-cart"></i>
+                    </span>
+                    <span class="hide-menu">Commandes</span>
+                  </a>
+                </li>
+
+                <!-- Customers -->
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="./customers" id="customers-url" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-users"></i>
+                    </span>
+                    <span class="hide-menu">Abonnés</span>
+                  </a>
+                </li>
+
+                <!-- Reviews -->
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="./reviews" id="reviews-url" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-message-dots"></i>
+                    </span>
+                    <span class="hide-menu">Avis des clients</span>
+                  </a>
+                </li>
+
+                <!-- Notifications -->
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="./notifications" id="notifications-url" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-bell-plus"></i>
+                    </span>
+                    <span class="hide-menu">Notifications</span>
+                  </a>
+                </li>
+
+                <!-- Inventory -->
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="./inventory" id="inventory-url" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-archive"></i>
+                    </span>
+                    <span class="hide-menu">Inventaire</span>
+                  </a>
+                </li>
+
+                <!-- Reports -->
+                <li class="sidebar-item">
+                  <a class="sidebar-link" [routerLink]="['/statistics-sale']" routerLinkActive="active"  id="reports-url" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-chart-pie"></i>
+                    </span>
+                    <span class="hide-menu">Rapports</span>
+                  </a>
+                </li>
+
+                <!-- Marketing -->
+                <li class="sidebar-item">
+                  <a class="sidebar-link"   id="marketing-url" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-speakerphone"></i>
+                    </span>
+                    <span class="hide-menu">Marketing</span>
+                  </a>
+                </li>
+
+                <!-- Settings -->
+                <li class="sidebar-item">
+                  <a class="sidebar-link" [routerLink]="['/vendors/settings']" routerLinkActive="active"  id="settings-url" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-settings"></i>
+                    </span>
+                    <span class="hide-menu">Paramètres</span>
+                  </a>
+                </li>
+
+                <!-- Support -->
+                <li class="sidebar-item">
+                  <a class="sidebar-link" [routerLink]="['/vendors/support']" routerLinkActive="active"  id="support-url" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-headset"></i>
+                    </span>
+                    <span class="hide-menu">Support</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            </div>
+          </div>
+        </div>
+        <div
+          class="simplebar-placeholder"
+          style="width: 269px; height: 3498px"
+        ></div>
+      </div>
+      <div
+        class="simplebar-track simplebar-horizontal"
+        style="visibility: hidden"
+      >
+        <div
+          class="simplebar-scrollbar"
+          style="width: 0px; display: none"
+        ></div>
+      </div>
+      <div
+        class="simplebar-track simplebar-vertical"
+        style="visibility: visible"
+      >
+        <div
+          class="simplebar-scrollbar"
+          style="
+            height: 170px;
+            transform: translate3d(0px, 0px, 0px);
+            display: block;
+          "
+        ></div>
+      </div>
+    </nav>
+
+  </div>
+</aside>

@@ -25,15 +25,19 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/styles.css"
+
             ],
             "scripts": [
-              "src/assets/js/vendors/bootstrap.bundle.min.js",
-              "src/assets/js/vendors/select2.min.js",
-              "src/assets/js/vendors/jquery.fullscreen.min.js",
-              "src/assets/js/main.js",
-              "src/assets/js/vendors/color-modes.js",
-              "node_modules/apexcharts/dist/apexcharts.min.js"
+                "src/assets/js/vendor.min.js",
+                "src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js",
+                "src/assets/libs/simplebar/dist/simplebar.min.js",
+                "src/assets/js/theme/app.init.js",
+                "src/assets/js/theme/theme.js",
+                "src/assets/js/theme/app.min.js",
+                "src/assets/js/theme/sidebarmenu.js",
+                "src/assets/js/apps/notes.js"
             ],
             "server": "src/main.server.ts",
             "prerender": false,

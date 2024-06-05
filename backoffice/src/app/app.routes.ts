@@ -13,74 +13,78 @@ import { NotificationsComponent } from './pages/vendors/notifications/notificati
 import { StatisticsComponent } from './pages/vendors/statistics/statistics.component';
 import { SettingsDashboardComponent } from './pages/vendors/settings-dashboard/settings-dashboard.component';
 import { StoreListVendorComponent } from './pages/vendors/store-list-vendor/store-list-vendor.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { SupportComponent } from './pages/vendors/support/support.component';
+import { StoreSettingsComponent } from './pages/vendors/store-settings/store-settings.component';
 
 export const routes: Routes = [
 
     {
       path:'',
-      redirectTo:'home',
+      redirectTo:'auth/login',
       pathMatch:'full'
     },
-    {
-      path: 'home',
-      component:DashbordComponent
-    },
 
     {
-      path: 'packages-vendors',
-      component:PackagesVendorsComponent
+      path: 'auth/login',
+      component:LoginComponent
     },
     {
-      path: 'notifications',
-      component:NotificationsComponent
-    },
-    {
-      path: 'statistics-sale',
-      component:StatisticsComponent
-    },
-    {
-      path: 'vendors/add-product',
-      component:AddProductsComponent
-    },
-    {
-      path: 'vendors/list-of-products',
-      component:ProductsListComponent
-    },
-    {
-      path: 'vendors/list-of-orders',
-      component:OrdersListComponent
-    },
-    {
-      path: 'vendors/list-of-orders-pending',
-      component:OrdersPendingComponent
-    },
-    {
-      path: 'vendors/list-paiements',
-      component:TransactionsComponent
-    },
-    {
-      path: 'vendors/list-reviews',
-      component:ReviewsComponent
-    },
-    {
-      path: 'vendors/settings',
-      component:SettingsDashboardComponent,
-      children:[
+      path:'',
+      component:LayoutComponent,
+      children: [
         {
-          path:'',
-          redirectTo:'profile',
-          pathMatch:'full'
+          path: 'home',
+          component:DashbordComponent
         },
         {
-          path:'profile',
-          component:SettingsComponent
+          path: 'packages-vendors',
+          component:PackagesVendorsComponent
         },
         {
-          path:'list-stores',
-          component:StoreListVendorComponent
-        }
+          path: 'notifications',
+          component:NotificationsComponent
+        },
+        {
+          path: 'statistics-sale',
+          component:StatisticsComponent
+        },
+        {
+          path: 'vendors/add-product',
+          component:AddProductsComponent
+        },
+        {
+          path: 'vendors/list-of-products',
+          component:ProductsListComponent
+        },
+        {
+          path: 'vendors/list-of-orders',
+          component:OrdersListComponent
+        },
+        {
+          path: 'vendors/list-of-orders-pending',
+          component:OrdersPendingComponent
+        },
+        {
+          path: 'vendors/list-paiements',
+          component:TransactionsComponent
+        },
+        {
+          path: 'vendors/list-reviews',
+          component:ReviewsComponent
+        },
+        {
+          path: 'vendors/support',
+          component:SupportComponent
+        },
+        {
+          path: 'vendors/settings',
+          component:StoreSettingsComponent,
 
+        },
       ]
     },
+
+
 
 ];

@@ -2,15 +2,14 @@ import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import $ from 'jquery';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { ThemeService } from '../services/theme.service';
-import { AsideComponent } from '../components/aside/aside.component';
-import { NavbarComponent } from '../components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
   templateUrl: './layout.component.html',
-  imports: [AsideComponent,NavbarComponent,RouterModule],
+  imports: [RouterModule, SharedModule],
   styleUrl: './layout.component.css'
 })
 export class LayoutComponent {
