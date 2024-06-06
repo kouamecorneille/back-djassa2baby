@@ -16,6 +16,13 @@
             "outputPath": "dist/backoffice",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "baseHref":"/",
+            "namedChunks":true,
+            "aot": true,
+            "optimization": true,
+            "allowedCommonJsDependencies": [
+                "*"
+            ],
             "polyfills": [
               "zone.js"
             ],
@@ -50,12 +57,8 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "baseHref": "/",
               "optimization": true,
               "sourceMap": false,
-              "aot": true,
-              "namedChunks": false,
-              "extractLicenses": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -73,9 +76,8 @@
 
             },
             "development": {
-              "optimization": false,
+              "optimization": true,
               "extractLicenses": false,
-              "aot": true,
               "sourceMap": true
             }
           },

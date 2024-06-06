@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api.service';
 import { catchError, map, Observable, throwError } from 'rxjs';
+import { UserApiResponse } from '../../interfaces/Iuser';
 
 @Injectable({
   providedIn: 'root'
@@ -16,23 +17,24 @@ export class AuthService {
   }
 
   isAuthenticatedUser(): boolean {
-    const token = localStorage.getItem("Djassa2Refrech");
+    const token = localStorage.getItem("authUser");
     return !!token; // Convertit en boolean (true si token existe, false sinon)
   }
 
   logout(): void {
-    localStorage.removeItem("DjassaAuthUser");
-    localStorage.removeItem("Djassa2Access");
+    localStorage.removeItem("authUser");
+    localStorage.removeItem("authAccess");
     this.isAuthenticated = false;
   }
 
-  getUser(): any | null {
-    const authUser = localStorage.getItem("DjassaAuthUser");
-    return authUser ? JSON.parse(authUser) : null;
+  getUser(): UserApiResponse | null {
+    const authUser = localStorage.getItem("authUser");
+    return authUser ? JSON.parse(authUser) as UserApiResponse : null;
   }
 
+
   getRefreshToken(): any {
-    return localStorage.getItem("Djassa2Refrech");
+    return localStorage.getItem("authRefresh");
   }
 
   refreshToken(): Observable<any> {

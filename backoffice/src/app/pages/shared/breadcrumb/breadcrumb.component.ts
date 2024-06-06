@@ -11,4 +11,11 @@ import { RouterModule } from '@angular/router';
 export class BreadcrumbComponent {
 
   @Input() title!:string
+
+
+  goBack(){
+    history.back();
+  }
 }
+
+

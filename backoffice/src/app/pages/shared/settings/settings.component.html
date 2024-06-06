@@ -70,34 +70,6 @@ aria-labelledby="offcanvasExampleLabel"
               </label>
             </div>
 
-            <h6 class="mt-5 fw-semibold fs-4 mb-2">Theme Direction</h6>
-            <div
-              class="d-flex flex-row gap-3 customizer-box"
-              role="group"
-            >
-              <input
-                type="radio"
-                class="btn-check"
-                name="direction-l"
-                id="ltr-layout"
-                autocomplete="off"
-              />
-              <label class="btn p-9 btn-outline-primary" for="ltr-layout">
-                <i class="icon ti ti-text-direction-ltr fs-7 me-2"></i>LTR
-              </label>
-
-              <input
-                type="radio"
-                class="btn-check"
-                name="direction-l"
-                id="rtl-layout"
-                autocomplete="off"
-              />
-              <label class="btn p-9 btn-outline-primary" for="rtl-layout">
-                <i class="icon ti ti-text-direction-rtl fs-7 me-2"></i>RTL
-              </label>
-            </div>
-
             <h6 class="mt-5 fw-semibold fs-4 mb-2">Theme Colors</h6>
 
             <div
@@ -113,7 +85,7 @@ aria-labelledby="offcanvasExampleLabel"
               />
               <label
                 class="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
-                onclick="handleColorTheme('Blue_Theme')"
+                (click)="handleColorTheme('Blue_Theme')"
                 for="Blue_Theme"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -135,7 +107,7 @@ aria-labelledby="offcanvasExampleLabel"
               />
               <label
                 class="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
-                onclick="handleColorTheme('Aqua_Theme')"
+                (click)="handleColorTheme('Aqua_Theme')"
                 for="Aqua_Theme"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -157,7 +129,7 @@ aria-labelledby="offcanvasExampleLabel"
               />
               <label
                 class="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
-                onclick="handleColorTheme('Purple_Theme')"
+                (click)="handleColorTheme('Purple_Theme')"
                 for="Purple_Theme"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -179,7 +151,7 @@ aria-labelledby="offcanvasExampleLabel"
               />
               <label
                 class="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
-                onclick="handleColorTheme('Green_Theme')"
+                (click)="handleColorTheme('Green_Theme')"
                 for="green-theme-layout"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -201,7 +173,7 @@ aria-labelledby="offcanvasExampleLabel"
               />
               <label
                 class="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
-                onclick="handleColorTheme('Cyan_Theme')"
+                (click)="handleColorTheme('Cyan_Theme')"
                 for="cyan-theme-layout"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -223,7 +195,7 @@ aria-labelledby="offcanvasExampleLabel"
               />
               <label
                 class="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
-                onclick="handleColorTheme('Orange_Theme')"
+                (click)="handleColorTheme('Orange_Theme')"
                 for="orange-theme-layout"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -314,80 +286,6 @@ aria-labelledby="offcanvasExampleLabel"
                   class="icon ti ti-layout-distribute-horizontal fs-7 me-2"
                 ></i
                 >Full
-              </label>
-            </div>
-
-            <h6 class="fw-semibold fs-4 mb-2 mt-5">Sidebar Type</h6>
-            <div
-              class="d-flex flex-row gap-3 customizer-box"
-              role="group"
-            >
-              <a href="javascript:void(0)" class="fullsidebar">
-                <input
-                  type="radio"
-                  class="btn-check"
-                  name="sidebar-type"
-                  id="full-sidebar"
-                  autocomplete="off"
-                />
-                <label
-                  class="btn p-9 btn-outline-primary"
-                  for="full-sidebar"
-                >
-                  <i class="icon ti ti-layout-sidebar-right fs-7 me-2"></i
-                  >Full
-                </label>
-              </a>
-              <div>
-                <input
-                  type="radio"
-                  class="btn-check"
-                  name="sidebar-type"
-                  id="mini-sidebar"
-                  autocomplete="off"
-                />
-                <label
-                  class="btn p-9 btn-outline-primary"
-                  for="mini-sidebar"
-                >
-                  <i class="icon ti ti-layout-sidebar fs-7 me-2"></i
-                  >Collapse
-                </label>
-              </div>
-            </div>
-
-            <h6 class="mt-5 fw-semibold fs-4 mb-2">Card With</h6>
-
-            <div
-              class="d-flex flex-row gap-3 customizer-box"
-              role="group"
-            >
-              <input
-                type="radio"
-                class="btn-check"
-                name="card-layout"
-                id="card-with-border"
-                autocomplete="off"
-              />
-              <label
-                class="btn p-9 btn-outline-primary"
-                for="card-with-border"
-              >
-                <i class="icon ti ti-border-outer fs-7 me-2"></i>Border
-              </label>
-
-              <input
-                type="radio"
-                class="btn-check"
-                name="card-layout"
-                id="card-without-border"
-                autocomplete="off"
-              />
-              <label
-                class="btn p-9 btn-outline-primary"
-                for="card-without-border"
-              >
-                <i class="icon ti ti-border-none fs-7 me-2"></i>Shadow
               </label>
             </div>
           </div>
