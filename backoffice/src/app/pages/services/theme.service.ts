@@ -9,15 +9,19 @@ export class ThemeService {
   constructor() {}
 
   initTheme(): void {
-    const savedMode = localStorage.getItem(this.storageKey);
+    if (typeof localStorage !== 'undefined') {
 
-    if (savedMode) {
-      this.applyMode(savedMode);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      this.applyMode('dark');
-    } else {
-      this.applyMode('light');
+        const savedMode = localStorage.getItem(this.storageKey);
+        if (savedMode) {
+          this.applyMode(savedMode);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          this.applyMode('dark');
+        } else {
+          this.applyMode('light');
+        }
+
     }
+
   }
 
   toggleTheme(): void {

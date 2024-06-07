@@ -16,6 +16,13 @@
             "outputPath": "dist/backoffice",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "baseHref":"/",
+            "namedChunks":true,
+            "aot": true,
+            "optimization": true,
+            "allowedCommonJsDependencies": [
+                "*"
+            ],
             "polyfills": [
               "zone.js"
             ],
@@ -25,39 +32,51 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/styles.css"
             ],
             "scripts": [
-              "src/assets/js/vendors/bootstrap.bundle.min.js",
-              "src/assets/js/vendors/select2.min.js",
-              "src/assets/js/vendors/jquery.fullscreen.min.js",
-              "src/assets/js/main.js",
-              "src/assets/js/vendors/color-modes.js"
+                "src/assets/js/vendor.min.js",
+                "src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js",
+                "src/assets/libs/simplebar/dist/simplebar.min.js",
+                "src/assets/js/theme/app.init.js",
+                "src/assets/js/theme/theme.js",
+                "src/assets/js/theme/app.min.js",
+                "src/assets/js/theme/sidebarmenu.js",
+                "src/assets/js/apps/notes.js"
             ],
             "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "prerender": false,
+            "ssr": false
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "sourceMap": false,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 }
               ],
+
               "outputHashing": "all"
+
             },
             "development": {
-              "optimization": false,
+              "optimization": true,
               "extractLicenses": false,
               "sourceMap": true
             }

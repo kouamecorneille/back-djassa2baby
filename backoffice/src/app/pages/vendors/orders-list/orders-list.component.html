@@ -1,349 +1,226 @@
-<div class="content-header">
-  <div>
-      <h2 class="content-title card-title">Liste des commande</h2>
-  </div>
-  <div>
-      <input type="text" placeholder="Search order ID" class="form-control bg-white">
-  </div>
-</div>
-<div class="card mb-4">
-  <header class="card-header">
-      <div class="row gx-3">
-          <div class="col-lg-4 col-md-6 me-auto">
-              <input type="text" placeholder="Search..." class="form-control">
-          </div>
-          <div class="col-lg-2 col-6 col-md-3">
-              <select class="form-select">
-                  <option>Status</option>
-                  <option>Active</option>
-                  <option>Disabled</option>
-                  <option>Show all</option>
-              </select>
-          </div>
-          <div class="col-lg-2 col-6 col-md-3">
-              <select class="form-select">
-                  <option>Show 20</option>
-                  <option>Show 30</option>
-                  <option>Show 40</option>
-              </select>
-          </div>
+<app-breadcrumb
+[title]="'Liste des commandes'"></app-breadcrumb>
+<div class="product-list">
+  <div class="card">
+    <div class="card-body p-3">
+      <div class="d-flex justify-content-between align-items-center gap-6 mb-9">
+        <form class="position-relative">
+          <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh" placeholder="Search Product">
+          <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+        </form>
+        <a class="fs-6 text-muted" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Filter list">
+          <i class="ti ti-filter"></i>
+        </a>
       </div>
-  </header>
-  <!-- card-header end// -->
-  <div class="card-body">
-      <div class="table-responsive">
-          <table class="table table-hover">
-              <thead>
-                  <tr>
-                      <th>#ID</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Total</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Date</th>
-                      <th scope="col" class="text-end">Action</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td>0901</td>
-                      <td><b>Marvin McKinney</b></td>
-                      <td>marvin&#64;example.com</td>
-                      <td>$9.00</td>
-                      <td><span class="badge rounded-pill alert-warning">Pending</span></td>
-                      <td>03.12.2020</td>
-                      <td class="text-end">
-                          <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                          <div class="dropdown">
-                              <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                              <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">View detail</a>
-                                  <a class="dropdown-item" href="#">Edit info</a>
-                                  <a class="dropdown-item text-danger" href="#">Delete</a>
-                              </div>
-                          </div>
-                          <!-- dropdown //end -->
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>2323</td>
-                      <td><b>Leslie Alexander</b></td>
-                      <td>leslie&#64;example.com</td>
-                      <td>$46.61</td>
-                      <td><span class="badge rounded-pill alert-warning">Pending</span></td>
-                      <td>21.02.2020</td>
-                      <td class="text-end">
-                          <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                          <div class="dropdown">
-                              <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                              <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">View detail</a>
-                                  <a class="dropdown-item" href="#">Edit info</a>
-                                  <a class="dropdown-item text-danger" href="#">Delete</a>
-                              </div>
-                          </div>
-                          <!-- dropdown //end -->
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>1233</td>
-                      <td><b>Esther Howard</b></td>
-                      <td>esther&#64;example.com</td>
-                      <td>$12.00</td>
-                      <td><span class="badge rounded-pill alert-danger">Canceled</span></td>
-                      <td>03.07.2020</td>
-                      <td class="text-end">
-                          <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                          <div class="dropdown">
-                              <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                              <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">View detail</a>
-                                  <a class="dropdown-item" href="#">Edit info</a>
-                                  <a class="dropdown-item text-danger" href="#">Delete</a>
-                              </div>
-                          </div>
-                          <!-- dropdown //end -->
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>1233</td>
-                      <td><b>Esther Howard</b></td>
-                      <td>esther&#64;example.com</td>
-                      <td>$12.00</td>
-                      <td><span class="badge rounded-pill alert-danger">Canceled</span></td>
-                      <td>03.07.2020</td>
-                      <td class="text-end">
-                          <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                          <div class="dropdown">
-                              <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                              <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">View detail</a>
-                                  <a class="dropdown-item" href="#">Edit info</a>
-                                  <a class="dropdown-item text-danger" href="#">Delete</a>
-                              </div>
-                          </div>
-                          <!-- dropdown //end -->
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>2323</td>
-                      <td><b>Jenny Wilson</b></td>
-                      <td>jenny&#64;example.com</td>
-                      <td>$589.99</td>
-                      <td><span class="badge rounded-pill alert-success">Received</span></td>
-                      <td>22.05.2020</td>
-                      <td class="text-end">
-                          <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                          <div class="dropdown">
-                              <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                              <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">View detail</a>
-                                  <a class="dropdown-item" href="#">Edit info</a>
-                                  <a class="dropdown-item text-danger" href="#">Delete</a>
-                              </div>
-                          </div>
-                          <!-- dropdown //end -->
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>2112</td>
-                      <td><b>Marvin McKinney</b></td>
-                      <td>marvin&#64;example.com</td>
-                      <td>$16.58</td>
-                      <td><span class="badge rounded-pill alert-success">Received</span></td>
-                      <td>23.04.2020</td>
-                      <td class="text-end">
-                          <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                          <div class="dropdown">
-                              <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                              <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">View detail</a>
-                                  <a class="dropdown-item" href="#">Edit info</a>
-                                  <a class="dropdown-item text-danger" href="#">Delete</a>
-                              </div>
-                          </div>
-                          <!-- dropdown //end -->
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>7897</td>
-                      <td><b>Albert Flores</b></td>
-                      <td>albert&#64;example.com</td>
-                      <td>$10.00</td>
-                      <td><span class="badge rounded-pill alert-success">Received</span></td>
-                      <td>13.03.2020</td>
-                      <td class="text-end">
-                          <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                          <div class="dropdown">
-                              <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                              <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">View detail</a>
-                                  <a class="dropdown-item" href="#">Edit info</a>
-                                  <a class="dropdown-item text-danger" href="#">Delete</a>
-                              </div>
-                          </div>
-                          <!-- dropdown //end -->
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>2323</td>
-                      <td><b>Wade Warren</b></td>
-                      <td>wade&#64;example.com</td>
-                      <td>$105.55</td>
-                      <td><span class="badge rounded-pill alert-success">Received</span></td>
-                      <td>23.09.2019</td>
-                      <td class="text-end">
-                          <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                          <div class="dropdown">
-                              <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                              <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">View detail</a>
-                                  <a class="dropdown-item" href="#">Edit info</a>
-                                  <a class="dropdown-item text-danger" href="#">Delete</a>
-                              </div>
-                          </div>
-                          <!-- dropdown //end -->
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>2324</td>
-                      <td><b>Jane Cooper</b></td>
-                      <td>jane&#64;example.com</td>
-                      <td>$710.68</td>
-                      <td><span class="badge rounded-pill alert-success">Received</span></td>
-                      <td>28.04.2020</td>
-                      <td class="text-end">
-                          <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                          <div class="dropdown">
-                              <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                              <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">View detail</a>
-                                  <a class="dropdown-item" href="#">Edit info</a>
-                                  <a class="dropdown-item text-danger" href="#">Delete</a>
-                              </div>
-                          </div>
-                          <!-- dropdown //end -->
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>2325</td>
-                      <td><b>Savannah Nguyen</b></td>
-                      <td>savannah&#64;example.com</td>
-                      <td>$710.68</td>
-                      <td><span class="badge rounded-pill alert-success">Received</span></td>
-                      <td>23.03.2020</td>
-                      <td class="text-end">
-                          <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                          <div class="dropdown">
-                              <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                              <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">View detail</a>
-                                  <a class="dropdown-item" href="#">Edit info</a>
-                                  <a class="dropdown-item text-danger" href="#">Delete</a>
-                              </div>
-                          </div>
-                          <!-- dropdown //end -->
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>2326</td>
-                      <td><b>Guy Hawkins</b></td>
-                      <td>guy&#64;example.com</td>
-                      <td>$767.50</td>
-                      <td><span class="badge rounded-pill alert-success">Received</span></td>
-                      <td>28.04.2020</td>
-                      <td class="text-end">
-                          <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                          <div class="dropdown">
-                              <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                              <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">View detail</a>
-                                  <a class="dropdown-item" href="#">Edit info</a>
-                                  <a class="dropdown-item text-danger" href="#">Delete</a>
-                              </div>
-                          </div>
-                          <!-- dropdown //end -->
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>2327</td>
-                      <td><b>Darrell Steward</b></td>
-                      <td>darrel&#64;example.com</td>
-                      <td>$406.27</td>
-                      <td><span class="badge rounded-pill alert-success">Received</span></td>
-                      <td>14.07.2020</td>
-                      <td class="text-end">
-                          <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                          <div class="dropdown">
-                              <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                              <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">View detail</a>
-                                  <a class="dropdown-item" href="#">Edit info</a>
-                                  <a class="dropdown-item text-danger" href="#">Delete</a>
-                              </div>
-                          </div>
-                          <!-- dropdown //end -->
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>2328</td>
-                      <td><b>Jane Cooper</b></td>
-                      <td>jane&#64;example.com</td>
-                      <td>$601.13</td>
-                      <td><span class="badge rounded-pill alert-success">Received</span></td>
-                      <td>18.03.2020</td>
-                      <td class="text-end">
-                          <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                          <div class="dropdown">
-                              <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                              <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">View detail</a>
-                                  <a class="dropdown-item" href="#">Edit info</a>
-                                  <a class="dropdown-item text-danger" href="#">Delete</a>
-                              </div>
-                          </div>
-                          <!-- dropdown //end -->
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>2329</td>
-                      <td><b>Darlene Robertson</b></td>
-                      <td>deriene&#64;example.com</td>
-                      <td>$948.55</td>
-                      <td><span class="badge rounded-pill alert-success">Received</span></td>
-                      <td>03.07.2020</td>
-                      <td class="text-end">
-                          <a href="#" class="btn btn-md rounded font-sm">Detail</a>
-                          <div class="dropdown">
-                              <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                              <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">View detail</a>
-                                  <a class="dropdown-item" href="#">Edit info</a>
-                                  <a class="dropdown-item text-danger" href="#">Delete</a>
-                              </div>
-                          </div>
-                          <!-- dropdown //end -->
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
+      <div class="table-responsive border rounded">
+        <table class="table align-middle text-nowrap mb-0">
+          <thead>
+            <tr>
+              <th scope="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                </div>
+              </th>
+              <th scope="col">Products</th>
+              <th scope="col">Date</th>
+              <th scope="col">Status</th>
+              <th scope="col">Price</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="form-check mb-0">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <img src="../assets/images/products/s1.jpg" class="rounded-circle" alt="modernize-img" width="56" height="56">
+                  <div class="ms-3">
+                    <h6 class="mb-0 fs-4">Curology Face wash</h6>
+                    <p class="mb-0">books</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <p class="mb-0">Thu, Jan 12 2024</p>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span class="text-bg-success p-1 rounded-circle"></span>
+                  <p class="mb-0 ms-2">InStock</p>
+                </div>
+              </td>
+              <td>
+                <h6 class="mb-0 fs-4">$275</h6>
+              </td>
+              <td>
+                <a class="fs-6 text-muted" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit">
+                  <i class="ti ti-dots-vertical"></i>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-check mb-0">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <img src="../assets/images/products/s2.jpg" class="rounded-circle" alt="modernize-img" width="56" height="56">
+                  <div class="ms-3">
+                    <h6 class="mb-0 fs-4">Body Lotion</h6>
+                    <p class="mb-0">books</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <p class="mb-0">Thu, Jan 10 2024</p>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span class="text-bg-danger p-1 rounded-circle"></span>
+                  <p class="mb-0 ms-2">Out of Stock</p>
+                </div>
+              </td>
+              <td>
+                <h6 class="mb-0 fs-4">$89</h6>
+              </td>
+              <td>
+                <a class="fs-6 text-muted" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit">
+                  <i class="ti ti-dots-vertical"></i>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-check mb-0">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <img src="../assets/images/products/s3.jpg" class="rounded-circle" alt="modernize-img" width="56" height="56">
+                  <div class="ms-3">
+                    <h6 class="mb-0 fs-4">Smart Watch</h6>
+                    <p class="mb-0">fashionbooks</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <p class="mb-0">Thu, Jan 12 2024</p>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span class="text-bg-success p-1 rounded-circle"></span>
+                  <p class="mb-0 ms-2">InStock</p>
+                </div>
+              </td>
+              <td>
+                <h6 class="mb-0 fs-4">$125</h6>
+              </td>
+              <td>
+                <a class="fs-6 text-muted" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit">
+                  <i class="ti ti-dots-vertical"></i>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-check mb-0">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4">
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <img src="../assets/images/products/s4.jpg" class="rounded-circle" alt="modernize-img" width="56" height="56">
+                  <div class="ms-3">
+                    <h6 class="mb-0 fs-4">Glossy Solution</h6>
+                    <p class="mb-0">electronics</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <p class="mb-0">Mon, Jan 16 2024</p>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span class="text-bg-success p-1 rounded-circle"></span>
+                  <p class="mb-0 ms-2">InStock</p>
+                </div>
+              </td>
+              <td>
+                <h6 class="mb-0 fs-4">$50</h6>
+              </td>
+              <td>
+                <a class="fs-6 text-muted" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit">
+                  <i class="ti ti-dots-vertical"></i>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td class="border-bottom-0">
+                <div class="form-check mb-0">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault5">
+                </div>
+              </td>
+              <td class="border-bottom-0">
+                <div class="d-flex align-items-center">
+                  <img src="../assets/images/products/s5.jpg" class="rounded-circle" alt="modernize-img" width="56" height="56">
+                  <div class="ms-3">
+                    <h6 class="mb-0 fs-4">Derma-E</h6>
+                    <p class="mb-0">fashionelectronics</p>
+                  </div>
+                </div>
+              </td>
+              <td class="border-bottom-0">
+                <p class="mb-0">Wed, Jan 18 2024</p>
+              </td>
+              <td class="border-bottom-0">
+                <div class="d-flex align-items-center">
+                  <span class="text-bg-danger p-1 rounded-circle"></span>
+                  <p class="mb-0 ms-2">Out of Stock</p>
+                </div>
+              </td>
+              <td class="border-bottom-0">
+                <h6 class="mb-0 fs-4">$650</h6>
+              </td>
+              <td class="border-bottom-0">
+                <a class="fs-6 text-muted" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit">
+                  <i class="ti ti-dots-vertical"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex align-items-center justify-content-end py-1">
+          <p class="mb-0 fs-2">Rows per page:</p>
+          <select class="form-select w-auto ms-0 ms-sm-2 me-8 me-sm-4 py-1 pe-7 ps-2 border-0" aria-label="Default select example">
+            <option selected="">5</option>
+            <option value="1">10</option>
+            <option value="2">25</option>
+          </select>
+          <p class="mb-0 fs-2">1–5 of 12</p>
+          <nav aria-label="...">
+            <ul class="pagination justify-content-center mb-0 ms-8 ms-sm-9">
+              <li class="page-item p-1">
+                <a class="page-link border-0 rounded-circle text-dark fs-6 round-32 d-flex align-items-center justify-content-center" href="javascript:void(0)">
+                  <i class="ti ti-chevron-left"></i>
+                </a>
+              </li>
+              <li class="page-item p-1">
+                <a class="page-link border-0 rounded-circle text-dark fs-6 round-32 d-flex align-items-center justify-content-center" href="javascript:void(0)">
+                  <i class="ti ti-chevron-right"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
-      <!-- table-responsive //end -->
+
+    </div>
   </div>
-  <!-- card-body end// -->
-</div>
-<!-- card end// -->
-<div class="pagination-area mt-15 mb-50">
-  <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-start">
-          <li class="page-item active"><a class="page-link" href="#">01</a></li>
-          <li class="page-item"><a class="page-link" href="#">02</a></li>
-          <li class="page-item"><a class="page-link" href="#">03</a></li>
-          <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-          <li class="page-item"><a class="page-link" href="#">16</a></li>
-          <li class="page-item">
-              <a class="page-link" href="#"><i class="material-icons md-chevron_right"></i></a>
-          </li>
-      </ul>
-  </nav>
 </div>

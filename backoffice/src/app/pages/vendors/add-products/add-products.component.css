@@ -1,8 +1,6 @@
 
-.input-upload {
-  text-align: center;
-}
-.input-upload img {
-  max-width: 100px;
-  margin-bottom: 20px;
+
+.text-danger
+{
+  color: rgb(204, 39, 39);;
 }
