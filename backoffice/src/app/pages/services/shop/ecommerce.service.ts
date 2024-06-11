@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Category } from './interfaces/Icategory';
 import { Product } from './interfaces/Iproduct';
 import { AuthService } from '../auth/auth.service';
@@ -45,6 +45,11 @@ export class EcommerceService {
       }
     )
 
+  }
+
+  
+  getDetailsProduct(slug:string):Observable<Product>{
+    return this.apiService.getItem(`products`,slug);
   }
 
   getCategory() {

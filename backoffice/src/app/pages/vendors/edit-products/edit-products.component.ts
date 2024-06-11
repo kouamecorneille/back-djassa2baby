@@ -7,23 +7,28 @@ import { Category } from '../../services/shop/interfaces/Icategory';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../services/shop/interfaces/Iproduct';
 import Swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-add-products',
+  selector: 'app-edit-products',
   standalone: true,
   imports: [BreadcrumbComponent,ReactiveFormsModule, CommonModule],
-  templateUrl: './add-products.component.html',
-  styleUrl: './add-products.component.css'
+  templateUrl: './edit-products.component.html',
+  styleUrl: './edit-products.component.css'
 })
-export class AddProductsComponent {
+export class EditProductsComponent {
 
   @ViewChild('canvasContainer', { static: true }) canvasContainer!: ElementRef;
   productForm!: FormGroup;
   listCategory:Category[] = [];
+  product!:Product;
+  productSlug!:string;
   loader=false
 
 
-  constructor(private fb: FormBuilder,private ecomService:EcommerceService) {
+  constructor(private fb: FormBuilder,private ecomService:EcommerceService, private activeRoute:ActivatedRoute) {
+
+    this.productSlug = this.activeRoute.snapshot.paramMap.get('slug')!;
     this.productForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', Validators.required],
@@ -39,27 +44,38 @@ export class AddProductsComponent {
       category: ['', Validators.required],
     });
 
-
    }
 
-  ngOnInit(): void {
 
-    this.ecomService.getCategory()
-    this.ecomService.listCategory.subscribe(
-      (data) => {
-        this.listCategory = data;
+   ngOnInit(): void {
+    this.ecomService.getCategory();
+    this.ecomService.listCategory.subscribe((data) => {
+      this.listCategory = data;
+    });
+
+    this.ecomService.getDetailsProduct(this.productSlug).subscribe(
+      (response: Product) => {
+        this.product = response;
+        this.patchData(this.product);
       }
-    )
-
-
+    );
   }
 
 
-  getCategories() {
-
-
-
+  patchData(data: Product): void {
+    this.productForm.patchValue({
+      name: data.name,
+      description: data.description,
+      price: data.price.toString().split(".")[0],
+      reduced_price: data.reduced_price.toString().split(".")[0],
+      quantity_in_stock: data.quantity_in_stock,
+      instock: data.instock,
+      category: data.category,
+      // Assurez-vous d'ajouter d'autres champs si nécessaire
+    });
   }
+
+
 
   onFileChange(event: any, field: string): void {
     if (event.target.files.length > 0) {
