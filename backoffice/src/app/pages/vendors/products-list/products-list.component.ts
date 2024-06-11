@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { BreadcrumbComponent } from '../../shared/breadcrumb/breadcrumb.component';
 import { FormBuilder } from '@angular/forms';
 import { EcommerceService } from '../../services/shop/ecommerce.service';
@@ -17,7 +17,7 @@ export class ProductsListComponent {
 
   listOfProducts:Product[]=[]
   baseUrl:string='http://djassa2baby.pythonanywhere.com/'
-  constructor(private fb: FormBuilder,private ecomService:EcommerceService) {
+  constructor(private fb: FormBuilder,private ecomService:EcommerceService, private router:Router) {
 
   }
 
@@ -31,6 +31,10 @@ export class ProductsListComponent {
         this.listOfProducts = data
       }
     )
+  }
+
+  navigateToEditProduct(slug: string) {
+    this.router.navigate(['/content/vendors/edit-product', slug]);
   }
 
 }

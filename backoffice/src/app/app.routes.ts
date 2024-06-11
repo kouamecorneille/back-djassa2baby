@@ -15,6 +15,7 @@ import { SupportComponent } from './pages/vendors/support/support.component';
 import { StoreSettingsComponent } from './pages/vendors/store-settings/store-settings.component';
 import { AuthGuard } from './helpers/guards/auth.guard';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
+import { EditProductsComponent } from './pages/vendors/edit-products/edit-products.component';
 
 export const routes: Routes = [
 
@@ -58,6 +59,11 @@ export const routes: Routes = [
       {
         path: 'vendors/add-product',
         component: AddProductsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'vendors/edit-product/:slug',
+        component: EditProductsComponent,
         canActivate: [AuthGuard]
       },
       {
