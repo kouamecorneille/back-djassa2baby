@@ -18,11 +18,17 @@
           </div>
           <div class="mb-2">
             <label class="form-label">Description <span class="text-danger">*</span></label>
-            <textarea id="form-label" class="form-control" cols="20" rows="5" formControlName="description"></textarea>
+            <!-- <textarea id="form-label" class="form-control" cols="20" rows="5" formControlName="description"></textarea> -->
+            <div class="NgxEditor__Wrapper">
+              <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+              <ngx-editor [editor]="editor" formControlName="description" [disabled]="false" [placeholder]="'Entrer la description du produit...'"></ngx-editor>
+            </div>
             <div *ngIf="productForm.get('description')?.invalid && (productForm.get('description')?.touched || productForm.get('description')?.dirty)">
               <small class="text-danger" *ngIf="productForm.get('description')?.errors?.['required']">La description est requise.</small>
             </div>
+
           </div>
+
           <div class="row">
             <div class="col-md-6">
               <div class="mb-1">

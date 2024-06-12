@@ -1,18 +1,19 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { BreadcrumbComponent } from '../../shared/breadcrumb/breadcrumb.component';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EcommerceService } from '../../services/shop/ecommerce.service';
 import { Category } from '../../services/shop/interfaces/Icategory';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../services/shop/interfaces/Iproduct';
 import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
+import { Editor, NgxEditorModule, Toolbar } from 'ngx-editor';
 
 @Component({
   selector: 'app-edit-products',
   standalone: true,
-  imports: [BreadcrumbComponent,ReactiveFormsModule, CommonModule],
+  imports: [BreadcrumbComponent,ReactiveFormsModule, CommonModule,NgxEditorModule,FormsModule],
   templateUrl: './edit-products.component.html',
   styleUrl: './edit-products.component.css'
 })
@@ -24,6 +25,20 @@ export class EditProductsComponent {
   product!:Product;
   productSlug!:string;
   loader=false
+  editor!: Editor;
+  html = '';
+
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link'],
+    ['undo', 'redo'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
 
 
   constructor(private fb: FormBuilder,private ecomService:EcommerceService, private activeRoute:ActivatedRoute) {
@@ -59,7 +74,16 @@ export class EditProductsComponent {
         this.patchData(this.product);
       }
     );
+
+    this.editor = new Editor({history: true,keyboardShortcuts: true,});
   }
+
+   // make sure to destory the editor
+   ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+
+
 
 
   patchData(data: Product): void {

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, switchMap, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../pages/services/auth/auth.service';
+import { Token } from '../../pages/interfaces/Iuser';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,7 @@ export class InterceptorResponseService implements HttpInterceptor{
   private handle403Error(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Appel du service d'authentification pour obtenir un nouveau jeton
     return this.authService.refreshToken().pipe(
-      switchMap((response: any) => {
+      switchMap((response: Token) => {
         // Une fois que vous avez obtenu le nouveau jeton, modifiez la demande actuelle pour inclure ce jeton
         localStorage.setItem('Djassa2Access', response.access)
         localStorage.setItem('Djassa2Refrech', response.refresh)

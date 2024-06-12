@@ -57,16 +57,29 @@ export class LoginComponent {
           }
         },
         (error: any) => {
-          console.error(error);
+          console.error(error.status);
           this.loader = false;
-          Swal.fire({
-            title: 'Error!',
-            text: 'Impossible de se connecter !',
-            icon: 'error',
-            confirmButtonText: 'ok',
-            timer: 4000,
-            timerProgressBar:true
-          })
+
+          if(error.status==401){
+            Swal.fire({
+              title: 'Connexion impossible !',
+              text: 'Numéro de telephone ou mot de passe erroné !',
+              icon: 'error',
+              confirmButtonText: 'ok',
+              timer: 4000,
+              timerProgressBar:true
+            })
+          }else{
+            Swal.fire({
+              title: 'Error!',
+              text: 'Impossible de se connecter !',
+              icon: 'error',
+              confirmButtonText: 'ok',
+              timer: 4000,
+              timerProgressBar:true
+            })
+          }
+
         }
       );
     }
