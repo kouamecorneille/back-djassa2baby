@@ -52,7 +52,13 @@ export class LoginComponent {
             localStorage.setItem('authUser', JSON.stringify(userData));
 
             this.loader = false;
-            this.succesMessage = "Connexion réussie avec succès!";
+            Swal.fire({
+              title: 'Connexion  !',
+              text: 'Connexion reussie avec succès !',
+              icon: 'error',
+              timer: 4000,
+              timerProgressBar:true
+            })
             this.router.navigate(['/content/home']);
           }
         },

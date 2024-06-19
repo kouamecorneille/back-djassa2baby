@@ -1,18 +1,21 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../../services/api.service';
-import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
+import { Router, RouterModule } from '@angular/router';
+import { ApiService } from '../../services/api.service';
+import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-store-infos',
+  selector: 'app-register-boutique',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule],
-  templateUrl: './store-infos.component.html',
-  styleUrl: './store-infos.component.css'
+  imports: [RouterModule,ReactiveFormsModule,CommonModule],
+  templateUrl: './register-boutique.component.html',
+  styleUrl: './register-boutique.component.css'
 })
-export class StoreInfosComponent {
+export class RegisterBoutiqueComponent {
+
+  // Déclaration du formulaire réactif
 
   shopForm: FormGroup;
   logo:any
@@ -100,5 +103,9 @@ export class StoreInfosComponent {
     }
 
   }
+
+
+
+
 
 }

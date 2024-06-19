@@ -1,0 +1,85 @@
+<div id="main-wrapper" class="auth-customizer-none">
+  <div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100 d-flex align-items-center justify-content-center">
+    <div class="d-flex align-items-center justify-content-center w-100">
+      <div class="row justify-content-center w-100">
+        <!-- <div class="col-md-5 col-lg-6 col-xxl-3 auth-card mt-10">
+         <img src="assets/images/Thrift shop-rafiki.svg" alt="" class="img-fluid">
+        </div> -->
+        <div class="auth-card">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title text-center mb-3">
+                Créer votre boutique ici
+              </h2>
+              <form [formGroup]="shopForm">
+
+                <!-- <div class="mt-1 p-3 rounded-2 shadow-none text-center justify-content-center">
+                  <div class="align-items-center">
+                    <div class="position-relative">
+                      <img src="../assets/images/music/album1.jpg" class="rounded-circle" alt="album" width="97">
+                      <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                        <button class="btn btn-primary rounded-circle round p-0" role="button">
+                          <i class="ti ti-cloud-upload fs-5"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" placeholder="Username">
+                  <label>
+                    <i class="ti ti-user me-2 fs-4"></i>Nom de la boutique
+                  </label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="email" class="form-control" placeholder="Adresse email" [ngClass]="{'invalid-feedback': shopForm?.controls?.['email']?.invalid && (shopForm?.controls?.['email']?.dirty || shopForm?.controls?.['email']?.touched) }">
+                  <label>
+                    <i class="ti ti-mail me-2 fs-4"></i>Adresse email
+                  </label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="tel" class="form-control" placeholder="Username">
+                  <label>
+                    <i class="ti ti-phone me-2 fs-4"></i> Numéro de telephone
+                  </label>
+                </div>
+                <div class="form-floating mb-3">
+                  <textarea class="form-control" rows="5"></textarea>
+                  <label>
+                    <i class="ti ti-message me-2 fs-4"></i>Description de la boutique
+                  </label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="tel" class="form-control" placeholder="Lien whatsapp">
+                  <label>
+                    <i class="ti ti-brand-whatsapp me-2 fs-4"></i> Lien whatsapp
+                  </label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="tel" class="form-control" placeholder="Lien facebook">
+                  <label>
+                    <i class="ti ti-brand-facebook me-2 fs-4"></i> Lien facebook
+                  </label>
+                </div>
+
+                <div class="d-md-flex align-items-center">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="sf1" value="check">
+                    <label class="form-check-label" for="sf1">Se souvenir de moi</label>
+                  </div>
+                  <div class="mt-3 mt-md-0 ms-auto">
+                    <button type="submit" class="btn btn-primary  hstack gap-6" [disabled]="shopForm.invalid || loading">
+                      <i class="ti ti-send fs-4"></i>
+                      Créer ma boutique
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

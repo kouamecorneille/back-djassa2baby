@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api.service';
 import { catchError, map, Observable, throwError } from 'rxjs';
-import { UserApiResponse } from '../../interfaces/Iuser';
+import { User, UserApiResponse } from '../../interfaces/Iuser';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,12 @@ export class AuthService {
   getUser(): UserApiResponse | null {
     const authUser = localStorage.getItem("authUser");
     return authUser ? JSON.parse(authUser) as UserApiResponse : null;
+  }
+
+  get UserSession(): UserApiResponse | null {
+    const authUser = localStorage.getItem("authUser");
+    const user  = authUser ? JSON.parse(authUser) as UserApiResponse : null;
+    return  user;
   }
 
 

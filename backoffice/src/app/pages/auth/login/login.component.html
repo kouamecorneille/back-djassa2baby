@@ -2,13 +2,16 @@
   <div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100 d-flex align-items-center justify-content-center">
     <div class="d-flex align-items-center justify-content-center w-100">
       <div class="row justify-content-center w-100">
-        <div class="col-md-8 col-lg-6 col-xxl-3 auth-card">
+        <div class="col-md-6 col-lg-6 col-xxl-3 auth-card">
+            <img src="assets/images/Sign in-rafiki.svg" alt="logo" class="img-fluid">
+        </div>
+        <div class="col-md-6 col-lg-6 col-xxl-3 auth-card mt-4">
           <div class="card mb-0">
             <div class="card-body">
-              <a href="../main/index.html" class="text-nowrap logo-img text-center d-block mb-5 w-100">
+              <!-- <a href="../main/index.html" class="text-nowrap logo-img text-center d-block mb-5 w-100">
                 <img src="../assets/images/logos/babyshop-logo.png" class="dark-logo mb-0" alt="Logo-Dark" >
                 <img src="../assets/images/logos/babyshop-logo.png" class="light-logo" alt="Logo-light" style="display: none;">
-              </a>
+              </a> -->
               <form [formGroup]="LoginForm">
                 <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
                   <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -63,7 +66,7 @@
 
                 <div class="d-flex align-items-center justify-content-center">
                   <p class="fs-4 mb-0 fw-medium">Pas de compte?</p>
-                  <a class="text-primary fw-medium ms-2" href="../main/authentication-register.html">
+                  <a class="text-primary fw-medium ms-2" [routerLink]="['/auth/register-boutique']">
                     Créer un compte
                   </a>
                 </div>

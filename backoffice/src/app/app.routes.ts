@@ -16,6 +16,7 @@ import { StoreSettingsComponent } from './pages/vendors/store-settings/store-set
 import { AuthGuard } from './helpers/guards/auth.guard';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { EditProductsComponent } from './pages/vendors/edit-products/edit-products.component';
+import { RegisterBoutiqueComponent } from './pages/auth/register-boutique/register-boutique.component';
 
 export const routes: Routes = [
 
@@ -27,6 +28,10 @@ export const routes: Routes = [
   {
     path: 'auth/login',
     component: LoginComponent
+  },
+  {
+    path: 'auth/register-boutique',
+    component: RegisterBoutiqueComponent
   },
   {
     path: 'auth/forgot-password',

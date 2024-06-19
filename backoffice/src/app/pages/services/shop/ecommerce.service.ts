@@ -47,7 +47,7 @@ export class EcommerceService {
 
   }
 
-  
+
   getDetailsProduct(slug:string):Observable<Product>{
     return this.apiService.getItem(`products`,slug);
   }
