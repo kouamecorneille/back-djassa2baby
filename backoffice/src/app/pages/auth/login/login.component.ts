@@ -44,21 +44,21 @@ export class LoginComponent {
       this.authService.login({ phone_number: numero, password: password }).subscribe(
         (response: UserApiResponse) => {
           if (response) {
+
             this.LoginForm.reset();
             const userData = response;
-
             localStorage.setItem('authAccess', userData.access);
             localStorage.setItem('authRefresh', userData.refresh);
             localStorage.setItem('authUser', JSON.stringify(userData));
-
             this.loader = false;
             Swal.fire({
-              title: 'Connexion  !',
+              title: 'Connexion reussie!',
               text: 'Connexion reussie avec succès !',
-              icon: 'error',
+              icon: 'success',
               timer: 4000,
               timerProgressBar:true
-            })
+            });
+
             this.router.navigate(['/content/home']);
           }
         },

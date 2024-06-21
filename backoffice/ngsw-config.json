@@ -25,5 +25,7 @@
         ]
       }
     }
-  ]
+  ],
+
+  "navigationRequestStrategy": "freshness"
 }

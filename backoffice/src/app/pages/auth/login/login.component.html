@@ -13,6 +13,10 @@
                 <img src="../assets/images/logos/babyshop-logo.png" class="light-logo" alt="Logo-light" style="display: none;">
               </a> -->
               <form [formGroup]="LoginForm">
+                <h3 class="card-title text-center mb-3">Connectez-vous ici</h3>
+                <p class="card-subtitle mb-3">
+                  Entrez <span class="ml-1"></span> le numéro et mot de passe pour vous connecter.
+                </p>
                 <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
                   <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
                   {{ errorMessage }}
@@ -64,12 +68,12 @@
                   {{ loader ? "Connexion en cours..." : "Se connecter" }}
                 </button>
 
-                <div class="d-flex align-items-center justify-content-center">
+                <!-- <div class="d-flex align-items-center justify-content-center">
                   <p class="fs-4 mb-0 fw-medium">Pas de compte?</p>
                   <a class="text-primary fw-medium ms-2" [routerLink]="['/auth/register-boutique']">
                     Créer un compte
                   </a>
-                </div>
+                </div> -->
               </form>
             </div>
           </div>
