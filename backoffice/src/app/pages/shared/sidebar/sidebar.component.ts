@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,6 +9,7 @@ import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@
 })
 export class SidebarComponent implements AfterViewInit {
 
+  private router = inject(Router)
   @ViewChild('sidebartoggler', { static: true }) sidebarToggler!: ElementRef;
 
   @HostListener('document:click', ['$event'])
@@ -46,11 +49,27 @@ export class SidebarComponent implements AfterViewInit {
   }
 
   closeSidebarIfOpen() {
-    console.log('close sidebar')
+
     if (this.isSidebarOpen) {
       this.isSidebarOpen = false;
       this.dataTheme = 'full';
       this.updateSidebarClasses();
     }
+
+  }
+
+  logout(){
+
+    localStorage.clear()
+
+    Swal.fire({
+      title: "Déconnexion du compte !",
+      text: "Vous avez été déconnecter de votre session !",
+      icon: "success",
+      timer:4000,
+      timerProgressBar:true
+    });
+
+    this.router.navigate(['/auth/login']);
   }
 }

@@ -1,18 +1,19 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { ApiService } from '../../services/api.service';
+import { CommonEngine } from '@angular/ssr';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-forgot-password',
+  selector: 'app-password-reset-confirm',
   standalone: true,
-  imports: [CommonModule, RouterModule,ReactiveFormsModule],
-  templateUrl: './forgot-password.component.html',
-  styleUrl: './forgot-password.component.css'
+  imports: [CommonModule,ReactiveFormsModule ,RouterModule],
+  templateUrl: './password-reset-confirm.component.html',
+  styleUrl: './password-reset-confirm.component.css'
 })
-export class ForgotPasswordComponent {
+export class PasswordResetConfirmComponent {
 
   passwordForm:FormGroup
   loader:boolean=false
@@ -76,4 +77,3 @@ export class ForgotPasswordComponent {
 
   }
 }
-

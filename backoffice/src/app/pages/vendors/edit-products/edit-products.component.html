@@ -1,10 +1,10 @@
 <app-breadcrumb
 [title]="'Ajouter un produit'"></app-breadcrumb>
 <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="row">
-  <div class="col-lg-6">
+  <div class="col-lg-7">
     <div class="card">
       <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center mb-7">
+        <div class="d-flex justify-content-between align-items-center mb-2">
           <h4 class="card-title">Generale</h4>
         </div>
         <div class="form-horizontal">
@@ -14,6 +14,20 @@
             <div *ngIf="productForm.get('name')?.invalid && (productForm.get('name')?.touched || productForm.get('name')?.dirty)">
               <small class="text-danger" *ngIf="productForm.get('name')?.errors?.['required']">Le nom est requis.</small>
               <small class="text-danger" *ngIf="productForm.get('name')?.errors?.['minlength']">Le nom doit contenir au moins 3 caractères.</small>
+            </div>
+          </div>
+          <div class="mb-2">
+
+            <label class="form-label">Catégorie du produit <span class="text-danger">*</span></label>
+            <ng-select [items]="listCategory"
+               bindLabel="name"
+               bindValue="id"
+               [multiple]="false"
+               placeholder="Selectionner la catégorie"
+               formControlName="category">
+            </ng-select>
+            <div *ngIf="productForm.get('category')?.invalid && (productForm.get('category')?.touched || productForm.get('category')?.dirty)">
+              <small class="text-danger" *ngIf="productForm.get('category')?.errors?.['required']">La catégorie est requise.</small>
             </div>
           </div>
           <div class="mb-2">
@@ -30,7 +44,7 @@
           </div>
 
           <div class="row">
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
               <div class="mb-1">
 
                 <label class="form-label">Catégorie du produit <span class="text-danger">*</span></label>
@@ -44,8 +58,8 @@
                   <small class="text-danger" *ngIf="productForm.get('category')?.errors?.['required']">La catégorie est requise.</small>
                 </div>
               </div>
-            </div>
-            <div class="col-md-6">
+            </div> -->
+            <div class="col-md-12">
               <div class="mb-1">
                 <label class="form-label">Total en stock <span class="text-danger">*</span></label>
                 <input type="number" class="form-control" formControlName="quantity_in_stock" />
@@ -77,19 +91,52 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-6">
+  <div class="col-lg-5">
     <div class="card">
       <div class="card-body">
         <div class="row">
+          <div class="offcanvas-body p-2">
+            <h5>Les images du produit</h5>
+           @if (product) {
+            <div class="row mb-3 text-nowrap">
+              <div class="col-4 px-1 m-2" *ngIf="product.image1">
+
+                <img [src]="product.image1" width="130" height="100" alt="modernize-img" class="rounded">
+
+              </div>
+              <div class="col-4 px-1 m-2" *ngIf="product.image2">
+
+                <img [src]="product.image2" width="130" height="100" alt="modernize-img" class="rounded">
+
+              </div>
+              <div class="col-4 px-1 m-2" *ngIf="product.image3">
+
+                <img [src]="product.image3" width="130" height="100" alt="modernize-img" class="rounded">
+
+              </div>
+              <div class="col-4 px-1 m-2" *ngIf="product.image4">
+
+                <img [src]="product.image4" width="130" height="100" alt="modernize-img" class="rounded">
+
+              </div>
+              <div class="col-4 px-1 m-2" *ngIf="product.image5">
+
+                <img [src]="product.image5" width="130" height="100" alt="modernize-img" class="rounded">
+
+              </div>
+            </div>
+           }
+
+          </div>
           <div class="mb-2">
-            <label for="formFile1" class="form-label">Image 1 <span class="text-danger">*</span></label>
+            <label for="formFile1" class="form-label">Image 1 </label>
             <input class="form-control" type="file" id="formFile1" (change)="onFileChange($event, 'image1')" />
             <div *ngIf="productForm.get('image1')?.invalid && (productForm.get('image1')?.touched || productForm.get('image1')?.dirty)">
               <small class="text-danger" *ngIf="productForm.get('image1')?.errors?.['required']">L'image 1 est requise.</small>
             </div>
           </div>
           <div class="mb-2">
-            <label for="formFile2" class="form-label">Image 2 <span class="text-danger">*</span></label>
+            <label for="formFile2" class="form-label">Image 2</label>
             <input class="form-control" type="file" id="formFile2" (change)="onFileChange($event, 'image2')" />
             <div *ngIf="productForm.get('image2')?.invalid && (productForm.get('image2')?.touched || productForm.get('image2')?.dirty)">
               <small class="text-danger" *ngIf="productForm.get('image2')?.errors?.['required']">L'image 2 est requise.</small>

@@ -89,18 +89,18 @@
                 </li>
 
                 <!-- Customers -->
-                <li class="sidebar-item">
+                <!-- <li class="sidebar-item">
                   <a class="sidebar-link" href="./customers" id="customers-url" aria-expanded="false">
                     <span>
                       <i class="ti ti-users"></i>
                     </span>
                     <span class="hide-menu">Abonnés</span>
                   </a>
-                </li>
+                </li> -->
 
                 <!-- Reviews -->
                 <li class="sidebar-item">
-                  <a class="sidebar-link" href="./reviews" id="reviews-url" aria-expanded="false">
+                  <a class="sidebar-link" [routerLink]="'/content/vendors/user-reviews'" routerLinkActive="active" id="reviews-url" aria-expanded="false">
                     <span>
                       <i class="ti ti-message-dots"></i>
                     </span>
@@ -110,7 +110,7 @@
 
                 <!-- Notifications -->
                 <li class="sidebar-item">
-                  <a class="sidebar-link" href="./notifications" id="notifications-url" aria-expanded="false">
+                  <a class="sidebar-link" [routerLink]="'/content/vendors/notifications'" routerLinkActive="active" id="notifications-url" aria-expanded="false">
                     <span>
                       <i class="ti ti-bell-plus"></i>
                     </span>
@@ -139,25 +139,25 @@
                 </li>
 
                 <!-- Marketing -->
-                <li class="sidebar-item">
+                <!-- <li class="sidebar-item">
                   <a class="sidebar-link"   id="marketing-url" aria-expanded="false">
                     <span>
                       <i class="ti ti-speakerphone"></i>
                     </span>
                     <span class="hide-menu">Marketing</span>
                   </a>
-                </li>
+                </li> -->
 
                 <!-- abonnement -->
 
-                <li class="sidebar-item">
+                <!-- <li class="sidebar-item">
                   <a class="sidebar-link" [routerLink]="['/content/packages-vendors']" routerLinkActive="active"  id="marketing-url" aria-expanded="false">
                     <span>
                       <i class="ti ti-package"></i>
                     </span>
                     <span class="hide-menu">Abonnements</span>
                   </a>
-                </li>
+                </li> -->
 
 
                 <!-- Settings -->
@@ -177,6 +177,14 @@
                       <i class="ti ti-headset"></i>
                     </span>
                     <span class="hide-menu">Support</span>
+                  </a>
+                </li>
+                <li class="sidebar-item" role="button" (click)="logout()">
+                  <a class="sidebar-link" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-logout"></i>
+                    </span>
+                    <span class="hide-menu">Déconnexion</span>
                   </a>
                 </li>
               </ul>

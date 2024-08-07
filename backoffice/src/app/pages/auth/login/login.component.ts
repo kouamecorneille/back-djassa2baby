@@ -67,6 +67,7 @@ export class LoginComponent {
           this.loader = false;
 
           if(error.status==401){
+
             Swal.fire({
               title: 'Connexion impossible !',
               text: 'Numéro de telephone ou mot de passe erroné !',
@@ -75,6 +76,7 @@ export class LoginComponent {
               timer: 4000,
               timerProgressBar:true
             })
+
           }else{
             Swal.fire({
               title: 'Error!',

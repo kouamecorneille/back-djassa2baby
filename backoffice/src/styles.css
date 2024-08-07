@@ -1,1 +1,3 @@
 @import url(../src/assets/css/styles.css);
+
+@import "@ng-select/ng-select/themes/default.theme.css";

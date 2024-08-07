@@ -1,10 +1,10 @@
 <app-breadcrumb
 [title]="'Ajouter un produit'"></app-breadcrumb>
 <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="row">
-  <div class="col-lg-6">
+  <div class="col-lg-7">
     <div class="card">
       <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center mb-7">
+        <div class="d-flex justify-content-between align-items-center mb-2">
           <h4 class="card-title">Generale</h4>
         </div>
         <div class="form-horizontal">
@@ -14,6 +14,28 @@
             <div *ngIf="productForm.get('name')?.invalid && (productForm.get('name')?.touched || productForm.get('name')?.dirty)">
               <small class="text-danger" *ngIf="productForm.get('name')?.errors?.['required']">Le nom est requis.</small>
               <small class="text-danger" *ngIf="productForm.get('name')?.errors?.['minlength']">Le nom doit contenir au moins 3 caractères.</small>
+            </div>
+          </div>
+          <div>
+            <div class="mb-2">
+
+              <label class="form-label">Catégorie du produit <span class="text-danger">*</span></label>
+              <ng-select [items]="listCategory"
+                 bindLabel="name"
+                 bindValue="id"
+                 [multiple]="false"
+                 placeholder="Selectionner la catégorie"
+                 formControlName="category">
+              </ng-select>
+              <!-- <select class="form-select mr-sm-2" id="inlineFormCustomSelect" formControlName="category">
+                <option selected="">Sélectionnez une option</option>
+                <option [value]="item.id" *ngFor="let item of listCategory">
+                  {{item.name}}
+                </option>
+              </select> -->
+              <div *ngIf="productForm.get('category')?.invalid && (productForm.get('category')?.touched || productForm.get('category')?.dirty)">
+                <small class="text-danger" *ngIf="productForm.get('category')?.errors?.['required']">La catégorie est requise.</small>
+              </div>
             </div>
           </div>
           <div class="mb-2">
@@ -30,22 +52,8 @@
           </div>
 
           <div class="row">
-            <div class="col-md-6">
-              <div class="mb-1">
 
-                <label class="form-label">Catégorie du produit <span class="text-danger">*</span></label>
-                <select class="form-select mr-sm-2" id="inlineFormCustomSelect" formControlName="category">
-                  <option selected="">Sélectionnez une option</option>
-                  <option [value]="item.id" *ngFor="let item of listCategory">
-                    {{item.name}}
-                  </option>
-                </select>
-                <div *ngIf="productForm.get('category')?.invalid && (productForm.get('category')?.touched || productForm.get('category')?.dirty)">
-                  <small class="text-danger" *ngIf="productForm.get('category')?.errors?.['required']">La catégorie est requise.</small>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="mb-1">
                 <label class="form-label">Total en stock <span class="text-danger">*</span></label>
                 <input type="number" class="form-control" formControlName="quantity_in_stock" />
@@ -77,7 +85,7 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-6">
+  <div class="col-lg-5">
     <div class="card">
       <div class="card-body">
         <div class="row">

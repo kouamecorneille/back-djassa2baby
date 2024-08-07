@@ -64,7 +64,20 @@ export class EcommerceService {
     );
   }
 
+  deleteProduct(id:string){
 
+    return this.apiService.deleteItem('products', id)
+  }
+
+  getProductReviews(slug:string){
+
+    return this.apiService.getItems(`products/${slug}/reviews/`);
+  }
+
+  getProductDetails(slug:string){
+
+    return this.apiService.getItem(`products`,slug);
+  }
 
 
 }

@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
+import { Store } from '../../interfaces/Istore';
+import { User, UserApiResponse } from '../../interfaces/Iuser';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-store-infos',
@@ -17,8 +20,11 @@ export class StoreInfosComponent {
   shopForm: FormGroup;
   logo:any
   loading=false
+  userSession: UserApiResponse | null;
 
-  constructor(private formBuilder: FormBuilder, private apiService:ApiService, private router: Router) {
+  constructor(private authService: AuthService,private formBuilder: FormBuilder, private apiService:ApiService, private router: Router) {
+
+    this.userSession = this.authService.UserSession!;
     this.shopForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -36,7 +42,23 @@ export class StoreInfosComponent {
 
 
   ngOnInit(): void {
+    console.log('this.userSession?.shop! :', this.userSession?.shop!)
+    this.patchStoreInfo(this.userSession?.shop!)
 
+  }
+
+  patchStoreInfo(shop:Store){
+
+    this.shopForm.patchValue({
+      name:shop.name,
+      phone_number_1:shop.phone_number_1,
+      description:shop.description,
+      location:shop.location,
+      whatsapp_link:shop.whatsapp_link,
+      facebook_link:shop.facebook_link,
+      email:shop.email,
+      can_evaluate:shop.can_evaluate,
+    })
 
   }
 
@@ -55,6 +77,8 @@ export class StoreInfosComponent {
     form.append('location',this.shopForm.value.location)
     form.append('facebook_link',this.shopForm.value.facebook_link)
     form.append('whatsapp_link',this.shopForm.value.whatsapp_link)
+    form.append('can_evaluate',this.shopForm.value.can_evaluate)
+
     this.apiService.postItem(form, 'shops').subscribe(
       (response:any) => {
         if(response){

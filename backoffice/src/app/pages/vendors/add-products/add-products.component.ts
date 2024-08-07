@@ -8,11 +8,12 @@ import { CommonModule } from '@angular/common';
 import { Product } from '../../services/shop/interfaces/Iproduct';
 import Swal from 'sweetalert2';
 import { Editor, NgxEditorModule, Toolbar } from 'ngx-editor';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-add-products',
   standalone: true,
-  imports: [BreadcrumbComponent,ReactiveFormsModule, CommonModule,NgxEditorModule,FormsModule],
+  imports: [BreadcrumbComponent,ReactiveFormsModule, CommonModule,NgxEditorModule,FormsModule,NgSelectModule],
   templateUrl: './add-products.component.html',
   styleUrl: './add-products.component.css',
   encapsulation: ViewEncapsulation.None,

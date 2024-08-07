@@ -9,11 +9,12 @@ import { Product } from '../../services/shop/interfaces/Iproduct';
 import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
 import { Editor, NgxEditorModule, Toolbar } from 'ngx-editor';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-edit-products',
   standalone: true,
-  imports: [BreadcrumbComponent,ReactiveFormsModule, CommonModule,NgxEditorModule,FormsModule],
+  imports: [BreadcrumbComponent,ReactiveFormsModule, CommonModule,NgxEditorModule,FormsModule,NgSelectModule],
   templateUrl: './edit-products.component.html',
   styleUrl: './edit-products.component.css'
 })
@@ -49,8 +50,8 @@ export class EditProductsComponent {
       description: ['', Validators.required],
       price: ['', Validators.required],
       reduced_price: [''],
-      image1: [null, Validators.required],
-      image2: [null, Validators.required],
+      image1: [null],
+      image2: [null],
       image3: [null],
       image4: [null],
       image5: [null],
@@ -94,7 +95,7 @@ export class EditProductsComponent {
       reduced_price: data.reduced_price.toString().split(".")[0],
       quantity_in_stock: data.quantity_in_stock,
       instock: data.instock,
-      category: data.category,
+      category: data.category.id,
       // Assurez-vous d'ajouter d'autres champs si nécessaire
     });
   }
@@ -122,8 +123,8 @@ export class EditProductsComponent {
             this.loader =  false;
             this.productForm.reset();
             Swal.fire({
-              title: 'Ajout de produit!',
-              text: 'Votre produit a bien été ajouter !',
+              title: 'Modification de produit!',
+              text: 'Votre produit a bien été modifier !',
               icon: 'success',
               timer: 4000,
               timerProgressBar:true

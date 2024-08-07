@@ -17,6 +17,8 @@ import { AuthGuard } from './helpers/guards/auth.guard';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { EditProductsComponent } from './pages/vendors/edit-products/edit-products.component';
 import { RegisterBoutiqueComponent } from './pages/auth/register-boutique/register-boutique.component';
+import { PasswordResetConfirmComponent } from './pages/auth/password-reset-confirm/password-reset-confirm.component';
+import { ProductReviewsDetailsComponent } from './pages/vendors/product-reviews-details/product-reviews-details.component';
 
 export const routes: Routes = [
 
@@ -36,6 +38,10 @@ export const routes: Routes = [
   {
     path: 'auth/forgot-password',
     component: ForgotPasswordComponent
+  },
+  {
+    path: 'auth/password-reset-confirm',
+    component: PasswordResetConfirmComponent
   },
   {
     path: 'content',
@@ -104,6 +110,21 @@ export const routes: Routes = [
       {
         path: 'vendors/settings',
         component: StoreSettingsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'vendors/user-reviews',
+        component: ReviewsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'vendors/notifications',
+        component: NotificationsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'vendors/reviews-list/:id',
+        component: ProductReviewsDetailsComponent,
         canActivate: [AuthGuard]
       },
     ]

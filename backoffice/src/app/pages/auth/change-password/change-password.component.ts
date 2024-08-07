@@ -1,6 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ApiService } from '../../services/api.service';
+import { User } from '../../interfaces/Iuser';
+import { AuthService } from '../../services/auth/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-change-password',
@@ -11,4 +15,70 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class ChangePasswordComponent {
 
+  passwordForm!:FormGroup
+  loader:boolean = false;
+  apiService = inject(ApiService)
+  userSession: User | null;
+
+
+  constructor( private fb:FormBuilder,private authService: AuthService,){
+
+    this.passwordForm = this.fb.group({
+      old_password:['', [Validators.required, Validators.minLength(6)]],
+      new_password:['', [Validators.required, Validators.minLength(6)]],
+    });
+
+    this.userSession = this.authService.UserSession?.user!;
+
+  }
+
+
+  onSubmit(){
+
+    this.loader = true
+    if(this.passwordForm.valid){
+
+      if(this.passwordForm.value.old_password == this.passwordForm.value.new_password){
+
+        const data ={
+          old_password:this.passwordForm.value.old_password,
+          new_password:this.passwordForm.value.new_password,
+        }
+
+        this.apiService.putItem(data,'users/password-change/',this.userSession?.id ).subscribe(
+          (response:any)=>{
+
+            if(response){
+
+              Swal.fire({
+                title: 'Modification du mot de passe !',
+                text: 'Votre mot de passe a été mise a jour !',
+                icon: 'success',
+                timer: 4000,
+                timerProgressBar:true
+              });
+
+            }
+
+          },
+          (error:any)=>{
+
+            console.log(error)
+          }
+        )
+
+      }else{
+
+        Swal.fire({
+          title: 'Modification du mot de passe !',
+          text: 'Les deux mot de passe ne correspondent pas !',
+          icon: 'error',
+          timer: 4000,
+          timerProgressBar:true
+        });
+
+      }
+
+    }
+  }
 }
