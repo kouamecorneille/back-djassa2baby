@@ -26,6 +26,7 @@ export class ChangePasswordComponent {
     this.passwordForm = this.fb.group({
       old_password:['', [Validators.required, Validators.minLength(6)]],
       new_password:['', [Validators.required, Validators.minLength(6)]],
+      confirm_password:['', [Validators.required, Validators.minLength(6)]],
     });
 
     this.userSession = this.authService.UserSession?.user!;
@@ -38,18 +39,19 @@ export class ChangePasswordComponent {
     this.loader = true
     if(this.passwordForm.valid){
 
-      if(this.passwordForm.value.old_password == this.passwordForm.value.new_password){
+      if(this.passwordForm.value.confirm_password == this.passwordForm.value.new_password){
 
         const data ={
           old_password:this.passwordForm.value.old_password,
           new_password:this.passwordForm.value.new_password,
         }
 
-        this.apiService.putItem(data,'users/password-change/',this.userSession?.id ).subscribe(
+        this.apiService.putPassword(data,'users/password-change').subscribe(
           (response:any)=>{
 
             if(response){
 
+              this.loader = false
               Swal.fire({
                 title: 'Modification du mot de passe !',
                 text: 'Votre mot de passe a été mise a jour !',
@@ -59,16 +61,22 @@ export class ChangePasswordComponent {
               });
 
             }
-
           },
           (error:any)=>{
-
             console.log(error)
+            this.loader = false
+            Swal.fire({
+              title: 'Modification du mot de passe !',
+              text: 'Oops, erreur interne du serveur',
+              icon: 'error',
+              timer: 4000,
+              timerProgressBar:true
+            });
           }
         )
 
       }else{
-
+        this.loader = false
         Swal.fire({
           title: 'Modification du mot de passe !',
           text: 'Les deux mot de passe ne correspondent pas !',

@@ -21,6 +21,7 @@ export class StoreInfosComponent {
   logo:any
   loading=false
   userSession: UserApiResponse | null;
+  selectedLogo:any
 
   constructor(private authService: AuthService,private formBuilder: FormBuilder, private apiService:ApiService, private router: Router) {
 
@@ -50,16 +51,56 @@ export class StoreInfosComponent {
   patchStoreInfo(shop:Store){
 
     this.shopForm.patchValue({
-      name:shop.name,
-      phone_number_1:shop.phone_number_1,
-      description:shop.description,
-      location:shop.location,
-      whatsapp_link:shop.whatsapp_link,
-      facebook_link:shop.facebook_link,
-      email:shop.email,
-      can_evaluate:shop.can_evaluate,
+      name: shop.name,
+      phone_number_1: shop.phone_number_1,
+      description: shop.description,
+      location: shop.location,
+      whatsapp_link: shop.whatsapp_link,
+      facebook_link: shop.facebook_link,
+      email: shop.email,
+      can_evaluate: shop.can_evaluate,
     })
 
+  }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+
+      // Check file type
+      const validFileTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+      if (!validFileTypes.includes(file.type)) {
+        Swal.fire({
+          title: 'Type de fichier invalide',
+          text: 'Veuillez sélectionner un fichier JPG, JPEG ou PNG.',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+          timer: 4000,
+          timerProgressBar: true
+        });
+        return;
+      }
+
+      // Check file size (800KB = 819200 bytes)
+      if (file.size > 819200) {
+        Swal.fire({
+          title: 'Mise à jour du logo !',
+          text: 'Oops, la taille du fichier selectionner est trop élever !',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+          timer: 4000,
+          timerProgressBar: true
+        });
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.selectedLogo = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
 
@@ -78,28 +119,32 @@ export class StoreInfosComponent {
     form.append('facebook_link',this.shopForm.value.facebook_link)
     form.append('whatsapp_link',this.shopForm.value.whatsapp_link)
     form.append('can_evaluate',this.shopForm.value.can_evaluate)
+    form.append('user ',this.userSession?.user.id!)
 
-    this.apiService.postItem(form, 'shops').subscribe(
+    if(this.selectedLogo){
+      form.append('logo ',this.selectedLogo)
+
+    }
+
+    this.apiService.putItem(form, 'shops',this.userSession?.shop?.slug).subscribe(
       (response:any) => {
         if(response){
           this.loading = false;
           Swal.fire({
-            title: 'Création de boutique !',
-            text: 'Votre boutique a été créer  avec succès !',
-            icon: 'error',
+            title: 'Mise à jour des informations !',
+            text: 'Les informations de votre boutique ont été modifié !',
+            icon: 'success',
             timer: 5000,
             timerProgressBar:true
           })
-
-          this.router.navigate(['/auth/login']);
         }
       },
       (error:any) => {
         this.loading = false;
         console.log(error)
         Swal.fire({
-          title: 'Création de boutique !',
-          text: 'Nous avons rencontrer une erreur !',
+          title: 'Mise à jour des informations !',
+          text: 'Oops, Erreur interne du serveur  !',
           icon: 'error',
           confirmButtonText: 'ok',
           timer: 4000,

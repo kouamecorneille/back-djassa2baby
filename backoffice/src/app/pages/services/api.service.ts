@@ -97,7 +97,14 @@ export class ApiService {
 
   putItem(item:any, url:string, id:any):Observable<any>{
 
-    return this.Http.put(`${this.baseUrl + url}/${id}`, item);
+    return this.Http.put(`${this.baseUrl + url}/${id}/`, item);
+
+  }
+
+
+  putPassword(item:any, url:string):Observable<any>{
+
+    return this.Http.put(`${this.baseUrl + url}/`, item);
 
   }
 
