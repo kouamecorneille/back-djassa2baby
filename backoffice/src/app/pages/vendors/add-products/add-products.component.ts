@@ -58,6 +58,7 @@ export class AddProductsComponent {
     });
 
 
+
    }
 
   ngOnInit(): void {
@@ -137,6 +138,7 @@ export class AddProductsComponent {
   }
 
   generateFormData(): FormData {
+
     const formData = new FormData();
 
     // Ajouter les champs textuels et numériques
@@ -147,7 +149,7 @@ export class AddProductsComponent {
     formData.append('quantity_in_stock', this.productForm.get('quantity_in_stock')?.value.toString());
     formData.append('instock', this.productForm.get('instock')?.value.toString());
     formData.append('category', this.productForm.get('category')?.value);
-    formData.append('shop', this.ecomService.connectedStore.id);
+    formData.append('shop', this.ecomService?.connectedStore?.id);
 
     // Ajouter les fichiers
     const image1 = this.productForm.get('image1')?.value;
