@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { Store } from '../../interfaces/Istore';
-import { User, UserApiResponse } from '../../interfaces/Iuser';
+import {  UserApiResponse } from '../../interfaces/Iuser';
 import { AuthService } from '../../services/auth/auth.service';
+import { EcommerceService } from '../../services/shop/ecommerce.service';
+import { baseUrl } from '../../../helpers/apiUrl';
 
 @Component({
   selector: 'app-store-infos',
@@ -22,8 +24,12 @@ export class StoreInfosComponent {
   loading=false
   userSession: UserApiResponse | null;
   selectedLogo:any
+  public ecommerceService = inject(EcommerceService)
+
+  baseUrl = baseUrl;
 
   constructor(private authService: AuthService,private formBuilder: FormBuilder, private apiService:ApiService, private router: Router) {
+
 
     this.userSession = this.authService.UserSession!;
     this.shopForm = this.formBuilder.group({

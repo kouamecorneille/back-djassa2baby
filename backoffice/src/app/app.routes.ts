@@ -19,6 +19,8 @@ import { EditProductsComponent } from './pages/vendors/edit-products/edit-produc
 import { RegisterBoutiqueComponent } from './pages/auth/register-boutique/register-boutique.component';
 import { PasswordResetConfirmComponent } from './pages/auth/password-reset-confirm/password-reset-confirm.component';
 import { ProductReviewsDetailsComponent } from './pages/vendors/product-reviews-details/product-reviews-details.component';
+import { CouponsComponent } from './pages/vendors/coupons/coupons.component';
+import { DetailsOrderComponent } from './pages/vendors/details-order/details-order.component';
 
 export const routes: Routes = [
 
@@ -123,8 +125,18 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
+        path: 'vendors/coupons',
+        component: CouponsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
         path: 'vendors/reviews-list/:id',
         component: ProductReviewsDetailsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'vendors/details-order/:id',
+        component: DetailsOrderComponent,
         canActivate: [AuthGuard]
       },
     ]

@@ -1,23 +1,31 @@
 <div class="container-fluid">
-  <div class="row">
     <div class="row gx-3">
-     <div class="col-lg-4 col-xxl-2 col-6">
-      <app-card-infos
-      libelle="Produits"
-      iconClass="ti ti-gift"
-      backgroundClass="text-bg-warning"
-      [count]="totaleProducts"
-      ></app-card-infos>
-     </div>
-     <div class="col-lg-4 col-xxl-2 col-6">
-      <app-card-infos
-      libelle="Commandes"
-      iconClass="ti ti-shopping-cart"
-      backgroundClass="text-bg-success"
-      [count]="10"
-      ></app-card-infos>
-     </div>
-     <div class="col-lg-4 col-xxl-2 col-6">
+      <div class="col-lg-4 col-xxl-4 col-6">
+        <app-card-infos
+          libelle="Produits"
+          iconClass="ti ti-gift"
+          backgroundClass="text-bg-warning"
+          [count]="totaleProducts"
+        ></app-card-infos>
+      </div>
+      <div class="col-lg-4 col-xxl-4 col-6">
+        <app-card-infos
+          libelle="Commandes"
+          iconClass="ti ti-shopping-cart"
+          backgroundClass="text-bg-success"
+          [count]="(ecommService.numberOfOrders | async) ?? 0"
+        ></app-card-infos>
+      </div>
+      <div class="col-lg-4 col-xxl-4 col-6">
+        <app-card-infos
+          libelle="Revenus par jour"
+          iconClass="ti ti-currency-dollar"
+          backgroundClass="text-bg-danger"
+          [count]="25000"
+        ></app-card-infos>
+      </div>
+
+      <!-- <div class="col-lg-4 col-xxl-2 col-6">
       <app-card-infos
       libelle="Abonnes"
       iconClass="ti ti-users"
@@ -32,9 +40,9 @@
       backgroundClass="text-bg-danger"
       [count]="25000"
       ></app-card-infos>
-     </div>
+     </div> -->
 
-     <div class="col-lg-4 col-xxl-2 col-6">
+      <!-- <div class="col-lg-4 col-xxl-2 col-6">
       <app-card-infos
       libelle="Revenus par mois"
       iconClass="ti ti-currency-dollar"
@@ -51,182 +59,110 @@
       ></app-card-infos>
      </div>
     </div>
+  </div> -->
   </div>
   <div class="row mt-4">
-
-    <div class="col-md-12 col-lg-12">
+    <div class="col-12">
       <div class="card">
         <div class="card-body p-4">
-          <h4 class="card-title fw-semibold">Commande recentes</h4>
+          <h4 class="card-title fw-semibold">Commande recentes (5)</h4>
           <div class="card shadow-none mt-9 mb-0">
             <div class="table-responsive">
               <table class="table text-nowrap align-middle mb-0">
                 <thead>
                   <tr>
-                    <th class="ps-0">Item</th>
-                    <th>Event</th>
-                    <th>From - To</th>
-                    <th>Amount</th>
-                    <th>Value</th>
+                    <th class="ps-0">Client</th>
+                    <th>Numéro</th>
+                    <th>Adresse</th>
+                    <th>Montant total</th>
+                    <th>Statut</th>
                     <th>Date</th>
-                    <th>Link</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
-                <tbody class="text-dark ">
-                  <tr>
+                <tbody class="text-dark">
+                  <tr
+                    *ngFor="
+                      let item of ecommService._listOfOrders
+                        | async
+                        | slice : 0 : 5
+                    "
+                  >
                     <td class="ps-0 text-truncate">
-                      <img src="../assets/images/nft/g1.webp" class="rounded img-fluid me-2" width="50" alt="user">
+                      <img
+                        src="../assets/images/nft/g1.webp"
+                        class="rounded img-fluid me-2"
+                        width="50"
+                        alt="user"
+                      />
                       <span class="fw-semibold">Quantum Ape</span>
                     </td>
                     <td>
-                      <span class="badge bg-primary-subtle text-primary">Purchase</span>
+                      <span>{{ item.commune }} </span>
                     </td>
                     <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <img src="../assets/images/profile/user-2.jpg" width="25" alt="user1" class="rounded-circle">
-                        <span class="fs-3">John</span>
-                        <span>
-                          <i class="ti ti-arrow-right text-success fs-4"></i>
-                        </span>
-                        <img src="../assets/images/profile/user-3.jpg" width="25" alt="user1" class="rounded-circle">
-                        <span class="fs-3">Deo</span>
-                      </div>
+                      <span> {{ item.delivery_address }} </span>
                     </td>
-                    <td>4</td>
+                    <td>{{ item.total | number : "1.0-0" }}</td>
                     <td>
-                      <i class="cc ETH" title="ETH"></i> 16 ETH
+                      @switch (item.status) { @case ('pending') {
+                      <span
+                        class="badge p-2 w-100 bg-warning-subtle text-warning"
+                        >En attente</span
+                      >
+                      } @case ('confirmed') {
+                      <span
+                        class="badge p-2 w-100 bg-primary-subtle text-primary"
+                        >Confirmée</span
+                      >
+                      } @case ('canceled') {
+                      <span
+                        class="badge p-2 w-100 bg-danger-subtle text-danger"
+                        >Annulée</span
+                      >
+                      } @case ('delivered') {
+                      <span
+                        class="badge p-2 w-100 bg-success-subtle text-success"
+                        >Livrée</span
+                      >
+                      } }
                     </td>
-                    <td>13 July, 2024</td>
+                    <td>{{ item.order_date | date : "dd/MM/yyyy" }}</td>
                     <td>
-                      <div class="dropdown">
-                        <a class="text-decoration-none" href="javascript:void(0)" id="nft2" data-bs-toggle="dropdown" aria-expanded="false">
-                          <i class="ti ti-dots fs-4"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="nft2">
-                          <li>
-                            <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)">
-                              <i class="ti ti-link me-1 fs-6"></i>https://www.abc.com/sfsdf767s
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ps-0 text-truncate">
-                      <img src="../assets/images/nft/g2.webp" class="rounded img-fluid me-2" alt="n1" width="50">
-                      <span class="fw-semibold">Bored Ape</span>
-                    </td>
-                    <td>
-                      <span class="badge bg-danger-subtle text-danger">Transfer</span>
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <img src="../assets/images/profile/user-4.jpg" width="25" alt="user1" class="rounded-circle">
-                        <span class="fs-3">Liam</span>
-                        <span>
-                          <i class="ti ti-arrow-left text-danger fs-4"></i>
-                        </span>
-                        <img src="../assets/images/profile/user-5.jpg" width="25" alt="user1" class="rounded-circle">
-                        <span class="fs-3">Noah</span>
-                      </div>
-                    </td>
-                    <td>4</td>
-                    <td>
-                      <i class="cc ETH" title="ETH"></i> 8 ETH
-                    </td>
-                    <td>1 Aug, 2024</td>
-                    <td>
-                      <div class="dropdown">
-                        <a class="text-decoration-none" href="javascript:void(0)" id="ns11" data-bs-toggle="dropdown" aria-expanded="false">
-                          <i class="ti ti-dots fs-4"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li>
-                            <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)">
-                              <i class="ti ti-link me-1 fs-6"></i>https://www.abc.com/sfsdf767s
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ps-0 text-truncate">
-                      <img src="../assets/images/nft/g3.webp" class="rounded img-fluid me-2" alt="n2" width="50">
-                      <span class="fw-semibold">Space Ape</span>
-                    </td>
-                    <td>
-                      <span class="badge bg-success-subtle text-success">List</span>
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <img src="../assets/images/profile/user-6.jpg" width="25" alt="user1" class="rounded-circle">
-                        <span class="fs-3">Oliver</span>
-                        <span>
-                          <i class="ti ti-arrow-left text-danger fs-4"></i>
-                        </span>
-                        <img src="../assets/images/profile/user-7.jpg" width="25" alt="user1" class="rounded-circle">
-                        <span class="fs-3">Elijah</span>
-                      </div>
-                    </td>
-                    <td>4</td>
-                    <td>
-                      <i class="cc ETH" title="ETH"></i> 9 ETH
-                    </td>
-                    <td>12 Jan, 2024</td>
-                    <td>
-                      <div class="dropdown">
-                        <a class="text-decoration-none" href="javascript:void(0)" id="dd3" data-bs-toggle="dropdown" aria-expanded="false">
-                          <i class="ti ti-dots fs-4"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dd3">
-                          <li>
-                            <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)">
-                              <i class="ti ti-link me-1 fs-6"></i>https://www.abc.com/sfsdf767s
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="border-0 ps-0 text-truncate">
-                      <img src="../assets/images/nft/g4.webp" class="rounded img-fluid me-2" width="50" alt="n1">
-                      <span class="fw-semibold">Fancy Bears</span>
-                    </td>
-                    <td class="border-0">
-                      <span class="badge bg-primary-subtle text-primary">Purchase</span>
-                    </td>
-                    <td class="border-0">
-                      <div class="d-flex align-items-center gap-2">
-                        <img src="../assets/images/profile/user-8.jpg" width="25" alt="user1" class="rounded-circle">
-                        <span class="fs-3">James</span>
-                        <span>
-                          <i class="ti ti-arrow-right text-success fs-4"></i>
-                        </span>
-                        <img src="../assets/images/profile/user-9.jpg" width="25" alt="user1" class="rounded-circle">
-                        <span class="fs-3">Lucas</span>
-                      </div>
-                    </td>
-                    <td class="border-0">4</td>
-                    <td class="border-0">
-                      <i class="cc ETH" title="ETH"></i> 10 ETH
-                    </td>
-                    <td class="border-0">1 Feb, 2024</td>
-                    <td class="border-0">
-                      <div class="dropdown">
-                        <a class="text-decoration-none" href="javascript:void(0)" id="nft3" data-bs-toggle="dropdown" aria-expanded="false">
-                          <i class="ti ti-dots fs-4"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="nft3">
-                          <li>
-                            <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)">
-                              <i class="ti ti-link me-1 fs-6"></i>https://www.abc.com/sfsdf767s
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
+                      <a
+                        class="fs-6 text-muted"
+                        href="javascript:void(0)"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        data-bs-title="Edit"
+                        id="dropdownMenuButton"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <i class="ti ti-dots-vertical"></i>
+                      </a>
+                      <ul
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
+                      >
+                        <li>
+                          <a
+                            class="dropdown-item d-flex align-items-center gap-3"
+                            role="button"
+                            [routerLink]="['/content/vendors/details-order', item.id]"
+                          >
+                            <i class="fs-4 ti ti-eye"></i>Voir
+                          </a>
+                        </li>
+                        <!-- <li>
+                          <a
+                            class="dropdown-item d-flex align-items-center gap-3"
+                            href="javascript:void(0)"
+                          >
+                            <i class="fs-4 ti ti-trash"></i>Supprimer
+                          </a>
+                        </li> -->
+                      </ul>
                     </td>
                   </tr>
                 </tbody>

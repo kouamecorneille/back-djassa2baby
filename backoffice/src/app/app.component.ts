@@ -9,6 +9,12 @@ import {  ToastrModule } from 'ngx-toastr';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+// // for Router import:
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+// // for Core import:
+import { LoadingBarModule } from '@ngx-loading-bar/core';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -19,6 +25,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     ToastrModule,
     ReactiveFormsModule,
     NgApexchartsModule,
+    // for Router use:
+    LoadingBarRouterModule,//
+    // for HttpClient use:
+    LoadingBarHttpClientModule,
+    LoadingBarModule,
   ],
   providers:[
     {

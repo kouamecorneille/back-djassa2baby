@@ -1,11 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { CardInfosComponent } from '../components/card-infos/card-infos.component';
 import { EcommerceService } from '../../services/shop/ecommerce.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashbord',
   standalone: true,
-  imports:[CardInfosComponent],
+  imports:[CardInfosComponent, CommonModule,RouterModule],
   templateUrl: './dashbord.component.html',
   styleUrl: './dashbord.component.css'
 })
@@ -16,18 +18,19 @@ export class DashbordComponent {
 
   constructor(){
 
-    
+    this.ecommService.getVendorOrders()
+
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+
     this.ecommService.getVendorProducts()
-    console.log(this.ecommService.listOfProducts.value)
     this.ecommService.listOfProducts.subscribe(
       (data)=>{
         this.totaleProducts = data.length;
       }
     )
+
+    console.log(this.ecommService._listOfOrders)
   }
 }

@@ -6,6 +6,7 @@ import { Product } from './interfaces/Iproduct';
 import { AuthService } from '../auth/auth.service';
 import { User, UserApiResponse } from '../../interfaces/Iuser';
 import { Store } from '../../interfaces/Istore';
+import { Coupon } from '../../interfaces/Icoupon';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,10 @@ export class EcommerceService {
 
   listCategory =  new BehaviorSubject<Category[]>([])
   listOfProducts = new BehaviorSubject<Product[]>([]);
+  _listOfOrders = new BehaviorSubject<any[]>([]);
+  _listOfCoupons = new BehaviorSubject<Coupon[]>([]);
+  numberOfOrders = new BehaviorSubject<number>(0);
+
   _connectedStore!:Store
   userSession!:UserApiResponse
   constructor(private apiService:ApiService, private authService:AuthService) {
@@ -26,6 +31,10 @@ export class EcommerceService {
     return this.apiService.postItem(data, 'products/');
   }
 
+  updateProduct(data:FormData, slug:string){
+    return this.apiService.putItem(data, 'products/',slug);
+  }
+
   get connectedStore(): Store {
     if (!this._connectedStore) {
       this._connectedStore = this.userSession.shop!;
@@ -33,12 +42,56 @@ export class EcommerceService {
     return this._connectedStore;
   }
 
+  addCoupon(data:any){
+    return this.apiService.postItem(data, 'coupons/');
+  }
+
+  deleteCoupon(id:string){
+    return this.apiService.deleteItem('coupons/', id);
+  }
+
+  updateCoupon(data:any){
+    return this.apiService.postItem(data, 'coupons/');
+  }
+
+
   getVendorProducts() {
 
     this.apiService.getItems(`/shops/${this.userSession.shop?.slug}/products`).subscribe(
       (response:Product[]) => {
 
         this.listOfProducts.next(response.reverse());
+      },
+      (error:any) => {
+        console.log(error.message)
+      }
+    )
+
+  }
+
+  getVendorCoupons() {
+    this.apiService.getItems(`/coupons/`).subscribe(
+      (response: Coupon[]) => {
+        const filteredCoupons = response.reverse().filter((item) => {
+          return item.shop === this.connectedStore.id;
+        });
+        this._listOfCoupons.next(filteredCoupons);
+      },
+      (error: any) => {
+        console.log(error.message);
+      }
+    );
+  }
+
+
+
+  getVendorOrders() {
+
+    this.apiService.getItems(`/orders/shop-orders/${this.userSession.shop?.id}`).subscribe(
+      (response:any) => {
+
+        this._listOfOrders.next(response.reverse());
+        this.numberOfOrders.next(response.length)
       },
       (error:any) => {
         console.log(error.message)

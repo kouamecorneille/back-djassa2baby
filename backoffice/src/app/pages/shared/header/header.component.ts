@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
+import { EcommerceService } from '../../services/shop/ecommerce.service';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +7,8 @@ import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements AfterViewInit{
+
+
 
   @ViewChild('sidebartoggler', { static: true }) sidebarToggler!: ElementRef;
 
@@ -23,6 +26,20 @@ export class HeaderComponent implements AfterViewInit{
     } else {
       console.error('sidebarToggler is not yet available');
     }
+  }
+
+  totaleProducts!:number;
+  ecommService = inject(EcommerceService)
+
+  constructor(){
+
+
+
+  }
+
+  ngOnInit(): void {
+
+      this.ecommService.getVendorOrders()
   }
 
   isSidebarOpen = false;

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { BreadcrumbComponent } from '../../shared/breadcrumb/breadcrumb.component';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -7,7 +7,7 @@ import { Category } from '../../services/shop/interfaces/Icategory';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../services/shop/interfaces/Iproduct';
 import Swal from 'sweetalert2';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Editor, NgxEditorModule, Toolbar } from 'ngx-editor';
 import {NgSelectModule} from '@ng-select/ng-select';
 
@@ -28,6 +28,7 @@ export class EditProductsComponent {
   loader=false
   editor!: Editor;
   html = '';
+  router = inject(Router)
 
   toolbar: Toolbar = [
     ['bold', 'italic'],
@@ -117,7 +118,7 @@ export class EditProductsComponent {
     this.loader =  true
     if (this.productForm.valid) {
       const formData = this.generateFormData();
-      this.ecomService.addProduct(formData).subscribe(
+      this.ecomService.updateProduct(formData, this.product.slug).subscribe(
         (response:Product)=>{
           if(response){
             this.loader =  false;
@@ -129,6 +130,7 @@ export class EditProductsComponent {
               timer: 4000,
               timerProgressBar:true
             })
+            this.router.navigate(['/content/vendors/list-of-products']);
           }
         },
         (error:any)=>{

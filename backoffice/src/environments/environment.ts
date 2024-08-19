@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   hmr: false,
-  apiUrl: 'http://djassa2baby.pythonanywhere.com/api/'
+  apiUrl: 'http://djassa2baby.pythonanywhere.com/api/',
+  baseUrl: 'http://djassa2baby.pythonanywhere.com',
 };
 
 /*

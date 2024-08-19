@@ -1,0 +1,108 @@
+<app-breadcrumb
+[title]="'Coupons'"></app-breadcrumb>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h5>Créer un coupon</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="couponForm">
+            <!-- <div class="form-group mb-3">
+              <label for="coupon_code" class="form-label">Code du coupon</label>
+              <input id="coupon_code" type="text" formControlName="coupon_code" class="form-control" required>
+            </div> -->
+            <div class="form-group mb-3">
+              <label for="reduction" class="form-label">Montant du coupon (FCFA)</label>
+              <input id="reduction" type="text" formControlName="reduction" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+              <label for="start_date" class="form-label">Date de début</label>
+              <input id="start_date" type="date" formControlName="start_date" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+              <label for="end_date" class="form-label">Date de fin</label>
+              <input id="end_date" type="date" formControlName="end_date" class="form-control" required>
+            </div>
+            <div class="text-end">
+              <button type="submit"
+              (click)="onSubmit()"
+                class="btn btn-primary"
+                [disabled]="couponForm.invalid || loading">
+                {{loading ? 'Traitement en cours ...' : 'Créer le coupon'}}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-header">
+          <h5>Liste des  coupons</h5>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Coupon</th>
+                        <th>Montant</th>
+                        <th>Debut</th>
+                        <th>Fin</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of ecommerceService._listOfCoupons | async">
+                        <td>
+                          <b>
+                            {{item.coupon_code}}
+                          </b>
+                        </td>
+                        <td>{{item.reduction | number:'1.0-0'}}</td>
+                        <td>
+                          {{item.start_date |date:'dd/MM/yyyy'}}
+                        </td>
+                        <td> {{item.end_date |date:'dd/MM/yyyy'}}</td>
+                        <td>
+                          <a class="fs-6 text-muted" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="ti ti-dots-vertical"></i>
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li>
+                              <a class="dropdown-item d-flex align-items-center gap-3"
+                              (click)="selectedCoupon(item)"
+                               role="button">
+                                <i class="fs-4 ti ti-edit"></i>Editer
+                              </a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item d-flex align-items-center gap-3"
+                                href="javascript:void(0)"
+                                (click)="deleteItem(item)"
+                                >
+                                <i class="fs-4 ti ti-trash"></i>Supprimer
+                              </a>
+                            </li>
+                          </ul>
+                        </td>
+                    </tr>
+
+                    <tr *ngIf="ecommerceService._listOfCoupons.value.length ==0">
+                      <td class="text-center" colspan="5">
+                        <span>Aucune données trouvées pour le moments .</span>
+                      </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

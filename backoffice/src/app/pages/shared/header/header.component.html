@@ -1,3 +1,4 @@
+
 <header class="topbar">
   <div class="with-vertical">
     <!-- ---------------------------------- -->
@@ -52,7 +53,7 @@
         id="navbarNav"
       >
         <div class="d-flex align-items-center justify-content-between">
-          <a
+          <!-- <a
             href="javascript:void(0)"
             class="nav-link nav-icon-hover-bg rounded-circle mx-0 ms-n1 d-flex d-lg-none align-items-center justify-content-center"
             type="button"
@@ -61,14 +62,14 @@
             aria-controls="offcanvasWithBothOptions"
           >
             <i class="ti ti-align-justified fs-7"></i>
-          </a>
+          </a> -->
           <ul
             class="navbar-nav flex-row ms-auto align-items-center justify-content-center"
           >
             <!-- ------------------------------- -->
             <!-- start language Dropdown -->
             <!-- ------------------------------- -->
-            <li class="nav-item nav-icon-hover-bg rounded-circle">
+            <!-- <li class="nav-item nav-icon-hover-bg rounded-circle">
               <a
                 class="nav-link moon dark-layout"
                 href="javascript:void(0)"
@@ -83,7 +84,7 @@
               >
                 <i class="ti ti-sun sun" style="display: none"></i>
               </a>
-            </li>
+            </li> -->
 
             <!-- ------------------------------- -->
             <!-- start shopping cart Dropdown -->
@@ -91,7 +92,7 @@
             <li class="nav-item nav-icon-hover-bg rounded-circle">
               <a
                 class="nav-link position-relative"
-                href="javascript:void(0)"
+                [routerLink]="['/content/vendors/list-of-orders']"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasRight"
                 aria-controls="offcanvasRight"
@@ -99,7 +100,9 @@
                 <i class="ti ti-basket"></i>
                 <span
                   class="popup-badge rounded-pill bg-danger text-white fs-2"
-                  >2</span
+                  >
+                    {{ecommService._listOfOrders.value.length}}
+                  </span
                 >
               </a>
             </li>
@@ -113,7 +116,7 @@
             <li class="nav-item nav-icon-hover-bg rounded-circle dropdown">
               <a
                 class="nav-link position-relative"
-                href="javascript:void(0)"
+                [routerLink]="['/content/vendors/notifications']"
                 id="drop2"
                 aria-expanded="false"
               >
@@ -322,7 +325,7 @@
                 </div>
                 <div class="py-6 px-7 mb-1">
                   <button class="btn btn-outline-primary w-100">
-                    See All Notifications
+                    Voir les notifications
                   </button>
                 </div>
               </div>
@@ -556,7 +559,7 @@
     <!-- apps Dropdown in Small screen -->
     <!-- ------------------------------- -->
     <!--  Mobilenavbar -->
-    <div
+    <!-- <div
       class="offcanvas offcanvas-end"
       data-bs-scroll="true"
       tabindex="-1"
@@ -938,7 +941,7 @@
           </div>
         </div>
       </nav>
-    </div>
+    </div> -->
   </div>
   <div class="app-header with-horizontal">
     <nav class="navbar navbar-expand-xl container-fluid p-0">
@@ -1473,7 +1476,9 @@
                 <i class="ti ti-basket"></i>
                 <span
                   class="popup-badge rounded-pill bg-danger text-white fs-2"
-                  >2</span
+                  >
+                  {{ecommService._listOfOrders.value.length}}
+                  </span
                 >
               </a>
             </li>

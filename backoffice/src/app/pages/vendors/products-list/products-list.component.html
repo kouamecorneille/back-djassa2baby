@@ -38,11 +38,11 @@
       </thead>
         <tbody>
           <!-- start row -->
-          @if (listOfProducts) {
+          @if (listOfProducts.length >0) {
             <tr class="search-items" *ngFor="let item of listOfProducts">
               <td>
                 <div class="d-flex align-items-center">
-                  <img [src]="baseUrl + item.image1" alt="avatar" class="rounded-circle" width="35">
+                  <img [src]="item.image1" alt="avatar" class="rounded-circle" width="35">
                   <div class="ms-3">
                     <div class="user-meta-info">
                       <h6 class="user-name mb-0" data-name="Emma Adams"> {{item.name.substring(0,20)}}...</h6>
