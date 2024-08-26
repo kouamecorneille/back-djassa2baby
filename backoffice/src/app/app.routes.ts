@@ -21,6 +21,7 @@ import { PasswordResetConfirmComponent } from './pages/auth/password-reset-confi
 import { ProductReviewsDetailsComponent } from './pages/vendors/product-reviews-details/product-reviews-details.component';
 import { CouponsComponent } from './pages/vendors/coupons/coupons.component';
 import { DetailsOrderComponent } from './pages/vendors/details-order/details-order.component';
+import { SubscribersComponent } from './pages/vendors/subscribers/subscribers.component';
 
 export const routes: Routes = [
 
@@ -127,6 +128,11 @@ export const routes: Routes = [
       {
         path: 'vendors/coupons',
         component: CouponsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'vendors/subscribers',
+        component: SubscribersComponent,
         canActivate: [AuthGuard]
       },
       {

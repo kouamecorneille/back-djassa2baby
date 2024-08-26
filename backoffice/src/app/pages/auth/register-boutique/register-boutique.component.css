@@ -1,0 +1,65 @@
+
+.nav-pills .nav-link.active {
+  background-color: #5d87ff;
+  color: white;
+}
+
+.nav-pills .nav-link {
+  padding: 5px 5px;
+  margin: 0 10px;
+}
+
+/* Style the images and form for better alignment */
+#shopStepper .row {
+  align-items: center;
+}
+
+#shopStepper img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+#shopStepper .form-floating {
+  margin-bottom: 1.5rem;
+}
+
+/* Stepper Navigation */
+#shopStepper .nav-pills .nav-link {
+  border-radius: 0;
+  font-size: 1.0rem;
+  padding: 0.50rem 1.0rem;
+}
+
+#shopStepper .nav-pills .nav-link.active {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 50px;
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #shopStepper .col-md-6 {
+    order: 1;
+  }
+
+  #shopStepper img {
+    margin-bottom: 10px;
+  }
+}
+
+.step-image {
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  margin-bottom: 10px; /* Add spacing at the bottom of each button */
+}
+
+button + button {
+  margin-left: 10px; /* Space between adjacent buttons */
+}
+

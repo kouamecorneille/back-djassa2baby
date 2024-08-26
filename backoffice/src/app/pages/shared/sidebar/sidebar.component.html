@@ -33,7 +33,7 @@
       class="sidebar-nav scroll-sidebar simplebar-scrollable-y"
       data-simplebar="init"
     >
-      <div class="simplebar-wrapper" style="margin: 0px -24px">
+      <div class="simplebar-wrapper">
         <div class="simplebar-height-auto-observer-wrapper">
           <div class="simplebar-height-auto-observer"></div>
         </div>
@@ -97,15 +97,23 @@
                     <span class="hide-menu">Coupons</span>
                   </a>
                 </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link" [routerLink]="'/content/vendors/user-reviews'" routerLinkActive="active" id="reviews-url" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-speakerphone"></i>
+                    </span>
+                    <span class="hide-menu">Campagne</span>
+                  </a>
+                </li>
                 <!-- Customers -->
-                <!-- <li class="sidebar-item">
-                  <a class="sidebar-link" href="./customers" id="customers-url" aria-expanded="false">
+                <li class="sidebar-item">
+                  <a class="sidebar-link" [routerLink]="['/content/vendors/subscribers']" routerLinkActive="active" id="customers-url" aria-expanded="false">
                     <span>
                       <i class="ti ti-users"></i>
                     </span>
                     <span class="hide-menu">Abonnés</span>
                   </a>
-                </li> -->
+                </li>
 
                 <!-- Reviews -->
                 <li class="sidebar-item">
@@ -116,6 +124,7 @@
                     <span class="hide-menu">Avis des clients</span>
                   </a>
                 </li>
+
 
                 <!-- Notifications -->
                 <li class="sidebar-item">
@@ -182,14 +191,14 @@
                 </li>
 
                 <!-- Support -->
-                <li class="sidebar-item">
+                <!-- <li class="sidebar-item">
                   <a class="sidebar-link" [routerLink]="['/content/vendors/support']" routerLinkActive="active"  id="support-url" aria-expanded="false">
                     <span>
                       <i class="ti ti-headset"></i>
                     </span>
                     <span class="hide-menu">Support</span>
                   </a>
-                </li>
+                </li> -->
                 <li class="sidebar-item" role="button" (click)="logout()">
                   <a class="sidebar-link" aria-expanded="false">
                     <span>
@@ -200,16 +209,15 @@
                 </li>
               </ul>
             </div>
-
             </div>
           </div>
         </div>
-        <div
+        <!-- <div
           class="simplebar-placeholder"
           style="width: 269px; height: 3498px"
-        ></div>
+        ></div> -->
       </div>
-      <div
+      <!-- <div
         class="simplebar-track simplebar-horizontal"
         style="visibility: hidden"
       >
@@ -217,8 +225,8 @@
           class="simplebar-scrollbar"
           style="width: 0px; display: none"
         ></div>
-      </div>
-      <div
+      </div> -->
+      <!-- <div
         class="simplebar-track simplebar-vertical"
         style="visibility: visible"
       >
@@ -230,7 +238,7 @@
             display: block;
           "
         ></div>
-      </div>
+      </div> -->
     </nav>
 
   </div>

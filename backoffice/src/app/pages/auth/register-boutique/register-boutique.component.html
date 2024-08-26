@@ -1,107 +1,211 @@
-<div id="main-wrapper" class="auth-customizer-none">
-  <div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100 d-flex align-items-center justify-content-center">
-    <div class="d-flex align-items-center justify-content-center w-100">
-      <div class="row w-100 m-3">
-       <div class="col-12">
-        <div>
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title text-center mb-3">
-                Créer votre boutique ici
-              </h2>
-              <form [formGroup]="shopForm">
+<div class="container mt-5">
+  <div class="row m-3">
+    <div id="shopStepper">
+      <!-- Stepper Navigation -->
+       @if(steps){
 
-                <!-- <div class="mt-1 p-3 rounded-2 shadow-none text-center justify-content-center">
-                  <div class="align-items-center">
-                    <div class="position-relative">
-                      <img src="../assets/images/music/album1.jpg" class="rounded-circle" alt="album" width="97">
-                      <div class="card-img-overlay d-flex align-items-center justify-content-center">
-                        <button class="btn btn-primary rounded-circle round p-0" role="button">
-                          <i class="ti ti-cloud-upload fs-5"></i>
-                        </button>
-                      </div>
-                    </div>
+        <ul class="nav nav-pills mb-5 justify-content-center" role="tablist">
+          <li class="nav-item" *ngFor="let step of steps; let i = index">
+            <button
+              class="nav-link"
+              [class.active]="currentStep === i"
+              (click)="goToStep(i)"
+            >
+              Étape {{ i + 1 }}
+            </button>
+          </li>
+        </ul>
+       }
+
+      <!-- Stepper Content -->
+      <div class="tab-content">
+        <div *ngIf="currentStep === 0">
+          <form [formGroup]="shopForm">
+            <div class="row">
+              <div class="col-md-7">
+                <img src="assets/vendors-images/Ecommerce campaign-bro.svg" class="step-image">
+              </div>
+              <div class="col-md-5 card">
+                <div class="card-body">
+                  <div class="mb-3">
+                    <label for="file" class="mb-2">Selectionner votre logo </label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="file"
+                    />
                   </div>
-                </div> -->
-
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-floating mb-3">
-                      <input type="text" class="form-control" >
-                      <label>
-                        <i class="ti ti-user me-2 fs-4"></i>Nom de la boutique
-                      </label>
-                    </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="shopName"
+                      placeholder="Nom de la boutique"
+                    />
+                    <label for="shopName">
+                      <i class="ti ti-user me-2 fs-4"></i>Nom de la boutique
+                    </label>
                   </div>
-
-                  <div class="col-md-6">
-                    <div class="form-floating mb-3">
-                      <input type="email" class="form-control" placeholder="Adresse email" [ngClass]="{'invalid-feedback': shopForm?.controls?.['email']?.invalid && (shopForm?.controls?.['email']?.dirty || shopForm?.controls?.['email']?.touched) }">
-                      <label>
-                        <i class="ti ti-mail me-2 fs-4"></i>Adresse email
-                      </label>
-                    </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="email"
+                      class="form-control"
+                      formControlName="email"
+                      placeholder="Adresse email"
+                    />
+                    <label for="email">
+                      <i class="ti ti-mail me-2 fs-4"></i>Adresse email
+                    </label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="tel"
+                      class="form-control"
+                      formControlName="phone1"
+                      placeholder="Numéro de téléphone 1"
+                    />
+                    <label for="phone1">
+                      <i class="ti ti-phone me-2 fs-4"></i>Numéro de téléphone 1
+                    </label>
+                  </div>
+                  <div class="text-end justify-content-end">
+                    <button
+                    type="button"
+                    class="btn btn-primary"
+                    (click)="nextStep()"
+                  >
+                    Étape suivante
+                  </button>
                   </div>
                 </div>
-
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-floating mb-3">
-                      <input type="tel" class="form-control" >
-                      <label>
-                        <i class="ti ti-phone me-2 fs-4"></i> Numéro de telephone 1
-                      </label>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-floating mb-3">
-                      <input type="tel" class="form-control" >
-                      <label>
-                        <i class="ti ti-phone me-2 fs-4"></i> Numéro de telephone 2
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-floating mb-3">
-                      <input type="tel" class="form-control" placeholder="Lien whatsapp">
-                      <label>
-                        <i class="ti ti-brand-whatsapp me-2 fs-4"></i> Lien whatsapp
-                      </label>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-floating mb-3">
-                      <input type="tel" class="form-control" placeholder="Lien facebook">
-                      <label>
-                        <i class="ti ti-brand-facebook me-2 fs-4"></i> Lien facebook
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                    <div class="form-floating mb-3">
-                      <textarea class="form-control" rows="10"></textarea>
-                      <label>
-                        <i class="ti ti-message me-2 fs-4"></i>Description de la boutique
-                      </label>
-                    </div>
-                </div>
-
-                <div class="d-md-flex align-items-center">
-                  <div class="mt-3 mt-md-0 ms-auto">
-                    <button type="submit" class="btn btn-primary  hstack gap-6" [disabled]="shopForm.invalid || loading">
-                      <i class="ti ti-send fs-4"></i>
-                      Créer ma boutique
-                    </button>
-                  </div>
-                </div>
-              </form>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
-       </div>
+
+        <div *ngIf="currentStep === 1">
+          <form [formGroup]="shopForm">
+            <div class="row">
+              <div class="col-md-7">
+                <img src="assets/vendors-images/Niche service marketplace-bro.svg" class="step-image">
+              </div>
+              <div class="col-md-5">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="tel"
+                        class="form-control"
+                        formControlName="phone1"
+                        placeholder="Localisation de la boutique"
+                      />
+                      <label for="phone1">
+                        <i class="ti ti-location me-2 fs-4"></i>Localisation de la boutique
+                      </label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input
+                        type="password"
+                        class="form-control"
+                        formControlName="phone2"
+                        placeholder="Mot de passe"
+                      />
+                      <label for="phone2">
+                        <i class="ti ti-lock me-2 fs-4"></i>Mot de passe
+                      </label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input
+                        type="password"
+                        class="form-control"
+                        formControlName="phone2"
+                        placeholder="Confirmation du mot de passe "
+                      />
+                      <label for="phone2">
+                        <i class="ti ti-lock me-2 fs-4"></i>Confirmation du mot de passe
+                      </label>
+                    </div>
+                    <div class="d-flex">
+                      <button
+                        type="button"
+                        class="btn btn-secondary me-3"
+                        (click)="previousStep()"
+                      >
+                        Précédent
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="nextStep()"
+                      >
+                        Étape suivante
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div *ngIf="currentStep === 2">
+          <form [formGroup]="shopForm">
+            <div class="row">
+              <div class="col-md-7">
+                <img src="assets/vendors-images/Ecommerce web page-pana.svg" class="step-image">
+              </div>
+              <div class="col-md-5">
+                <div class="form-floating mb-3">
+                  <input
+                    type="url"
+                    class="form-control"
+                    formControlName="whatsappLink"
+                    placeholder="Lien de votre boutique sur whatsApp"
+                  />
+                  <label for="whatsappLink">
+                    <i class="ti ti-brand-whatsapp me-2 fs-4"></i>Lien de votre boutique sur whatsApp
+                  </label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input
+                    type="url"
+                    class="form-control"
+                    formControlName="facebookLink"
+                    placeholder="Lien de votre page facebook"
+                  />
+                  <label for="facebookLink">
+                    <i class="ti ti-brand-facebook me-2 fs-4"></i>Lien de votre page facebook
+                  </label>
+                </div>
+                <div class="mb-3">
+                  <textarea
+                    class="form-control"
+                    formControlName="description"
+                    rows="10"
+                    placeholder="Description de la boutique"
+                  ></textarea>
+
+                </div>
+                <div class="d-flex">
+                  <button
+                    type="button"
+                    class="btn btn-secondary me-3"
+                    (click)="previousStep()"
+                  >
+                    Précédent
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-success"
+                    (click)="submitForm()"
+                  >
+                    Créer ma boutique
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>

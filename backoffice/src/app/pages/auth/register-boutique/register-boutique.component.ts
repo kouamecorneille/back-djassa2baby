@@ -20,6 +20,7 @@ export class RegisterBoutiqueComponent {
   shopForm: FormGroup;
   logo:any
   loading=false
+  logoPreview: string | ArrayBuffer | null = null;
 
   constructor(private formBuilder: FormBuilder, private apiService:ApiService, private router: Router) {
     this.shopForm = this.formBuilder.group({
@@ -29,12 +30,39 @@ export class RegisterBoutiqueComponent {
       phone_number_2: ['',Validators.minLength(10)],
       description: ['',[Validators.required,Validators.minLength(100)]],
       location: [''],
-      facebook_link: [''],
-      whatsapp_link: ['',[Validators.required,Validators.minLength(10)]],
+      whatsapp_link: ['', [Validators.required, Validators.pattern('https://wa.me/.*')]],
+      facebook_link: ['', [Validators.pattern('https://facebook.com/.*')]],
       is_active: [true],
       can_evaluate: [false],
     });
   }
+
+  currentStep = 0;
+  steps: string[] = ['Étape 1', 'Étape 2', 'Étape 3'];
+
+  nextStep() {
+    if (this.currentStep < this.steps.length - 1) {
+      this.currentStep++;
+    }
+  }
+
+  previousStep() {
+    if (this.currentStep > 0) {
+      this.currentStep--;
+    }
+  }
+
+  goToStep(step: number) {
+    this.currentStep = step;
+  }
+
+  submitForm() {
+    if (this.shopForm.valid) {
+      console.log('Formulaire soumis avec succès', this.shopForm.value);
+      // Logique pour soumettre le formulaire
+    }
+  }
+
 
 
 
@@ -43,7 +71,16 @@ export class RegisterBoutiqueComponent {
 
   }
 
-
+onLogoSelected(event: Event): void {
+  const input = event.target as HTMLInputElement;
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.logoPreview = e.target?.result!;
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
 
   onSubmit(){
 
