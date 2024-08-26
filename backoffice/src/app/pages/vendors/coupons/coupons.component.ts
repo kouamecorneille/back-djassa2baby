@@ -20,6 +20,8 @@ export class CouponsComponent {
   loading:boolean=false;
   ecommerceService = inject(EcommerceService)
   coupon_code!:string;
+  is_update:boolean = false;
+  selected_Coupon!:Coupon;
 
   constructor(private fb: FormBuilder){
 
@@ -42,6 +44,14 @@ export class CouponsComponent {
 
   selectedCoupon(item:Coupon){
 
+    this.is_update = true;
+    this.selected_Coupon = item;
+    this.couponForm.patchValue({
+      reduction:item.reduction.split('.')[0],
+      start_date:item.start_date,
+      end_date:item.end_date,
+      is_active:item.is_active,
+    })
 
   }
 
@@ -112,6 +122,7 @@ export class CouponsComponent {
   onSubmit(){
     this.loading = true
     if(this.couponForm.valid){
+
       const data = {
         coupon_code: this.generateCouponCode(8),
         reduction: this.couponForm.value.reduction,
@@ -121,37 +132,74 @@ export class CouponsComponent {
         shop: this.ecommerceService.connectedStore.id
       }
 
-      this.ecommerceService.addCoupon(data).subscribe(
-        (response : Coupon[])=>{
+      if(this.is_update){
 
-          if(response){
+        this.ecommerceService.updateCoupon(data, this.selected_Coupon.id).subscribe(
+          (response : Coupon[])=>{
+
+            if(response){
+              this.loading = false
+              this.couponForm.reset()
+              this.ecommerceService.getVendorCoupons()
+              Swal.fire({
+                title: 'Modification de coupon !',
+                text: 'Le coupon a bien été modifié avec succès !',
+                icon: 'success',
+                timer: 4000,
+                timerProgressBar:true
+              })
+            }
+          },
+          (error:any)=>{
+
             this.loading = false
-            this.couponForm.reset()
-            this.ecommerceService.getVendorCoupons()
+            console.log(error)
             Swal.fire({
-              title: 'Ajout de coupon !',
-              text: 'Le coupon a bien été créer !',
-              icon: 'success',
+              title: 'Modification de coupon !',
+              text: 'Nous avons rencontrer une erreur !',
+              icon: 'error',
               timer: 4000,
               timerProgressBar:true
             })
-
-
           }
-        },
-        (error:any)=>{
+        )
 
-          this.loading = false
-          console.log(error)
-          Swal.fire({
-            title: 'Ajout de coupon !',
-            text: 'Nous avons rencontrer une erreur !',
-            icon: 'error',
-            timer: 4000,
-            timerProgressBar:true
-          })
-        }
-      )
+
+
+      }else{
+        this.ecommerceService.addCoupon(data).subscribe(
+          (response : Coupon[])=>{
+
+            if(response){
+              this.loading = false
+              this.couponForm.reset()
+              this.ecommerceService.getVendorCoupons()
+              Swal.fire({
+                title: 'Ajout de coupon !',
+                text: 'Le coupon a bien été créer !',
+                icon: 'success',
+                timer: 4000,
+                timerProgressBar:true
+              })
+
+
+            }
+          },
+          (error:any)=>{
+
+            this.loading = false
+            console.log(error)
+            Swal.fire({
+              title: 'Ajout de coupon !',
+              text: 'Nous avons rencontrer une erreur !',
+              icon: 'error',
+              timer: 4000,
+              timerProgressBar:true
+            })
+          }
+        )
+
+      }
 
 
     }

@@ -35,6 +35,7 @@ export class EcommerceService {
     return this.apiService.putItem(data, 'products/',slug);
   }
 
+
   get connectedStore(): Store {
     if (!this._connectedStore) {
       this._connectedStore = this.userSession.shop!;
@@ -50,8 +51,8 @@ export class EcommerceService {
     return this.apiService.deleteItem('coupons/', id);
   }
 
-  updateCoupon(data:any){
-    return this.apiService.postItem(data, 'coupons/');
+  updateCoupon(data:any, id:string){
+    return this.apiService.putItem(data, 'coupons/', id);
   }
 
 

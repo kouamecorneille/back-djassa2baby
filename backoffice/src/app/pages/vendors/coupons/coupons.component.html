@@ -27,12 +27,18 @@
               <label for="end_date" class="form-label">Date de fin</label>
               <input id="end_date" type="date" formControlName="end_date" class="form-control" required>
             </div>
+            <div class="form-check py-2 form-switch" *ngIf="is_update">
+              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" formControlName="is_active">
+              <label class="form-check-label" for="flexSwitchCheckDefault">
+               Activé / Desactivé le coupon
+              </label>
+            </div>
             <div class="text-end">
               <button type="submit"
               (click)="onSubmit()"
                 class="btn btn-primary"
                 [disabled]="couponForm.invalid || loading">
-                {{loading ? 'Traitement en cours ...' : 'Créer le coupon'}}
+                {{loading ? 'Traitement en cours ...' : is_update ? 'Modifier le coupon' :'Créer le coupon'}}
               </button>
             </div>
           </form>
@@ -50,10 +56,11 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Coupon</th>
+                        <th>Code coupon</th>
                         <th>Montant</th>
                         <th>Debut</th>
                         <th>Fin</th>
+                        <th>Statut</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -69,6 +76,10 @@
                           {{item.start_date |date:'dd/MM/yyyy'}}
                         </td>
                         <td> {{item.end_date |date:'dd/MM/yyyy'}}</td>
+                        <td>
+                          <span class="badge  p-2 w-100 bg-danger-subtle text-danger" *ngIf="!item.is_active">Inactif</span>
+                          <span class="badge  p-2 w-100 bg-success-subtle text-success" *ngIf="item.is_active">Active</span>
+                        </td>
                         <td>
                           <a class="fs-6 text-muted" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="ti ti-dots-vertical"></i>
