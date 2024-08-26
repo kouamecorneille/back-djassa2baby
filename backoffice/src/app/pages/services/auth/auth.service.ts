@@ -13,7 +13,7 @@ export class AuthService {
   constructor(private apiService: ApiService) { }
 
   login(data: { phone_number: string, password: string }): Observable<any> {
-    return this.apiService.postItem(data, 'users/login/');
+    return this.apiService.postItem(data, '/users/login/');
   }
 
   isAuthenticatedUser(): boolean {
