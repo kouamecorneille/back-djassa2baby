@@ -28,11 +28,11 @@ export class EcommerceService {
 
 
   addProduct(data:FormData){
-    return this.apiService.postItem(data, 'products/');
+    return this.apiService.postItem(data, '/products/');
   }
 
   updateProduct(data:FormData, slug:string){
-    return this.apiService.putItem(data, 'products/',slug);
+    return this.apiService.putItem(data, '/products/',slug);
   }
 
 
@@ -44,15 +44,15 @@ export class EcommerceService {
   }
 
   addCoupon(data:any){
-    return this.apiService.postItem(data, 'coupons/');
+    return this.apiService.postItem(data, '/coupons/');
   }
 
   deleteCoupon(id:string){
-    return this.apiService.deleteItem('coupons/', id);
+    return this.apiService.deleteItem('/coupons/', id);
   }
 
   updateCoupon(data:any, id:string){
-    return this.apiService.putItem(data, 'coupons/', id);
+    return this.apiService.putItem(data, '/coupons/', id);
   }
 
 
@@ -103,12 +103,12 @@ export class EcommerceService {
 
 
   getDetailsProduct(slug:string):Observable<Product>{
-    return this.apiService.getItem(`products`,slug);
+    return this.apiService.getItem(`/products`,slug);
   }
 
   getCategory() {
     // Appel de l'API pour récupérer les catégories d'éléments
-    this.apiService.getItems('categories').subscribe(
+    this.apiService.getItems('/categories').subscribe(
       (response: Category[]) => {  // Utilisation de subscribe pour s'abonner à la réponse
         console.log(response);  // Affichage de la réponse dans la console
         // Mettre à jour la première partie de la liste de données avec les 7 premiers éléments
