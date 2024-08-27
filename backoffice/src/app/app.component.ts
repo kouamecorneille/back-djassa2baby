@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { LayoutComponent } from './pages/layout/layout.component';
@@ -14,6 +14,7 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 // // for Core import:
 import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { UpdateService } from './pages/services/update.service';
 
 @Component({
   selector: 'app-root',
@@ -49,4 +50,11 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
 })
 export class AppComponent {
   title = 'backoffice';
+  updateService = inject(UpdateService)
+
+
+  ngOnInit() {
+    // Réinitialiser l'indicateur après le rechargement
+    this.updateService.checkForUpdates();
+  }
 }
