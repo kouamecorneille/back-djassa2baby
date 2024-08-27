@@ -1,9 +1,8 @@
 <div class="row">
-  <div class="col-lg-12 align-items-stretch">
-    <div class="card w-100 border position-relative overflow-hidden">
-      <div class="card-body p-2">
+  <div class="col-lg-12 align-items-stretch mb-3">
+    <div class="w-100 border position-relative overflow-hidden">
+      <div class="p-2">
         <h4 class="card-title p-2">Changer votre logo</h4>
-        <!-- <p class="card-subtitle mb-4">Modifiez le logo de votre boutique à partir d'ici</p> -->
         <div class="text-center">
           <img [src]="baseUrl + ecommerceService.connectedStore.logo" alt="modernize-img"
             class="img-fluid rounded-circle" width="150" height="150"
@@ -27,77 +26,72 @@
     </div>
   </div>
   <div class="col-12">
-      <div class="card">
-        <div class="card-body">
+        <form [formGroup]="shopForm" enctype="multipart/form-data">
 
-          <form [formGroup]="shopForm" enctype="multipart/form-data">
-
-           <div class="row">
-            <div class="col-md-6 form-floating mb-3">
-              <input type="text" class="form-control" placeholder="Username" formControlName="name">
-              <label>
-                <i class="ti ti-user me-2 fs-4"></i>Nom de la boutique
-              </label>
-            </div>
-            <div class="col-md-6 form-floating mb-3">
-              <input type="email" class="form-control" placeholder="Adresse email" formControlName="email">
-              <label>
-                <i class="ti ti-mail me-2 fs-4"></i>Adresse email
-              </label>
-            </div>
-           </div>
-           <div class="row">
-            <div class="col-md-6 form-floating mb-3">
-              <input type="tel" class="form-control" placeholder="Username" formControlName="phone_number_1">
-              <label>
-                <i class="ti ti-phone me-2 fs-4"></i> Numéro de telephone
-              </label>
-            </div>
-            <div class="col-md-6 form-floating mb-3">
-              <input type="tel" class="form-control" placeholder="Localisation de votre boutique" formControlName="location">
-              <label>
-                <i class="ti ti-map me-2 fs-4"></i> Localisation de votre boutique
-              </label>
-            </div>
-           </div>
           <div class="row">
-            <div class="col-md-6 form-floating mb-3">
-              <input type="tel" class="form-control" placeholder="Lien whatsapp de votre boutique" formControlName="whatsapp_link">
-              <label>
-                <i class="ti ti-brand-whatsapp me-2 fs-4"></i> Lien whatsapp de votre boutique
-              </label>
-            </div>
-            <div class="col-md-6 form-floating mb-3">
-              <input type="tel" class="form-control" placeholder="Lien de votre page facebook" formControlName="facebook_link">
-              <label>
-                <i class="ti ti-brand-facebook me-2 fs-4"></i> Lien de votre page facebook
-              </label>
-            </div>
+          <div class="col-md-6 form-floating mb-3">
+            <input type="text" class="form-control" placeholder="Username" formControlName="name">
+            <label>
+              <i class="ti ti-user me-2 fs-4"></i>Nom de la boutique
+            </label>
+          </div>
+          <div class="col-md-6 form-floating mb-3">
+            <input type="email" class="form-control" placeholder="Adresse email" formControlName="email">
+            <label>
+              <i class="ti ti-mail me-2 fs-4"></i>Adresse email
+            </label>
+          </div>
           </div>
           <div class="row">
-            <div class="col-md-12  mb-3">
-              <label class="mb-2">
-                <i class="ti ti-message me-2 fs-4"></i>Description de la boutique
-              </label>
-              <textarea class="form-control" rows="5" formControlName="description"></textarea>
-
-            </div>
+          <div class="col-md-6 form-floating mb-3">
+            <input type="tel" class="form-control" placeholder="Username" formControlName="phone_number_1">
+            <label>
+              <i class="ti ti-phone me-2 fs-4"></i> Numéro de telephone
+            </label>
           </div>
-          <div class="col form-floating mb-3 mt-2">
-            <div class="form-check form-switch py-2">
-              <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" formControlName="can_evaluate">
-              <label class="form-check-label" for="flexSwitchCheckChecked" role="button">Autoriser les clients à noter ma boutique</label>
-            </div>
+          <div class="col-md-6 form-floating mb-3">
+            <input type="tel" class="form-control" placeholder="Localisation de votre boutique" formControlName="location">
+            <label>
+              <i class="ti ti-map me-2 fs-4"></i> Localisation de votre boutique
+            </label>
           </div>
-
-            <div class="mt-3">
-              <button type="submit" class="btn btn-primary  hstack gap-6" [disabled]="shopForm.invalid || loading" (click)="onSubmit()">
-                <i class="ti ti-send fs-4"></i>
-                {{loading ? 'Traitement en cours ...' : 'Modifier les informations'}}
-              </button>
-            </div>
-          </form>
+          </div>
+        <div class="row">
+          <div class="col-md-6 form-floating mb-3">
+            <input type="tel" class="form-control" placeholder="Lien whatsapp de votre boutique" formControlName="whatsapp_link">
+            <label>
+              <i class="ti ti-brand-whatsapp me-2 fs-4"></i> Lien whatsapp de votre boutique
+            </label>
+          </div>
+          <div class="col-md-6 form-floating mb-3">
+            <input type="tel" class="form-control" placeholder="Lien de votre page facebook" formControlName="facebook_link">
+            <label>
+              <i class="ti ti-brand-facebook me-2 fs-4"></i> Lien de votre page facebook
+            </label>
+          </div>
         </div>
-      </div>
+        <div class="row">
+          <div class="col-md-12  mb-3">
+            <label class="mb-2">
+              <i class="ti ti-message me-2 fs-4"></i>Description de la boutique
+            </label>
+            <textarea class="form-control" rows="5" formControlName="description"></textarea>
+
+          </div>
+        </div>
+        <div class="col form-floating mb-3 mt-2">
+          <div class="form-check form-switch py-2">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" formControlName="can_evaluate">
+            <label class="form-check-label" for="flexSwitchCheckChecked" role="button">Autoriser les clients à noter ma boutique</label>
+          </div>
+        </div>
+
+          <div class="mt-3">
+            <button type="submit" class="btn btn-primary  hstack gap-6" [disabled]="shopForm.invalid || loading" (click)="onSubmit()">
+              <i class="ti ti-send fs-4"></i>
+              {{loading ? 'Traitement en cours ...' : 'Modifier les informations'}}
+            </button>
+          </div>
+        </form>
   </div>
 </div>

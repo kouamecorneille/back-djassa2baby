@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth/auth.service';
+import { UserApiResponse } from '../../interfaces/Iuser';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,8 +12,13 @@ import Swal from 'sweetalert2';
 export class SidebarComponent implements AfterViewInit {
 
   private router = inject(Router)
+  private authService= inject(AuthService)
+  userSession: UserApiResponse | null;
   @ViewChild('sidebartoggler', { static: true }) sidebarToggler!: ElementRef;
 
+  constructor() {
+    this.userSession = this.authService.UserSession!;
+  }
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: Event) {
     if (!this.sidebarToggler.nativeElement.contains(event.target)) {

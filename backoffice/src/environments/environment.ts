@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   hmr: false,
   apiUrl: 'https://djassa2baby.onrender.com/api',
-  baseUrl: 'https://djassa2baby.onrender.com/api/',
+  baseUrl: 'https://djassa2baby.onrender.com',
 };
 
 /*

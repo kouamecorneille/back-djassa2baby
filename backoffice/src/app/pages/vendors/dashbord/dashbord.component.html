@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row gx-3">
-      <div class="col-lg-4 col-xxl-4 col-6">
+      <div class="col-lg-3 col-xxl-3 col-6">
         <app-card-infos
           libelle="Produits"
           iconClass="ti ti-gift"
@@ -8,7 +8,7 @@
           [count]="totaleProducts"
         ></app-card-infos>
       </div>
-      <div class="col-lg-4 col-xxl-4 col-6">
+      <div class="col-lg-3 col-xxl-3 col-6">
         <app-card-infos
           libelle="Commandes"
           iconClass="ti ti-shopping-cart"
@@ -16,7 +16,7 @@
           [count]="(ecommService.numberOfOrders | async) ?? 0"
         ></app-card-infos>
       </div>
-      <div class="col-lg-4 col-xxl-4 col-6">
+      <div class="col-lg-3 col-xxl-3 col-6">
         <app-card-infos
           libelle="Revenus par jour"
           iconClass="ti ti-currency-dollar"
@@ -25,6 +25,14 @@
         ></app-card-infos>
       </div>
 
+      <div class="col-lg-3 col-xxl-3 col-6">
+        <app-card-infos
+          libelle="Revenus par mois"
+          iconClass="ti ti-currency-dollar"
+          backgroundClass="bg-primary"
+          [count]="25000"
+        ></app-card-infos>
+      </div>
       <!-- <div class="col-lg-4 col-xxl-2 col-6">
       <app-card-infos
       libelle="Abonnes"
