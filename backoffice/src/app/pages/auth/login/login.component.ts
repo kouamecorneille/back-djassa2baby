@@ -63,7 +63,7 @@ export class LoginComponent {
           }
         },
         (error: any) => {
-          console.error(error.status);
+          console.error(error);
           this.loader = false;
 
           if(error.status==401){
