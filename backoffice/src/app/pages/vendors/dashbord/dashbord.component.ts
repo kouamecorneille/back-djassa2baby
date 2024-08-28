@@ -3,11 +3,12 @@ import { CardInfosComponent } from '../components/card-infos/card-infos.componen
 import { EcommerceService } from '../../services/shop/ecommerce.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BreadcrumbComponent } from '../../shared/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-dashbord',
   standalone: true,
-  imports:[CardInfosComponent, CommonModule,RouterModule],
+  imports:[CardInfosComponent, CommonModule,RouterModule,BreadcrumbComponent],
   templateUrl: './dashbord.component.html',
   styleUrl: './dashbord.component.css'
 })
@@ -19,6 +20,7 @@ export class DashbordComponent {
   constructor(){
 
     this.ecommService.getVendorOrders()
+    this.ecommService.getFavoritesCategorie()
 
   }
 

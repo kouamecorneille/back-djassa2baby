@@ -14,16 +14,20 @@ import { Coupon } from '../../interfaces/Icoupon';
 export class EcommerceService {
 
   listCategory =  new BehaviorSubject<Category[]>([])
+  _listCategory =  new BehaviorSubject<any[]>([])
+  _listOfSubscribers =  new BehaviorSubject<any[]>([])
   listOfProducts = new BehaviorSubject<Product[]>([]);
   _listOfOrders = new BehaviorSubject<any[]>([]);
   _listOfCoupons = new BehaviorSubject<Coupon[]>([]);
   numberOfOrders = new BehaviorSubject<number>(0);
+  _numberOfCategorie = new BehaviorSubject<number>(0);
 
   _connectedStore!:Store
   userSession!:UserApiResponse
   constructor(private apiService:ApiService, private authService:AuthService) {
 
     this.userSession = this.authService.getUser()!
+
   }
 
 
@@ -113,6 +117,19 @@ export class EcommerceService {
         console.log(response);  // Affichage de la réponse dans la console
         // Mettre à jour la première partie de la liste de données avec les 7 premiers éléments
         this.listCategory.next(response);
+        // Affichage de la valeur actuelle de listOfData dans la console
+      }
+    );
+  }
+
+  getFavoritesCategorie() {
+    // Appel de l'API pour récupérer les catégories d'éléments
+    this.apiService.getItems(`/shop-categories/list-categorie/${this.userSession.shop?.id}`).subscribe(
+      (response:any) => {  // Utilisation de subscribe pour s'abonner à la réponse
+        console.log(response);  // Affichage de la réponse dans la console
+        // Mettre à jour la première partie de la liste de données avec les 7 premiers éléments
+        this._numberOfCategorie.next(response.length);
+        this._listCategory.next(response);
         // Affichage de la valeur actuelle de listOfData dans la console
       }
     );

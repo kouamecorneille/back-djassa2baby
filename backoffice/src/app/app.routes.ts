@@ -22,6 +22,8 @@ import { ProductReviewsDetailsComponent } from './pages/vendors/product-reviews-
 import { CouponsComponent } from './pages/vendors/coupons/coupons.component';
 import { DetailsOrderComponent } from './pages/vendors/details-order/details-order.component';
 import { SubscribersComponent } from './pages/vendors/subscribers/subscribers.component';
+import { ShopCategoriesComponent } from './pages/vendors/shop-categories/shop-categories.component';
+import { CampagneComponent } from './pages/vendors/campagne/campagne.component';
 
 export const routes: Routes = [
 
@@ -116,6 +118,11 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
+        path: 'vendors/compagnes',
+        component: CampagneComponent,
+        canActivate: [AuthGuard]
+      },
+      {
         path: 'vendors/user-reviews',
         component: ReviewsComponent,
         canActivate: [AuthGuard]
@@ -133,6 +140,11 @@ export const routes: Routes = [
       {
         path: 'vendors/subscribers',
         component: SubscribersComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'vendors/categorie-favorites',
+        component: ShopCategoriesComponent,
         canActivate: [AuthGuard]
       },
       {
