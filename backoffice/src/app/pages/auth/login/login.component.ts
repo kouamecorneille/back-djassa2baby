@@ -28,6 +28,16 @@ export class LoginComponent {
     })
   }
 
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+   if( this.authService.isAuthenticatedUser()){
+
+      this.router.navigate(['/content/home']);
+
+    }
+  }
+
   keyPress(event: any) {
     const pattern = /[0-9\+\-\ ]/;
     let inputChar = String.fromCharCode(event.charCode);
