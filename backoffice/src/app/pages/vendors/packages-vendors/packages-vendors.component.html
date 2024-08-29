@@ -1,94 +1,143 @@
 <app-breadcrumb
 [title]="'Mon abonnement'"></app-breadcrumb>
-<div class="widget-content searchable-container list">
-  <!--  -->
-<div class="card">
-  <div class="card-header">
-    <h5>Historiques des abonnements</h5>
-  </div>
-  <div class="card-body">
-    <div class="table-responsive">
-      <table class="table search-table align-middle text-nowrap">
-        <thead class="header-item">
-          <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Location</th>
-          <th>Phone</th>
-          <th>Action</th>
-        </tr></thead>
-        <tbody>
-          <!-- start row -->
-          <tr class="search-items">
-            <td>
-              <div class="d-flex align-items-center">
-                <img src="../assets/images/profile/user-5.jpg" alt="avatar" class="rounded-circle" width="35">
-                <div class="ms-3">
-                  <div class="user-meta-info">
-                    <h6 class="user-name mb-0" data-name="Emily Atkinson"> Emily Atkinson </h6>
-                    <span class="user-work fs-3" data-occupation="Web developer">Web developer</span>
+<div class="row">
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="btn-group flex-column" role="group" aria-label="Basic radio toggle button group">
+              <div class="position-relative mb-3 w-100 form-check btn-custom-fill ps-0"
+                   *ngFor="let item of ecomService._listOfPlan | async; trackBy: trackById">
+                  <input type="radio"
+                       class="form-check-input ms-4 round-16"
+                       name="paymentType1"
+                       [id]="'btnradio_' + item.id"
+                       autocomplete="off"
+                       [checked]="currentPlan === item.id">
+
+                  <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100"
+                       [for]="'btnradio_' + item.id">
+                  <div class="d-flex align-items-center">
+                    <div class="text-start ps-2">
+                      <h6 class="fs-4 fw-semibold mb-0">
+                        {{item.name}}
+                      </h6>
+                      <p class="mb-0 text-muted text-truncate">
+                        {{item.description}}
+                      </p>
+                      <span class="fw-semibold">{{item.price |number:'1.0-0'}}</span>
+                    </div>
+                    <img src="../assets/images/svgs/paypal.svg" alt="matdash-img" class="img-fluid ms-auto">
                   </div>
-                </div>
+                </label>
               </div>
-            </td>
-            <td>
-              <span class="usr-email-addr" data-email="atkinsonmail.com">atkinsonmail.com</span>
-            </td>
-            <td>
-              <span class="usr-location" data-location="Edinburgh, UK">Edinburgh, UK</span>
-            </td>
-            <td>
-              <span class="usr-ph-no" data-phone="+91 (900) 150- 1500">+91 (900) 150- 1500</span>
-            </td>
-            <td>
-              <div class="action-btn">
-                <a href="javascript:void(0)" class="text-primary edit">
-                  <i class="ti ti-eye fs-5"></i>
-                </a>
-                <a href="javascript:void(0)" class="text-dark delete ms-2">
-                  <i class="ti ti-trash fs-5"></i>
-                </a>
-              </div>
-            </td>
-          </tr>
-          <!-- end row -->
-          <!-- start row -->
-          <tr class="search-items">
-            <td>
-              <div class="d-flex align-items-center">
-                <img src="../assets/images/profile/user-12.jpg" alt="avatar" class="rounded-circle" width="35">
-                <div class="ms-3">
-                  <div class="user-meta-info">
-                    <h6 class="user-name mb-0" data-name="Sofia Bailey">Sofia Bailey</h6>
-                    <span class="user-work fs-3" data-occupation="UX/UI Designer">UX/UI Designer</span>
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <span class="usr-email-addr" data-email="baileymail.com">baileymail.com</span>
-            </td>
-            <td>
-              <span class="usr-location" data-location="New York, USA">New York, USA</span>
-            </td>
-            <td>
-              <span class="usr-ph-no" data-phone="+91 (001) 160- 1845">+91 (001) 160- 1845</span>
-            </td>
-            <td>
-              <div class="action-btn">
-                <a href="javascript:void(0)" class="text-primary edit">
-                  <i class="ti ti-eye fs-5"></i>
-                </a>
-                <a href="javascript:void(0)" class="text-dark delete ms-2">
-                  <i class="ti ti-trash fs-5"></i>
-                </a>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </div>
+          </div>
+          <div class="text-end mt-3">
+            <button class="btn btn-outline-primary">
+              Changer mon plan
+            </button>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
-</div>
+  <div class="col-md-7">
+    <div class="widget-content searchable-container list">
+      <!--  -->
+    <div class="card">
+      <div class="card-header">
+        <h5>Historiques des abonnements</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table search-table align-middle text-nowrap">
+            <thead class="header-item">
+              <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Location</th>
+              <th>Phone</th>
+              <th>Action</th>
+            </tr></thead>
+            <tbody>
+              <!-- start row -->
+              <tr class="search-items">
+                <td>
+                  <div class="d-flex align-items-center">
+                    <img src="../assets/images/profile/user-5.jpg" alt="avatar" class="rounded-circle" width="35">
+                    <div class="ms-3">
+                      <div class="user-meta-info">
+                        <h6 class="user-name mb-0" data-name="Emily Atkinson"> Emily Atkinson </h6>
+                        <span class="user-work fs-3" data-occupation="Web developer">Web developer</span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="usr-email-addr" data-email="atkinsonmail.com">atkinsonmail.com</span>
+                </td>
+                <td>
+                  <span class="usr-location" data-location="Edinburgh, UK">Edinburgh, UK</span>
+                </td>
+                <td>
+                  <span class="usr-ph-no" data-phone="+91 (900) 150- 1500">+91 (900) 150- 1500</span>
+                </td>
+                <td>
+                  <div class="action-btn">
+                    <a href="javascript:void(0)" class="text-primary edit">
+                      <i class="ti ti-eye fs-5"></i>
+                    </a>
+                    <a href="javascript:void(0)" class="text-dark delete ms-2">
+                      <i class="ti ti-trash fs-5"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+              <!-- end row -->
+              <!-- start row -->
+              <tr class="search-items">
+                <td>
+                  <div class="d-flex align-items-center">
+                    <img src="../assets/images/profile/user-12.jpg" alt="avatar" class="rounded-circle" width="35">
+                    <div class="ms-3">
+                      <div class="user-meta-info">
+                        <h6 class="user-name mb-0" data-name="Sofia Bailey">Sofia Bailey</h6>
+                        <span class="user-work fs-3" data-occupation="UX/UI Designer">UX/UI Designer</span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="usr-email-addr" data-email="baileymail.com">baileymail.com</span>
+                </td>
+                <td>
+                  <span class="usr-location" data-location="New York, USA">New York, USA</span>
+                </td>
+                <td>
+                  <span class="usr-ph-no" data-phone="+91 (001) 160- 1845">+91 (001) 160- 1845</span>
+                </td>
+                <td>
+                  <div class="action-btn">
+                    <a href="javascript:void(0)" class="text-primary edit">
+                      <i class="ti ti-eye fs-5"></i>
+                    </a>
+                    <a href="javascript:void(0)" class="text-dark delete ms-2">
+                      <i class="ti ti-trash fs-5"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
 
 </div>

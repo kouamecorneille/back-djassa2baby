@@ -7,6 +7,7 @@ import { AuthService } from '../auth/auth.service';
 import { User, UserApiResponse } from '../../interfaces/Iuser';
 import { Store } from '../../interfaces/Istore';
 import { Coupon } from '../../interfaces/Icoupon';
+import { SubscriptionPlan } from '../../interfaces/princing.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class EcommerceService {
 
   listCategory =  new BehaviorSubject<Category[]>([])
   _listCategory =  new BehaviorSubject<any[]>([])
+  _listOfPlan =  new BehaviorSubject<SubscriptionPlan[]>([])
   _listOfSubscribers =  new BehaviorSubject<any[]>([])
   listOfProducts = new BehaviorSubject<Product[]>([]);
   _listOfOrders = new BehaviorSubject<any[]>([]);
@@ -81,6 +83,19 @@ export class EcommerceService {
           return item.shop === this.connectedStore.id;
         });
         this._listOfCoupons.next(filteredCoupons);
+      },
+      (error: any) => {
+        console.log(error.message);
+      }
+    );
+  }
+
+  getPlans() {
+    this.apiService.getItems(`/subscriptions/`).subscribe(
+      (response: SubscriptionPlan[]) => {
+
+        console.log(response)
+        this._listOfPlan.next(response);
       },
       (error: any) => {
         console.log(error.message);
