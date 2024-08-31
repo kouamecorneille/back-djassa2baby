@@ -28,6 +28,7 @@ export class LoginComponent {
     })
   }
 
+
   keyPress(event: any) {
     const pattern = /[0-9\+\-\ ]/;
     let inputChar = String.fromCharCode(event.charCode);
@@ -38,11 +39,14 @@ export class LoginComponent {
 
 
   onSubmit() {
+
     if (this.LoginForm.valid) {
+
       this.loader = true;
       const { numero, password } = this.LoginForm.value;
       this.authService.login({ phone_number: numero, password: password }).subscribe(
         (response: UserApiResponse) => {
+
           if (response) {
 
             this.LoginForm.reset();
@@ -51,6 +55,7 @@ export class LoginComponent {
             localStorage.setItem('authRefresh', userData.refresh);
             localStorage.setItem('authUser', JSON.stringify(userData));
             this.loader = false;
+
             Swal.fire({
               title: 'Connexion reussie!',
               text: 'Connexion reussie avec succès !',
@@ -78,6 +83,7 @@ export class LoginComponent {
             })
 
           }else{
+
             Swal.fire({
               title: 'Error!',
               text: 'Impossible de se connecter !',
