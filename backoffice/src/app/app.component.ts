@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorRequestsService } from './helpers/interceptors/interceptor-requests.service';
@@ -15,6 +15,8 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 // // for Core import:
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { UpdateService } from './pages/services/update.service';
+import { SubscriptionService } from './pages/services/shop/subscription.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
@@ -43,7 +45,6 @@ import { UpdateService } from './pages/services/update.service';
       useClass:InterceptorResponseService,
       multi:true
     },
-    HttpClientModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -52,9 +53,36 @@ export class AppComponent {
   title = 'backoffice';
   updateService = inject(UpdateService)
 
+  constructor(private subscriptionService: SubscriptionService, private router: Router) {
+
+  }
 
   ngOnInit() {
     // Réinitialiser l'indicateur après le rechargement
     this.updateService.checkForUpdates();
+    this.subscriptionService.checkSubscriptionStatus().subscribe(
+
+      (response) => {
+        if (response.status === 'expired') {
+
+          Swal.fire({
+            title: 'Abonnement babyShop!',
+            text: 'Votre abonnement a expiré pour ce mois !',
+            icon: 'warning',
+            timer: 4000,
+            timerProgressBar: true
+          });
+
+          this.router.navigate(['/content/packages-vendors']);
+
+        }
+      },
+      (error) => {
+        console.error('Error checking subscription status', error);
+        // Handle error, maybe redirect to an error page
+      }
+    )
   }
+
+
 }

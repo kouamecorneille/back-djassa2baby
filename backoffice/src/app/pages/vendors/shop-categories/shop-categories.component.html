@@ -1,0 +1,44 @@
+<app-breadcrumb
+[title]="'Categorie Favorites'"></app-breadcrumb>
+<div class="widget-content searchable-container list">
+  <div class="card card-body">
+    <div class="row">
+      <div class="col-md-4 col-xl-3">
+        <form class="position-relative">
+          <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Search Contacts...">
+          <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+        </form>
+      </div>
+      <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
+        <div class="action-btn show-btn">
+          <a href="javascript:void(0)" class="delete-multiple bg-danger-subtle btn me-2 text-danger d-flex align-items-center ">
+            <i class="ti ti-trash me-1 fs-5"></i> Delete All Row
+          </a>
+        </div>
+        <a [routerLink]="['/content/vendors/add-product']"  id="btn-add-contact" class="btn btn-primary d-flex align-items-center">
+          <i class="ti ti-plus text-white me-1 fs-5"></i>Nouvelle categorie
+        </a>
+      </div>
+    </div>
+ </div>
+
+ <div class="row">
+    <div class="col-md-4 col-lg-2" *ngFor="let item of ecommService._listCategory | async">
+      <div class="card text-center bg-white alert-dismissible fade show alert p-0 card-hover rounded-4" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="p-2 d-block mt-3">
+          <img [src]="item.category.image" width="75" class="rounded-circle img-fluid">
+          <h5 class="card-title mt-3">
+            {{item.category.name}}
+          </h5>
+          <span class="badge bg-primary-subtle text-success mb-3" *ngIf="item.category.is_active">
+            Actif
+          </span>
+          <span class="badge bg-primary-subtle text-danger mb-3" *ngIf="!item.category.is_active">
+            Inactif
+          </span>
+          <!-- <a href="javascript:void(0)" class="btn btn-primary  d-block w-100">Message</a> -->
+        </div>
+      </div>
+    </div>
+ </div>

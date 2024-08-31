@@ -52,6 +52,12 @@ export class ApiService {
 
   }
 
+  getUrl(url:string):Observable<any>{
+
+    return this.Http.get<any>(`${this.baseUrl + url}/`);
+
+  }
+
   /**
    * The `getItems(url:string):Observable<any[]>{` method in the `ApiService` class is a function that sends an HTTP GET
    * request to the specified URL. It takes a single parameter `url` of type `string`, which represents the endpoint from

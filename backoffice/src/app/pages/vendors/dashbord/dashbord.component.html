@@ -1,79 +1,114 @@
 <div class="container-fluid">
-    <div class="row gx-3">
-      <div class="col-lg-3 col-xxl-3 col-6">
-        <app-card-infos
-          libelle="Produits"
-          iconClass="ti ti-gift"
-          backgroundClass="text-bg-warning"
-          [count]="totaleProducts"
-        ></app-card-infos>
-      </div>
-      <div class="col-lg-3 col-xxl-3 col-6">
-        <app-card-infos
-          libelle="Commandes"
-          iconClass="ti ti-shopping-cart"
-          backgroundClass="text-bg-success"
-          [count]="(ecommService.numberOfOrders | async) ?? 0"
-        ></app-card-infos>
-      </div>
-      <div class="col-lg-3 col-xxl-3 col-6">
-        <app-card-infos
-          libelle="Revenus par jour"
-          iconClass="ti ti-currency-dollar"
-          backgroundClass="text-bg-danger"
-          [count]="25000"
-        ></app-card-infos>
-      </div>
+  <app-breadcrumb
+[title]="'Tableau de bord'"></app-breadcrumb>
 
-      <div class="col-lg-3 col-xxl-3 col-6">
-        <app-card-infos
-          libelle="Revenus par mois"
-          iconClass="ti ti-currency-dollar"
-          backgroundClass="bg-primary"
-          [count]="25000"
-        ></app-card-infos>
-      </div>
-      <!-- <div class="col-lg-4 col-xxl-2 col-6">
-      <app-card-infos
-      libelle="Abonnes"
-      iconClass="ti ti-users"
-      backgroundClass="bg-primary"
-      [count]="50"
-      ></app-card-infos>
-     </div>
-     <div class="col-lg-4 col-xxl-2 col-6">
-      <app-card-infos
-      libelle="Revenus par jour"
-      iconClass="ti ti-currency-dollar"
-      backgroundClass="text-bg-danger"
-      [count]="25000"
-      ></app-card-infos>
-     </div> -->
+  <div class="row">
 
-      <!-- <div class="col-lg-4 col-xxl-2 col-6">
-      <app-card-infos
-      libelle="Revenus par mois"
-      iconClass="ti ti-currency-dollar"
-      backgroundClass="text-bg-secondary"
-      [count]="20000"
-      ></app-card-infos>
-     </div>
-     <div class="col-lg-4 col-xxl-2 col-6">
-      <app-card-infos
-      libelle="Revenus par an"
-      iconClass="ti ti-currency-dollar"
-      backgroundClass="text-bg-info"
-      [count]="45000"
-      ></app-card-infos>
-     </div>
+    <!-- Column -->
+    <div class="col-xxl-3 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <!-- Column -->
+            <div class="col d-flex align-items-center">
+              <div>
+                <h3>
+                  {{totaleProducts}}
+                </h3>
+                <p class="mb-0">
+                  Produits
+                </p>
+              </div>
+            </div>
+            <!-- Column -->
+            <div class="col d-flex align-items-center justify-content-end">
+              <div data-label="20%" class="css-bar mb-0 css-bar-primary css-bar-20">
+                <i class="ti ti-gift"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div> -->
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-xxl-3 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <!-- Column -->
+            <div class="col d-flex align-items-center">
+              <div>
+                <h3>{{(ecommService._numberOfCategorie | async) ?? 0}}</h3>
+                <p class="mb-0">
+                  Categories
+                </p>
+              </div>
+            </div>
+            <!-- Column -->
+            <div class="col d-flex align-items-center justify-content-end">
+              <div data-label="30%" class="css-bar mb-0 css-bar-danger css-bar-20">
+                <i class="ti ti-tag"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-xxl-3 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <!-- Column -->
+            <div class="col d-flex align-items-center">
+              <div>
+                <h3>2</h3>
+                <p class="mb-0">Abonnés</p>
+              </div>
+            </div>
+            <!-- Column -->
+            <div class="col d-flex align-items-center justify-content-end">
+              <div data-label="40%" class="css-bar mb-0 css-bar-warning css-bar-40">
+                <i class="ti ti-users"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-xxl-3 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <!-- Column -->
+            <div class="col d-flex align-items-center">
+              <div>
+                <h3>
+                  {{(ecommService.numberOfOrders | async) ?? 0}}
+                </h3>
+                <p class="mb-0">Commandes</p>
+              </div>
+            </div>
+            <!-- Column -->
+            <div class="col d-flex align-items-center justify-content-end">
+              <div data-label="60%" class="css-bar mb-0 css-bar-info css-bar-60">
+                <i class="ti ti-shopping-cart"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="row mt-4">
-    <div class="col-12">
+    <div class="col-md-12">
       <div class="card">
         <div class="card-body p-4">
-          <h4 class="card-title fw-semibold">Commande recentes (5)</h4>
+          <h4 class="card-title fw-semibold">Commande recentes</h4>
           <div class="card shadow-none mt-9 mb-0">
             <div class="table-responsive">
               <table class="table text-nowrap align-middle mb-0">

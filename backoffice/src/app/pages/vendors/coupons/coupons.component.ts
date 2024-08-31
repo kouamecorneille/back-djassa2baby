@@ -26,11 +26,12 @@ export class CouponsComponent {
   constructor(private fb: FormBuilder){
 
     this.couponForm = this.fb.group({
-      // coupon_code: ['', Validators.required],
+      max_activation: ['', Validators.required],
       reduction: ['', Validators.required],
       start_date: ['', Validators.required],
       end_date: ['', Validators.required],
       is_active: [true],
+      is_publish: [false],
     });
 
 
@@ -49,8 +50,10 @@ export class CouponsComponent {
     this.couponForm.patchValue({
       reduction:item.reduction.split('.')[0],
       start_date:item.start_date,
+      max_activation:item.max_activation,
       end_date:item.end_date,
       is_active:item.is_active,
+      is_publish:item.is_publish,
     })
 
   }
@@ -126,9 +129,11 @@ export class CouponsComponent {
       const data = {
         coupon_code: this.generateCouponCode(8),
         reduction: this.couponForm.value.reduction,
+        max_activation: this.couponForm.value.max_activation,
         start_date: this.couponForm.value.start_date,
         end_date: this.couponForm.value.end_date,
         is_active: this.couponForm.value.is_active,
+        is_publish: this.couponForm.value.is_publish,
         shop: this.ecommerceService.connectedStore.id
       }
 
@@ -181,8 +186,6 @@ export class CouponsComponent {
                 timer: 4000,
                 timerProgressBar:true
               })
-
-
             }
           },
           (error:any)=>{
