@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject,OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
 import { LayoutComponent } from './pages/layout/layout.component';
@@ -49,7 +49,7 @@ import Swal from 'sweetalert2';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements  OnInit, AfterViewInit{
   title = 'backoffice';
   updateService = inject(UpdateService)
 
@@ -82,6 +82,12 @@ export class AppComponent {
         // Handle error, maybe redirect to an error page
       }
     )
+  }
+
+  ngAfterViewInit(): void {
+    if (navigator.userAgent.indexOf('iPhone') > -1) {
+      document?.querySelector("[name=viewport]")?.setAttribute("content", "width=device-width, initial-scale=1, maximum-scale=1")
+    }
   }
 
 
