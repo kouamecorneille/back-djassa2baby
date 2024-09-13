@@ -6,7 +6,7 @@ import { BreadcrumbComponent } from '../../shared/breadcrumb/breadcrumb.componen
 @Component({
   selector: 'app-statistics',
   standalone: true,
-  imports: [    BreadcrumbComponent,],
+  imports: [BreadcrumbComponent,],
   templateUrl: './statistics.component.html',
   styleUrl: './statistics.component.css'
 })

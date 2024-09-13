@@ -1,5 +1,5 @@
 <app-breadcrumb
-[title]="'Categorie Favorites'"></app-breadcrumb>
+[title]="'Mes categorie'"></app-breadcrumb>
 <div class="widget-content searchable-container list">
   <div class="card card-body">
     <div class="row">
@@ -25,7 +25,7 @@
  <div class="row">
     <div class="col-md-4 col-lg-2" *ngFor="let item of ecommService._listCategory | async">
       <div class="card text-center bg-white alert-dismissible fade show alert p-0 card-hover rounded-4" role="alert">
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
         <div class="p-2 d-block mt-3">
           <img [src]="item.category.image" width="75" class="rounded-circle img-fluid">
           <h5 class="card-title mt-3">

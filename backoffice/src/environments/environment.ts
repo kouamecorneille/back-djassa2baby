@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   hmr: false,
-  apiUrl: 'https://djassa2baby.onrender.com/api',
-  baseUrl: 'https://djassa2baby.onrender.com',
+  apiUrl: 'http://127.0.0.1:8000/api',
+  baseUrl: 'http://127.0.0.1:8002',
 };
 
 /*

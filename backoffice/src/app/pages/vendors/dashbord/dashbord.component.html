@@ -107,8 +107,11 @@
   <div class="row mt-4">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-body p-4">
+        <div class="card-header">
           <h4 class="card-title fw-semibold">Commande recentes</h4>
+        </div>
+        <div class="card-body p-4">
+
           <div class="card shadow-none mt-9 mb-0">
             <div class="table-responsive">
               <table class="table text-nowrap align-middle mb-0">
@@ -197,19 +200,12 @@
                             <i class="fs-4 ti ti-eye"></i>Voir
                           </a>
                         </li>
-                        <!-- <li>
-                          <a
-                            class="dropdown-item d-flex align-items-center gap-3"
-                            href="javascript:void(0)"
-                          >
-                            <i class="fs-4 ti ti-trash"></i>Supprimer
-                          </a>
-                        </li> -->
+
                       </ul>
                     </td>
                   </tr>
                   <tr *ngIf="ecommService._listOfOrders.value.length ==0">
-                    <td class="text-center" colspan="5">
+                    <td class="text-center" colspan="7">
                       <span>Aucune données trouvées pour le moments .</span>
                   </tr>
                 </tbody>

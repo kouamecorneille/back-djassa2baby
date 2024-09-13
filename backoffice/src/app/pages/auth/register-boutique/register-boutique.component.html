@@ -1,454 +1,422 @@
-<div class="container py-5">
-  <div class="row py-5 border">
-    <div id="shopStepper">
-      <!-- Stepper Navigation -->
-      @if(steps){
-      <ul class="nav nav-pills mb-5 justify-content-center" role="tablist">
-        <li class="nav-item" *ngFor="let step of steps; let i = index">
-          <button
-            class="nav-link"
-            [class.active]="currentStep === i"
-            (click)="goToStep(i)"
+<div id="main-wrapper" class="auth-customizer-none">
+  <div
+    class="position-relative overflow-hidden radial-gradient min-vh-100 w-100"
+  >
+    <div class="position-relative z-index-5">
+      <div class="row">
+        <div class="col-lg-6 col-xl-7">
+          <div
+            class="d-none d-lg-flex align-items-center justify-content-center h-n80"
           >
-            {{ i + 1 }}
-          </button>
-        </li>
-      </ul>
-      }
+            <img
+              src="assets/vendors-images/Ecommerce web page-pana.svg"
+              alt="modernize-img"
+              class="img-fluid"
+              width="500"
+            />
+            <div class="">
 
-      <!-- Stepper Content -->
-      <!-- Step 0 -->
-      <div *ngIf="currentStep === 0">
-        <form [formGroup]="shopForm" enctype="multipart/form-data">
-          <div class="row">
-            <div class="col-md-7">
-              <img
-                src="assets/vendors-images/Ecommerce campaign-bro.svg"
-                class="step-image"
-                style="width: 715px; height: 475px"
-              />
-            </div>
-            <div class="col-md-5">
-              <p class="text-center fw-4">
-                Entrez vos informations pour créer votre boutique.
-              </p>
-              <div class="card">
-                <div class="card-body">
-                  <div class="mb-3">
-                    <label for="file" class="mb-2"
-                      >Sélectionner votre logo</label
-                    >
-                    <input type="file" class="form-control" id="file" (change)="onFileSelected($event)"/>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input
-                      type="text"
-                      class="form-control"
-                      formControlName="name"
-                      id="name"
-                      placeholder="Nom de la boutique"
-                    />
-                    <label for="name">
-                      <i class="ti ti-user me-2 fs-4"></i>Nom de la boutique
-                    </label>
-                    <small
-                      class="invalid"
-                      *ngIf="
-                        shopForm?.get('name')?.hasError('required') &&
-                        shopForm?.get('name')?.touched
-                      "
-                    >
-                      Le nom de la boutique est un champ requis.
-                    </small>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input
-                      type="email"
-                      class="form-control"
-                      formControlName="email"
-                      placeholder="Adresse email"
-                    />
-                    <label for="email">
-                      <i class="ti ti-mail me-2 fs-4"></i>Adresse email
-                    </label>
-                    <small
-                      class="invalid"
-                      *ngIf="
-                        shopForm?.get('email')?.hasError('required') &&
-                        shopForm?.get('email')?.touched
-                      "
-                    >
-                      Le mail est un champ requis.
-                    </small>
-                    <small
-                      class="invalid"
-                      *ngIf="shopForm?.get('email')?.hasError('email')"
-                    >
-                      Ce mail n'est pas valide, réessayez.
-                    </small>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input
-                      type="tel"
-                      class="form-control"
-                      id="phone_number_1"
-                      formControlName="phone_number_1"
-                      placeholder="Numéro de téléphone 1"
-                      (keypress)="keyPress($event)"
-                    />
-                    <label for="phone_number_1">
-                      <i class="ti ti-phone me-2 fs-4"></i>Numéro de téléphone 1
-                    </label>
-                    <small
-                      class="invalid"
-                      *ngIf="
-                        shopForm?.get('phone_number_1')?.hasError('required') &&
-                        shopForm?.get('phone_number_1')?.touched
-                      "
-                    >
-                      Le numéro est un champ requis.
-                    </small>
-                    <small
-                      class="invalid"
-                      *ngIf="
-                        shopForm?.get('phone_number_1')?.hasError('minlength')
-                      "
-                    >
-                      Le numéro doit contenir au moins 10 caractères.
-                    </small>
-                    <small
-                      class="invalid"
-                      *ngIf="
-                        shopForm?.get('phone_number_1')?.hasError('maxlength')
-                      "
-                    >
-                      Le numéro ne doit pas dépasser 10 caractères.
-                    </small>
-                  </div>
-                  <div class="text-end justify-content-end">
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      [disabled]="
-                        !shopForm.get('name')?.valid ||
-                        !shopForm.get('email')?.valid ||
-                        !shopForm.get('phone_number_1')?.valid
-                      "
-                      (click)="nextStep()"
-                    >
-                      Étape suivante
-                      <i class="ti ti-arrow-narrow-right me-2 fs-3"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+        <div class="col-lg-6 col-xl-5">
+          <div class="card mb-0 shadow-none rounded-0 min-vh-100 h-100">
+            <div
+              class="auth-max-width mx-auto d-flex align-items-center w-100 h-100"
+            >
+              <div class="card-body">
+                @if(steps){
+                  <ul class="nav nav-pills mb-5 justify-content-center" role="tablist">
+                    <li class="nav-item" *ngFor="let step of steps; let i = index">
+                      <button type="button"
+                        [class.active]="currentStep === i"
+                        (click)="goToStep(i)"
+                        class="d-inline-flex align-items-center justify-content-center btn btn-outline-info rounded-circle btn-lg round-48 m-1">
+                        {{ i + 1 }}
+                      </button>
 
-      <!-- Step 1 -->
-      <div *ngIf="currentStep === 1">
-        <form [formGroup]="shopForm">
-          <div class="row">
-            <div class="col-md-7">
-              <img
-                src="assets/vendors-images/Window Shopping-bro.svg"
-                class="step-image"
-                style="width: 715px; height: 475px"
-              />
-            </div>
-            <div class="col-md-5">
-              <p class="text-center fw-4">
-                Entrez vos informations de connexion et la localisation de votre
-                boutique.
-              </p>
-              <div class="card">
-                <div class="card-body">
-                  <div class="form-floating mb-3">
-                    <input
-                      type="text"
-                      class="form-control"
-                      formControlName="location"
-                      placeholder="Localisation de la boutique"
-                    />
-                    <label for="location">
-                      <i class="ti ti-location me-2 fs-4"></i>Localisation de la
-                      boutique
-                    </label>
-                    <small
-                      class="invalid"
-                      *ngIf="
-                        shopForm?.get('location')?.hasError('required') &&
-                        shopForm?.get('location')?.touched
-                      "
-                    >
-                      La localisation de la boutique est un champ requis.
-                    </small>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input
-                      type="password"
-                      class="form-control"
-                      formControlName="password"
-                      id="password"
-                      placeholder="Mot de passe"
-                    />
-                    <label for="password">
-                      <i class="ti ti-lock me-2 fs-4"></i>Mot de passe
-                    </label>
-                    <small
-                      class="invalid"
-                      *ngIf="
-                        shopForm?.get('password')?.hasError('required') &&
-                        shopForm?.get('password')?.touched
-                      "
-                    >
-                      Le mot de passe est un champ requis.
-                    </small>
-                    <small
-                      class="invalid"
-                      *ngIf="
-                        shopForm?.get('password')?.hasError('minlength')
-                      "
-                    >
-                    Le mot de passe doit contenir au moins 6 caractères.
-                    </small>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input
-                      type="password"
-                      class="form-control"
-                      formControlName="confirm_password"
-                      id="confirm_password"
-                      placeholder="Confirmation du mot de passe"
-                    />
-                    <label for="confirm_password">
-                      <i class="ti ti-lock me-2 fs-4"></i>Confirmation du mot de
-                      passe
-                    </label>
-                    <small
-                      class="invalid"
-                      *ngIf="
-                        shopForm?.get('confirm_password')?.hasError('required') &&
-                        shopForm?.get('confirm_password')?.touched
-                      "
-                    >
-                      Le mot de passe est un champ requis.
-                    </small>
-                    <small
-                      class="invalid"
-                      *ngIf="
-                        shopForm?.get('confirm_password')?.hasError('minlength')
-                      "
-                    >
-                    Le mot de passe doit contenir au moins 6 caractères.
-                    </small>
-                  </div>
-                  <div class="d-flex">
-                    <button
-                      type="button"
-                      class="btn btn-secondary me-3"
-                      (click)="previousStep()"
-                    >
-                      <i class="ti ti-arrow-narrow-left ms-2 fs-3"></i>
-                      Précédent
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      [disabled]="
-                        !shopForm.get('location')?.valid ||
-                        !shopForm.get('password')?.valid ||
-                        !shopForm.get('confirm_password')?.valid
-                      "
-                      (click)="nextStep()"
-                    >
-                      Étape suivante
-                      <i class="ti ti-arrow-narrow-right me-2 fs-3"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
+                    </li>
+                  </ul>
+                  }
 
-      <!-- Step 2 -->
-      <div *ngIf="currentStep === 2">
-        <form [formGroup]="shopForm">
-          <div class="row">
-            <div class="col-md-7">
-              <img
-                src="assets/vendors-images/Jewelry shop-bro.svg"
-                class="step-image"
-              />
-            </div>
-            <div class="col-md-5">
-              <p class="text-center fw-4">
-                Sélectionner les centres d'intérêt de votre boutique.
-              </p>
-              <div class="card">
-                <div class="card-body">
-                  <div class="card-body">
-                    <div class="row mb-5">
-                      <div
-                        class="col-auto"
-                        *ngFor="let categorie of listCategory; let i = index"
-                      >
-                        <button
-                          class="btn"
-                          [ngClass]="{
-                            'btn-primary': selectedCategories.includes(
-                              categorie.id
-                            ),
-                            'btn-outline-primary': !selectedCategories.includes(
-                              categorie.id
-                            )
-                          }"
-                          (click)="selectedCategory(categorie.id)"
+                  <!-- step 1 -->
+                  <div class="mt-4" *ngIf="currentStep === 0">
+                    <p class="text-center fw-4">
+                      Entrez vos informations pour créer votre boutique.
+                    </p>
+
+                    <form [formGroup]="shopForm">
+                      <div class="mb-3">
+                        <input type="file" class="form-control" id="file" (change)="onFileSelected($event)"/>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="name"
+                          id="name"
+                          placeholder="Nom de la boutique"
+                        />
+                        <label for="name">
+                          <i class="ti ti-user me-2 fs-4"></i>Nom de la boutique
+                        </label>
+                        <small
+                          class="invalid"
+                          *ngIf="shopForm?.get('name')?.hasError('required') && shopForm?.get('name')?.touched"
                         >
-                          {{ categorie.name }}
+                          Le nom de la boutique est un champ requis.
+                        </small>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input
+                          type="email"
+                          class="form-control"
+                          formControlName="email"
+                          placeholder="Adresse email"
+                        />
+                        <label for="email">
+                          <i class="ti ti-mail me-2 fs-4"></i>Adresse email
+                        </label>
+                        <small
+                          class="invalid"
+                          *ngIf="
+                            shopForm?.get('email')?.hasError('required') &&
+                            shopForm?.get('email')?.touched
+                          "
+                        >
+                          Le mail est un champ requis.
+                        </small>
+                        <small
+                          class="invalid"
+                          *ngIf="shopForm?.get('email')?.hasError('email')"
+                        >
+                          Ce mail n'est pas valide, réessayez.
+                        </small>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input
+                          type="tel"
+                          class="form-control"
+                          id="phone_number_1"
+                          formControlName="phone_number_1"
+                          placeholder="Numéro de téléphone 1"
+                          (keypress)="keyPress($event)"
+                        />
+                        <label for="phone_number_1">
+                          <i class="ti ti-phone me-2 fs-4"></i>Numéro de téléphone 1
+                        </label>
+                        <small
+                          class="invalid"
+                          *ngIf="
+                            shopForm?.get('phone_number_1')?.hasError('required') &&
+                            shopForm?.get('phone_number_1')?.touched
+                          "
+                        >
+                          Le numéro est un champ requis.
+                        </small>
+                        <small
+                          class="invalid"
+                          *ngIf="
+                            shopForm?.get('phone_number_1')?.hasError('minlength')
+                          "
+                        >
+                          Le numéro doit contenir au moins 10 caractères.
+                        </small>
+                        <small
+                          class="invalid"
+                          *ngIf="
+                            shopForm?.get('phone_number_1')?.hasError('maxlength')
+                          "
+                        >
+                          Le numéro ne doit pas dépasser 10 caractères.
+                        </small>
+                      </div>
+                      <button
+                        type="button"
+                        class="btn btn-primary w-100"
+                        [disabled]="
+                          !shopForm.get('name')?.valid ||
+                          !shopForm.get('email')?.valid ||
+                          !shopForm.get('phone_number_1')?.valid
+                        "
+                        (click)="nextStep()"
+                      >
+                        Étape suivante
+                        <i class="ti ti-arrow-narrow-right me-2 fs-3"></i>
+                      </button>
+                    </form>
+
+                  </div>
+
+                  <!-- step 2 -->
+                  <div class="mt-4" *ngIf="currentStep === 1">
+                    <p class="text-center fw-4">
+                      Entrez vos informations de connexion et la localisation de votre
+                      boutique.
+                    </p>
+
+                    <form [formGroup]="shopForm">
+                      <div class="form-floating mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="location"
+                          placeholder="Localisation de la boutique"
+                        />
+                        <label for="location">
+                          <i class="ti ti-location me-2 fs-4"></i>Localisation de la
+                          boutique
+                        </label>
+                        <small
+                          class="invalid"
+                          *ngIf="
+                            shopForm?.get('location')?.hasError('required') &&
+                            shopForm?.get('location')?.touched
+                          "
+                        >
+                          La localisation de la boutique est un champ requis.
+                        </small>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input
+                          type="password"
+                          class="form-control"
+                          formControlName="password"
+                          id="password"
+                          placeholder="Mot de passe"
+                        />
+                        <label for="password">
+                          <i class="ti ti-lock me-2 fs-4"></i>Mot de passe
+                        </label>
+                        <small
+                          class="invalid"
+                          *ngIf="
+                            shopForm?.get('password')?.hasError('required') &&
+                            shopForm?.get('password')?.touched
+                          "
+                        >
+                          Le mot de passe est un champ requis.
+                        </small>
+                        <small
+                          class="invalid"
+                          *ngIf="
+                            shopForm?.get('password')?.hasError('minlength')
+                          "
+                        >
+                        Le mot de passe doit contenir au moins 6 caractères.
+                        </small>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input
+                          type="password"
+                          class="form-control"
+                          formControlName="confirm_password"
+                          id="confirm_password"
+                          placeholder="Confirmation du mot de passe"
+                        />
+                        <label for="confirm_password">
+                          <i class="ti ti-lock me-2 fs-4"></i>Confirmation du mot de
+                          passe
+                        </label>
+                        <small
+                          class="invalid"
+                          *ngIf="
+                            shopForm?.get('confirm_password')?.hasError('required') &&
+                            shopForm?.get('confirm_password')?.touched
+                          "
+                        >
+                          Le mot de passe est un champ requis.
+                        </small>
+                        <small
+                          class="invalid"
+                          *ngIf="
+                            shopForm?.get('confirm_password')?.hasError('minlength')
+                          "
+                        >
+                        Le mot de passe doit contenir au moins 6 caractères.
+                        </small>
+                      </div>
+                      <div class="d-flex">
+                        <button
+                          type="button"
+                          class="btn btn-secondary me-3"
+                          (click)="previousStep()"
+                        >
+                          <i class="ti ti-arrow-narrow-left ms-2 fs-3"></i>
+                          Précédent
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          [disabled]="
+                            !shopForm.get('location')?.valid ||
+                            !shopForm.get('password')?.valid ||
+                            !shopForm.get('confirm_password')?.valid
+                          "
+                          (click)="nextStep()"
+                        >
+                          Étape suivante
+                          <i class="ti ti-arrow-narrow-right me-2 fs-3"></i>
                         </button>
                       </div>
-                    </div>
+                    </form>
                   </div>
-                  <p>
-                    <span class="text-danger">*</span> Note : veuillez selectioner quelque categorie.
-                  </p>
-                  <div class="d-flex">
-                    <button
-                      type="button"
-                      class="btn btn-secondary me-3"
-                      (click)="previousStep()"
-                    >
-                      <i class="ti ti-arrow-narrow-left ms-2 fs-3"></i>
-                      Précédent
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      [disabled]="selectedCategories.length === 0"
-                      (click)="nextStep()"
-                    >
-                      Étape suivante
-                      <i class="ti ti-arrow-narrow-right me-2 fs-3"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
 
-      <!-- Step 3 -->
-      <div *ngIf="currentStep === 3">
-        <form [formGroup]="shopForm">
-          <div class="row">
-            <div class="col-md-7">
-              <img
-                src="assets/vendors-images/Ecommerce web page-pana.svg"
-                class="step-image"
-              />
-            </div>
-            <div class="col-md-5">
-              <p class="text-center fw-4">
-                Décrivez en quelques mots votre boutique et donnez les liens
-                sociaux (si existants).
-              </p>
-              <div class="card">
-                <div class="card-body">
-                  <div class="form-floating mb-3">
-                    <input
-                      type="url"
-                      class="form-control"
-                      formControlName="whatsapp_link"
-                      id="whatsapp_link"
-                      placeholder="Lien de votre boutique sur WhatsApp"
-                    />
-                    <label for="whatsapp_link">
-                      <i class="ti ti-brand-whatsapp me-2 fs-4"></i>Lien de
-                      votre boutique sur WhatsApp
-                    </label>
-                    <small
-                      class="invalid"
-                      *ngIf="
-                        shopForm?.get('whatsapp_link')?.hasError('pattern') &&
-                        shopForm?.get('whatsapp_link')?.touched
-                      "
-                    >
-                      Le lien whatsApp entré n'est pas correct.
-                    </small>
+                  <!-- step 3 -->
+                  <div class="mt-4" *ngIf="currentStep === 2">
+                    <p class="text-center fw-4">
+                      Sélectionner les centres d'intérêt de votre boutique.
+                    </p>
+
+                    <form [formGroup]="shopForm">
+                      <div class="card-body">
+                        <div class="row mb-5">
+                          <div
+                            class="col-auto"
+                            *ngFor="let categorie of listCategory; let i = index"
+                          >
+                            <button
+                              class="btn"
+                              [ngClass]="{
+                                'btn-primary': selectedCategories.includes(
+                                  categorie.id
+                                ),
+                                'btn-outline-primary': !selectedCategories.includes(
+                                  categorie.id
+                                )
+                              }"
+                              (click)="selectedCategory(categorie.id)"
+                            >
+                              {{ categorie.name }}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <p>
+                        <span class="text-danger">*</span> Note : veuillez selectioner quelque categorie.
+                      </p>
+                      <div class="d-flex">
+                        <button
+                          type="button"
+                          class="btn btn-secondary me-3"
+                          (click)="previousStep()"
+                        >
+                          <i class="ti ti-arrow-narrow-left ms-2 fs-3"></i>
+                          Précédent
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          [disabled]="selectedCategories.length === 0"
+                          (click)="nextStep()"
+                        >
+                          Étape suivante
+                          <i class="ti ti-arrow-narrow-right me-2 fs-3"></i>
+                        </button>
+                      </div>
+                    </form>
                   </div>
-                  <div class="form-floating mb-3">
-                    <input
-                      type="url"
-                      class="form-control"
-                      formControlName="facebook_link"
-                      id="facebook_link"
-                      placeholder="Lien de votre page Facebook"
-                    />
-                    <label for="facebook_link">
-                      <i class="ti ti-brand-facebook me-2 fs-4"></i>Lien de
-                      votre page Facebook
-                    </label>
-                    <small
-                      class="invalid"
-                      *ngIf="
-                        shopForm?.get('facebook_link')?.hasError('pattern') &&
-                        shopForm?.get('facebook_link')?.touched
-                      "
-                    >
-                      Le lien facebook entré n'est pas correct.
-                    </small>
+
+                  <!-- step 4 -->
+
+                  <div class="mt-4" *ngIf="currentStep === 3">
+                    <p class="text-center fw-4">
+                      Décrivez en quelques mots votre boutique et donnez les liens
+                      sociaux (si existants).
+                    </p>
+
+                    <form [formGroup]="shopForm">
+                      <div class="form-floating mb-3">
+                        <input
+                          type="url"
+                          class="form-control"
+                          formControlName="whatsapp_link"
+                          id="whatsapp_link"
+                          placeholder="Lien de votre boutique sur WhatsApp"
+                        />
+                        <label for="whatsapp_link">
+                          <i class="ti ti-brand-whatsapp me-2 fs-4"></i>Lien de
+                          votre boutique sur WhatsApp
+                        </label>
+                        <small
+                          class="invalid"
+                          *ngIf="
+                            shopForm?.get('whatsapp_link')?.hasError('pattern') &&
+                            shopForm?.get('whatsapp_link')?.touched
+                          "
+                        >
+                          Le lien whatsApp entré n'est pas correct.
+                        </small>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input
+                          type="url"
+                          class="form-control"
+                          formControlName="facebook_link"
+                          id="facebook_link"
+                          placeholder="Lien de votre page Facebook"
+                        />
+                        <label for="facebook_link">
+                          <i class="ti ti-brand-facebook me-2 fs-4"></i>Lien de
+                          votre page Facebook
+                        </label>
+                        <small
+                          class="invalid"
+                          *ngIf="
+                            shopForm?.get('facebook_link')?.hasError('pattern') &&
+                            shopForm?.get('facebook_link')?.touched
+                          "
+                        >
+                          Le lien facebook entré n'est pas correct.
+                        </small>
+                      </div>
+                      <div class="mb-3">
+                        <textarea
+                          class="form-control"
+                          formControlName="description"
+                          rows="10"
+                          placeholder="Description de la boutique"
+                        ></textarea>
+                        <small
+                          class="invalid"
+                          *ngIf="
+                            shopForm?.get('description')?.hasError('required') &&
+                            shopForm?.get('description')?.touched
+                          "
+                        >
+                          La description est un champ requis.
+                        </small>
+                      </div>
+                      <p>
+                        <span class="text-danger">*</span>Note : veuillez remplir
+                        toutes les informations pour poursuivre.
+                      </p>
+                      <div class="d-flex">
+                        <button
+                          type="button"
+                          class="btn btn-secondary me-3"
+                          (click)="previousStep()"
+                        >
+                          <i class="ti ti-arrow-narrow-left ms-2 fs-3"></i>
+                          Précédent
+                        </button>
+                        <button
+                          type="submit"
+                          class="btn btn-success"
+                          [disabled]="shopForm.invalid || loading"
+                          (click)="onSubmit()"
+                        >
+                        {{loading ? "Traitement en cours" : "Créer ma boutique"}}
+                        </button>
+                      </div>
+                    </form>
                   </div>
-                  <div class="mb-3">
-                    <textarea
-                      class="form-control"
-                      formControlName="description"
-                      rows="10"
-                      placeholder="Description de la boutique"
-                    ></textarea>
-                    <small
-                      class="invalid"
-                      *ngIf="
-                        shopForm?.get('description')?.hasError('required') &&
-                        shopForm?.get('description')?.touched
-                      "
-                    >
-                      La description est un champ requis.
-                    </small>
-                  </div>
-                  <p>
-                    <span class="text-danger">*</span>Note : veuillez remplir
-                    toutes les informations pour poursuivre.
-                  </p>
-                  <div class="d-flex">
-                    <button
-                      type="button"
-                      class="btn btn-secondary me-3"
-                      (click)="previousStep()"
-                    >
-                      <i class="ti ti-arrow-narrow-left ms-2 fs-3"></i>
-                      Précédent
-                    </button>
-                    <button
-                      type="submit"
-                      class="btn btn-success"
-                      [disabled]="shopForm.invalid"
-                      (click)="onSubmit()"
-                    >
-                    {{loading ? "Traitement en cours" : "Créer ma boutique"}}
-                    </button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
+
 </div>

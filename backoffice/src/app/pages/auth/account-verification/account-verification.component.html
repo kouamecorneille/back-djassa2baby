@@ -1,0 +1,75 @@
+<div id="main-wrapper" class="auth-customizer-none">
+  <div
+    class="position-relative overflow-hidden radial-gradient min-vh-100 w-100"
+  >
+    <div class="position-relative z-index-5">
+      <div class="row">
+        <div class="col-lg-6 col-xl-8">
+          <div
+            class="d-none d-lg-flex align-items-center justify-content-center h-n80"
+          >
+            <img
+              src="../../../../assets/images/Enter OTP-cuate.svg"
+              alt="modernize-img"
+              class="img-fluid"
+              width="500"
+            />
+          </div>
+        </div>
+        <div class="col-lg-6 col-xl-4">
+          <div class="card mb-0 shadow-none rounded-0 min-vh-100 h-100">
+            <div
+              class="auth-max-width mx-auto d-flex align-items-center w-100 h-100"
+            >
+              <div class="card-body">
+                <div class="mb-5">
+                  <h3 class="fw-bolder fs-7 mb-3">Vérification du compte</h3>
+                  <p>
+                    Nous avons envoyé un code de vérification à votre adresse email. Saisissez le code
+                    dans le champ ci-dessous.
+                  </p>
+                </div>
+                <form [formGroup]="securityCodeForm">
+                  <div class="mb-3">
+                    <label for="securityCode" class="form-label fw-semibold">Tapez votre code de sécurité à 6 chiffres</label>
+                    <div class="d-flex align-items-center gap-2 gap-sm-3">
+                      <input type="text" formControlName="code1" maxlength="1" class="form-control text-center"
+                        (input)="moveToNext($event, 'code1', 'code2')" />
+                      <input type="text" formControlName="code2" maxlength="1" class="form-control text-center"
+                        (keydown)="moveToNext($event, 'code2', 'code3', 'code1')" />
+                      <input type="text" formControlName="code3" maxlength="1" class="form-control text-center"
+                        (keydown)="moveToNext($event, 'code3', 'code4', 'code2')" />
+                      <input type="text" formControlName="code4" maxlength="1" class="form-control text-center"
+                        (keydown)="moveToNext($event, 'code4', 'code5', 'code3')" />
+                      <input type="text" formControlName="code5" maxlength="1" class="form-control text-center"
+                        (keydown)="moveToNext($event, 'code5', 'code6', 'code4')" />
+                      <input type="text" formControlName="code6" maxlength="1" class="form-control text-center"
+                        (keydown)="moveToNext($event, 'code6', undefined, 'code5')" />
+                    </div>
+
+                  </div>
+
+                  <button type="submit"
+                    class="btn btn-primary w-100 py-8 mb-4"
+                    [disabled]="securityCodeForm.invalid || loading"
+                    (click)="onSubmit()"
+                    >
+                    {{loading ? "Vérification en cours...": "Vérifier mon compte"}}
+
+                  </button>
+
+                  <div class="d-flex align-items-center">
+                    <p class="fs-4 mb-0 text-dark">Vous n'avez pas reçu le code ?</p>
+                    <a class="text-primary fw-medium ms-2" href="javascript:void(0)" (click)="resendOtp()">Renvoyer</a>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

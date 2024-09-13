@@ -17,6 +17,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { UpdateService } from './pages/services/update.service';
 import { SubscriptionService } from './pages/services/shop/subscription.service';
 import Swal from 'sweetalert2';
+import { AuthService } from './pages/services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -52,6 +53,7 @@ import Swal from 'sweetalert2';
 export class AppComponent implements  OnInit, AfterViewInit{
   title = 'backoffice';
   updateService = inject(UpdateService)
+  authService = inject(AuthService)
 
   constructor(private subscriptionService: SubscriptionService, private router: Router) {
 
@@ -60,28 +62,31 @@ export class AppComponent implements  OnInit, AfterViewInit{
   ngOnInit() {
     // Réinitialiser l'indicateur après le rechargement
     this.updateService.checkForUpdates();
-    this.subscriptionService.checkSubscriptionStatus().subscribe(
+    if(this.authService.isAuthenticatedUser()){
+      this.subscriptionService.checkSubscriptionStatus().subscribe(
 
-      (response) => {
-        if (response.status === 'expired') {
+        (response) => {
+          if (response.status === 'expired') {
 
-          Swal.fire({
-            title: 'Abonnement babyShop!',
-            text: 'Votre abonnement a expiré pour ce mois !',
-            icon: 'warning',
-            timer: 4000,
-            timerProgressBar: true
-          });
+            Swal.fire({
+              title: 'Abonnement babyShop!',
+              text: 'Votre abonnement a expiré pour ce mois !',
+              icon: 'warning',
+              timer: 4000,
+              timerProgressBar: true
+            });
 
-          this.router.navigate(['/content/packages-vendors']);
+            this.router.navigate(['/content/packages-vendors']);
 
+          }
+        },
+        (error) => {
+          console.error('Error checking subscription status', error);
+          // Handle error, maybe redirect to an error page
         }
-      },
-      (error) => {
-        console.error('Error checking subscription status', error);
-        // Handle error, maybe redirect to an error page
-      }
-    )
+      )
+    }
+
   }
 
   ngAfterViewInit(): void {
