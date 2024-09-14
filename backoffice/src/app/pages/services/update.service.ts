@@ -50,7 +50,7 @@ export class UpdateService {
   }
 
   private promptUser() {
-    if (confirm(`Une nouvelle version (${this.currentVersion}) est disponible. Voulez-vous la charger ?`)) {
+    if (confirm(`Une nouvelle version de babyShop est disponible. Voulez-vous la charger ?`)) {
       this.clearCacheAndReload();
     }
   }

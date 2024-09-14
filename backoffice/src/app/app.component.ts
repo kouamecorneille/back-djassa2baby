@@ -74,7 +74,6 @@ export class AppComponent implements  OnInit, AfterViewInit{
           });
 
           this.router.navigate(['/content/packages-vendors']);
-
         }
       },
       (error) => {
