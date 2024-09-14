@@ -24,6 +24,7 @@ import { DetailsOrderComponent } from './pages/vendors/details-order/details-ord
 import { SubscribersComponent } from './pages/vendors/subscribers/subscribers.component';
 import { ShopCategoriesComponent } from './pages/vendors/shop-categories/shop-categories.component';
 import { CampagneComponent } from './pages/vendors/campagne/campagne.component';
+import { AccountVerificationComponent } from './pages/auth/account-verification/account-verification.component';
 
 export const routes: Routes = [
 
@@ -43,6 +44,10 @@ export const routes: Routes = [
   {
     path: 'auth/forgot-password',
     component: ForgotPasswordComponent
+  },
+  {
+    path: 'auth/account-verification',
+    component: AccountVerificationComponent
   },
   {
     path: 'auth/password-reset-confirm',

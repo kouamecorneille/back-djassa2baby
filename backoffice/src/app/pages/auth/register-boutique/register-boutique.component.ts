@@ -153,7 +153,10 @@ export class RegisterBoutiqueComponent {
 
         (response:any) => {
           if(response){
+            console.log(response)
             this.loading = false;
+            localStorage.setItem('shop_id', response.id)
+            localStorage.setItem('shop_email', response.email)
             Swal.fire({
               title: 'Création de boutique !',
               text: 'Votre boutique a été créer  avec succès !',
@@ -162,7 +165,7 @@ export class RegisterBoutiqueComponent {
               timerProgressBar:true
             })
 
-            this.router.navigate(['/auth/login']);
+            this.router.navigate(['/auth/account-verification']);
           }
         },
         (error:any) => {
