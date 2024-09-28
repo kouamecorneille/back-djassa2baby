@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, inject, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth/auth.service';
@@ -16,7 +16,7 @@ export class SidebarComponent implements AfterViewInit {
   userSession: UserApiResponse | null;
   @ViewChild('sidebartoggler', { static: true }) sidebarToggler!: ElementRef;
 
-  constructor() {
+  constructor(private renderer: Renderer2) {
     this.userSession = this.authService.UserSession!;
   }
   @HostListener('document:click', ['$event'])
@@ -41,6 +41,14 @@ export class SidebarComponent implements AfterViewInit {
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
     this.dataTheme = this.isSidebarOpen ? 'mini-sidebar' : 'full';
+    const body = document.body;
+    const currentType = body.getAttribute('data-sidebartype');
+
+    if (currentType === 'full') {
+      this.renderer.setAttribute(body, 'data-sidebartype', 'mini-sidebar');
+    } else {
+      this.renderer.setAttribute(body, 'data-sidebartype', 'full');
+    }
     this.updateSidebarClasses();
   }
 
