@@ -76,6 +76,8 @@ export class AppComponent implements  OnInit, AfterViewInit{
               timerProgressBar: true
             });
 
+
+
             this.router.navigate(['/content/packages-vendors']);
 
           }
