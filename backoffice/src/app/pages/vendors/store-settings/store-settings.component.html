@@ -1,8 +1,9 @@
-<app-breadcrumb
-[title]="'Paramètres'"></app-breadcrumb>
 
-<div class="card">
-  <ul class="nav nav-pills user-profile-tab" id="pills-tab" role="tablist">
+<div class="container-fluid">
+  <app-breadcrumb
+[title]="'Paramètres'"></app-breadcrumb>
+<div>
+  <ul class="nav nav-pills user-profile-tab mt-2 bg-primary-subtle rounded-2 rounded-top-0 mb-3" id="pills-tab" role="tablist">
     <li class="nav-item" role="presentation">
       <button class="nav-link position-relative rounded-0 active d-flex align-items-center justify-content-center bg-transparent fs-3 py-3" id="pills-account-tab" data-bs-toggle="pill" data-bs-target="#pills-account" type="button" role="tab" aria-controls="pills-account" aria-selected="true">
         <i class="ti ti-user-circle me-2 fs-6"></i>
@@ -22,22 +23,26 @@
       </button>
     </li>
   </ul>
-  <div class="card-body">
-    <div class="tab-content" id="pills-tabContent">
-      <div class="tab-pane fade show active" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab" tabindex="0">
-        <div>
-          <app-user-profil></app-user-profil>
+</div>
+  <div class="card">
+    <div class="card-body">
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab" tabindex="0">
+          <div>
+            <app-user-profil></app-user-profil>
+          </div>
         </div>
-      </div>
-      <div class="tab-pane fade" id="pills-notifications" role="tabpanel" aria-labelledby="pills-notifications-tab" tabindex="0">
-        <div class="row justify-content-center">
-          <app-store-infos></app-store-infos>
+        <div class="tab-pane fade" id="pills-notifications" role="tabpanel" aria-labelledby="pills-notifications-tab" tabindex="0">
+          <div class="row justify-content-center">
+            <app-store-infos></app-store-infos>
+          </div>
         </div>
-      </div>
 
-      <div class="tab-pane fade" id="pills-security" role="tabpanel" aria-labelledby="pills-security-tab" tabindex="0">
-        <app-change-password></app-change-password>
+        <div class="tab-pane fade" id="pills-security" role="tabpanel" aria-labelledby="pills-security-tab" tabindex="0">
+          <app-change-password></app-change-password>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
