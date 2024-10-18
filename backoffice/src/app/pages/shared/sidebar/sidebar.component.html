@@ -1,10 +1,10 @@
-<aside class="left-sidebar with-vertical">
+<aside class="left-sidebar with-vertical bg-baby">
   <div>
     <!-- ---------------------------------- -->
     <!-- Start Vertical Layout Sidebar -->
     <!-- ---------------------------------- -->
     <div class="brand-logo d-flex align-items-center justify-content-between">
-      <a href="../main/index.html" class="text-nowrap logo-img">
+      <a href="javascript:void(0);" class="text-nowrap logo-img">
         <img
           src="../assets/images/logos/babyshop-logo.png"
           class="dark-logo"
@@ -83,14 +83,14 @@
                 </li>
                 <!-- coupons -->
 
-                <li class="sidebar-item">
+                <!-- <li class="sidebar-item">
                   <a class="sidebar-link" [routerLink]="['/content/vendors/coupons']" routerLinkActive="active"  id="marketing-url" aria-expanded="false">
                     <span>
                       <i class="ti ti-ticket"></i>
                     </span>
                     <span class="hide-menu">Coupons</span>
                   </a>
-                </li>
+                </li> -->
                 <li class="sidebar-item">
                   <a class="sidebar-link" [routerLink]="'/content/vendors/compagnes'" routerLinkActive="active" id="reviews-url" aria-expanded="false">
                     <span>
@@ -131,24 +131,24 @@
                 </li>
 
                 <!-- Inventory -->
-                <li class="sidebar-item">
+                <!-- <li class="sidebar-item">
                   <a class="sidebar-link" href="./inventory" id="inventory-url" aria-expanded="false">
                     <span>
                       <i class="ti ti-archive"></i>
                     </span>
                     <span class="hide-menu">Inventaire</span>
                   </a>
-                </li>
+                </li> -->
 
                 <!-- Reports -->
-                <li class="sidebar-item">
+                <!-- <li class="sidebar-item">
                   <a class="sidebar-link" [routerLink]="['/content/statistics-sale']" routerLinkActive="active"  id="reports-url" aria-expanded="false">
                     <span>
                       <i class="ti ti-chart-pie"></i>
                     </span>
                     <span class="hide-menu">Statistique</span>
                   </a>
-                </li>
+                </li> -->
 
                 <!-- Marketing -->
                 <!-- <li class="sidebar-item">
@@ -205,14 +205,14 @@
         </div>
       </div>
     </nav>
-    <div class="fixed-profile p-3 mx-4 mb-2 bg-secondary-subtle rounded mt-3">
+    <div class="fixed-profile p-3 mx-4 mb-2 bg-white rounded mt-3">
       <div class="hstack gap-3">
         <div class="john-img">
           <img src="../assets/images/profile/user-1.jpg" class="rounded-circle" width="40" height="40" alt="modernize-img">
         </div>
         <div class="john-title">
           <h6 class="mb-0 fs-4 fw-semibold">{{userSession?.user?.phone_number}}</h6>
-          <span class="fs-2 text-center">Vendeur</span>
+          <span class="fs-2 text-center text-dark">Vendeur</span>
         </div>
         <button
           (click)="logout()"

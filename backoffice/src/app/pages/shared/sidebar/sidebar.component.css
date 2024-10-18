@@ -1,0 +1,13 @@
+.sidebar-nav ul .sidebar-item > .sidebar-link.active {
+  background-color: white!important;
+  color: #000 !important;
+}
+
+.sidebar-nav ul .sidebar-item > .sidebar-link {
+  color: #fff !important;
+}
+
+.bg-baby{
+  background-color: #28a56b!important;
+  color: white;
+}
